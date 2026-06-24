@@ -75,6 +75,8 @@ const DEFAULT_STATE = {
   completedQuests: [],
   votedProposals: {},
   soundEnabled: true,
+  pruBalance: 0,
+  lastFaucetClaim: 0,
   qfProjects: [
     { id: 1, name: "Decentralized Voting UI", donors: [100, 200, 50] },
     { id: 2, name: "SBT Badge Smart Contract", donors: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10] }
@@ -90,6 +92,8 @@ function loadState() {
       state = JSON.parse(saved);
       // Ensure complex structures exist
       if (!state.qfProjects) state.qfProjects = [...DEFAULT_STATE.qfProjects];
+      if (state.pruBalance === undefined) state.pruBalance = 0;
+      if (state.lastFaucetClaim === undefined) state.lastFaucetClaim = 0;
       sounds.enabled = state.soundEnabled;
     } catch (e) {
       state = { ...DEFAULT_STATE };
@@ -140,8 +144,79 @@ const STATIC_LEADERBOARD = [
   { ensName: 'pru_dean.eth', level: 1, xp: 85, badges: ['meetup'] }
 ];
 
+// --- FAUCET CLAIM LOGIC ---
+let faucetCooldownInterval = null;
+
+function updateFaucetCooldown() {
+  const claimBtn = document.getElementById('btn-claim-faucet');
+  const timerDiv = document.getElementById('faucet-cooldown-timer');
+  if (!claimBtn || !timerDiv) return;
+
+  const now = Date.now();
+  const elapsed = now - state.lastFaucetClaim;
+  const cooldownPeriod = 30000; // 30 seconds for testability
+
+  if (elapsed < cooldownPeriod) {
+    // Disable button, show timer
+    claimBtn.disabled = true;
+    claimBtn.textContent = "BEKLEME SÜRESİ";
+    timerDiv.style.display = "block";
+
+    const remainingSec = Math.ceil((cooldownPeriod - elapsed) / 1000);
+    timerDiv.textContent = `${remainingSec}s`;
+
+    if (!faucetCooldownInterval) {
+      faucetCooldownInterval = setInterval(() => {
+        updateFaucetCooldown();
+      }, 1000);
+    }
+  } else {
+    // Enable button, hide timer
+    claimBtn.disabled = false;
+    claimBtn.textContent = "100 PRU TALEP ET";
+    timerDiv.style.display = "none";
+    if (faucetCooldownInterval) {
+      clearInterval(faucetCooldownInterval);
+      faucetCooldownInterval = null;
+    }
+  }
+}
+
+function claimFaucetTokens() {
+  if (!checkWalletConnected()) return;
+
+  const now = Date.now();
+  if (now - state.lastFaucetClaim < 30000) {
+    sounds.playError();
+    showToast("⚠️ Bekleme süresi dolmadan tekrar talep edemezsiniz!", "error");
+    return;
+  }
+
+  // Simulate claiming
+  sounds.playClick();
+  const claimBtn = document.getElementById('btn-claim-faucet');
+  claimBtn.disabled = true;
+  claimBtn.textContent = "İşlem Gönderiliyor...";
+
+  const txHash = "0x" + Array.from({length: 16}, () => Math.floor(Math.random()*16).toString(16)).join('');
+  appendTerminal(`[TX] Faucet.requestTokens(100 PRU) initiated. hash: ${txHash}`, 'cmd');
+
+  setTimeout(() => {
+    state.pruBalance += 100;
+    state.lastFaucetClaim = Date.now();
+    saveState();
+    updateUI();
+    updateFaucetCooldown();
+
+    sounds.playSuccess();
+    showToast("🎉 100 PRU Testnet Tokeni cüzdanınıza başarıyla aktarıldı!", "success");
+    appendTerminal(`[TX] Block confirmed. Faucet.requestTokens success. +100 PRU added.`, 'success');
+  }, 1200);
+}
+
 // --- DYNAMIC CORE FUNCTIONS ---
 function updateUI() {
+  updateFaucetCooldown();
   // Update Wallet Button
   const connectBtn = document.getElementById('wallet-connect-btn');
   if (state.userConnected) {
@@ -189,6 +264,12 @@ function updateUI() {
   const currentXPForLevel = state.xp % 100;
   xpNumbers.textContent = `${currentXPForLevel} / 100 XP`;
   xpBarFill.style.width = `${currentXPForLevel}%`;
+
+  // Update PRU Balance
+  const pruBalanceSpan = document.getElementById('sbt-pru-balance');
+  if (pruBalanceSpan) {
+    pruBalanceSpan.textContent = `${state.pruBalance} PRU`;
+  }
 
   // Update Badges UI
   const badgesList = ['solidity', 'meetup', 'tokenomics', 'hackathon'];
@@ -696,6 +777,12 @@ function castVote(choice) {
 btnVoteYes.addEventListener('click', () => castVote('yes'));
 btnVoteNo.addEventListener('click', () => castVote('no'));
 
+// --- FAUCET TRIGGER ---
+const btnClaimFaucet = document.getElementById('btn-claim-faucet');
+if (btnClaimFaucet) {
+  btnClaimFaucet.addEventListener('click', () => claimFaucetTokens());
+}
+
 // --- QUADRATIC FUNDING SIMULATOR ---
 const btnAddProject = document.getElementById('btn-add-qf-project');
 const poolInput = document.getElementById('qf-total-pool');
@@ -800,26 +887,56 @@ function calculateQF() {
     const item = document.createElement('div');
     item.style.marginBottom = '15px';
     item.innerHTML = `
-      <div style="display:flex; justify-content:space-between; font-weight:600; font-size:0.85rem; margin-bottom:2px;">
-        <span>${proj.name}</span>
-        <span style="font-family:var(--font-mono); color:var(--text-muted);">Bağış: ${proj.directSum} MATIC (${proj.donors.length} Kişi)</span>
+      <div style="display:flex; justify-content:space-between; align-items:center; font-weight:600; font-size:0.85rem; margin-bottom:4px;">
+        <span style="display:flex; align-items:center; gap:8px;">
+          ${proj.name}
+          <button class="qf-donate-btn" data-id="${proj.id}" ${(!state.userConnected || state.pruBalance < 10) ? 'disabled' : ''} title="Cüzdanınızdan 10 PRU bağışlayın">+10 PRU Bağışla</button>
+        </span>
+        <span style="font-family:var(--font-mono); color:var(--text-muted); font-size:0.75rem;">Bağış: ${proj.directSum} PRU (${proj.donors.length} Kişi)</span>
       </div>
       <div class="qf-visual-bar-group">
         <div class="qf-bar-label">Doğrudan</div>
         <div class="qf-bar-wrapper">
           <div class="qf-bar-fill normal" style="width: ${directRatio * 100}%;"></div>
         </div>
-        <div style="font-family:var(--font-mono); font-size:0.75rem; width:80px; text-align:right;">${Math.round(directMatch)} MATIC</div>
+        <div style="font-family:var(--font-mono); font-size:0.75rem; width:80px; text-align:right;">${Math.round(directMatch)} PRU</div>
       </div>
       <div class="qf-visual-bar-group">
         <div class="qf-bar-label" style="color: var(--accent-green);">Karesel</div>
         <div class="qf-bar-wrapper">
           <div class="qf-bar-fill quadratic" style="width: ${qfRatio * 100}%;"></div>
         </div>
-        <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); width:80px; text-align:right;">${Math.round(qfMatch)} MATIC</div>
+        <div style="font-family:var(--font-mono); font-size:0.75rem; color:var(--accent-green); width:80px; text-align:right;">${Math.round(qfMatch)} PRU</div>
       </div>
     `;
     resultsDiv.appendChild(item);
+  });
+
+  // Bind click listeners for newly rendered buttons
+  resultsDiv.querySelectorAll('.qf-donate-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      if (!checkWalletConnected()) return;
+      const projId = parseInt(btn.dataset.id);
+      const project = state.qfProjects.find(p => p.id === projId);
+      if (project) {
+        if (state.pruBalance < 10) {
+          sounds.playError();
+          showToast("⚠️ Yetersiz Bakiye! Faucet'tan PRU talep edin.", "error");
+          return;
+        }
+        
+        // Execute donation
+        sounds.playClick();
+        state.pruBalance -= 10;
+        project.donors.push(10);
+        saveState();
+        updateUI();
+        
+        sounds.playSuccess();
+        showToast(`🎉 ${project.name} projesine 10 PRU bağışladınız!`, "success");
+        appendTerminal(`[TX] QF.contribute(10 PRU) -> project: "${project.name}". Success!`, "success");
+      }
+    });
   });
 }
 

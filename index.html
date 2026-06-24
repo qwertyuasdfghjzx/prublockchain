@@ -59,6 +59,11 @@
             </div>
           </div>
 
+          <div class="sbt-balance-section" style="margin-bottom: 20px; display: flex; justify-content: space-between; align-items: center; border: 1px solid rgba(139, 92, 246, 0.2); background: rgba(139, 92, 246, 0.05); padding: 8px 12px; border-radius: 6px;">
+            <span style="font-size: 0.85rem; color: var(--text-muted); font-family: var(--font-mono);">PRU Bakiye:</span>
+            <span style="font-family: var(--font-mono); font-weight: 700; color: var(--accent-purple);" id="sbt-pru-balance">0 PRU</span>
+          </div>
+
           <div class="sbt-badges-title">On-Chain Rozetler</div>
           <div class="sbt-badges-grid" id="sbt-badges-grid">
             <div class="sbt-badge-slot" id="badge-solidity">
@@ -332,8 +337,22 @@
 
             </div>
 
-            <!-- Quadratic Funding Simulator -->
-            <div class="qf-container">
+            <!-- Right Column Panels -->
+            <div>
+              <!-- Faucet Section -->
+              <div class="faucet-container section-card" style="margin-bottom: 25px; border-color: rgba(6, 182, 212, 0.35); box-shadow: var(--shadow-neo);">
+                <h3 class="section-title">⚡ PRU Token Faucet (Testnet Musluğu)</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+                  Simülatörlerde ve oylamalarda kullanmak üzere her 30 saniyede bir cüzdanınıza 100 PRU talep edin.
+                </p>
+                <div style="display: flex; gap: 15px; align-items: center;">
+                  <button class="submit-btn-cyber" id="btn-claim-faucet" style="flex: 1; margin-top: 0; background: var(--accent-cyan); box-shadow: var(--shadow-neo);">100 PRU TALEP ET</button>
+                  <div id="faucet-cooldown-timer" style="display: none; font-family: var(--font-mono); font-size: 0.95rem; color: var(--accent-red); font-weight: bold; min-width: 50px; text-align: center; border: 1px solid var(--accent-red); padding: 8px 10px; background: rgba(239, 68, 68, 0.1);">30s</div>
+                </div>
+              </div>
+
+              <!-- Quadratic Funding Simulator -->
+              <div class="qf-container">
               <h3 class="section-title">📊 Quadratic Funding (Karesel Fonlama) Simülatörü</h3>
               <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
                 Topluluk fonlarının adil paylaştırılması için formülümüzü deneyimleyin: Balinaların değil, benzersiz destekçi sayısının gücü kazandırır.
@@ -358,9 +377,10 @@
                 </div>
               </div>
             </div>
-
           </div>
-        </section>
+
+        </div>
+      </section>
 
         <!-- VIEW 4: LEADERBOARD -->
         <section id="view-leaderboard" class="view-content">
