@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PRU Blockchain Club | Web3 Hub & Gamification Portal</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <div class="app-container">
+    
+    <!-- HEADER -->
+    <header>
+      <div class="logo-section">
+        <div class="logo-icon">🔗</div>
+        <div class="logo-text">PRU <span>BLOCKCHAIN</span></div>
+      </div>
+      <div class="header-controls">
+        <button id="sound-toggle" class="sound-toggle-btn" title="Sesi Aç/Kapat">
+          <svg class="sound-icon" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+        </button>
+        <button id="wallet-connect-btn" class="connect-wallet-btn">CÜZDAN BAĞLA</button>
+      </div>
+    </header>
+
+    <!-- MAIN GRID LAYOUT -->
+    <div class="layout-grid">
+
+      <!-- LEFT SIDEBAR: PROFILE & IDENTITY -->
+      <aside class="sidebar-panel">
+        
+        <!-- Soulbound Token (SBT) Card -->
+        <div class="sbt-card" id="sbt-profile-card">
+          <div class="sbt-card-header">
+            <span class="sbt-badge-status" id="sbt-badge-status">Web3 Kimliği Yok</span>
+            <span class="sbt-token-id" id="sbt-token-id">SBT #----</span>
+          </div>
+          
+          <div class="sbt-avatar-section">
+            <div class="sbt-avatar-wrapper">
+              <div class="sbt-avatar-glow"></div>
+              <div class="sbt-avatar" id="sbt-avatar-char">?</div>
+            </div>
+            <h3 class="sbt-username" id="sbt-username">Misafir Üye</h3>
+            <span class="sbt-wallet-address" id="sbt-wallet-address">Cüzdan Bağlı Değil</span>
+          </div>
+
+          <div class="sbt-level-section">
+            <div class="sbt-level-indicator">
+              <span class="sbt-lvl-text">SEVİYE <span id="sbt-level-val">1</span></span>
+              <span class="sbt-xp-numbers" id="sbt-xp-numbers">0 / 100 XP</span>
+            </div>
+            <div class="sbt-xp-bar-container">
+              <div class="sbt-xp-bar-fill" id="sbt-xp-bar-fill"></div>
+            </div>
+          </div>
+
+          <div class="sbt-badges-title">On-Chain Rozetler</div>
+          <div class="sbt-badges-grid" id="sbt-badges-grid">
+            <div class="sbt-badge-slot" id="badge-solidity">
+              🔒
+              <span class="tooltip">Smart Contract Wizard (Solidity Görevini Tamamla)</span>
+            </div>
+            <div class="sbt-badge-slot" id="badge-meetup">
+              🔒
+              <span class="tooltip">Community Beacon (Fiziksel Buluşmaya Katıl)</span>
+            </div>
+            <div class="sbt-badge-slot" id="badge-tokenomics">
+              🔒
+              <span class="tooltip">Tokenomics Master (Ekonomi Raporu Gönder)</span>
+            </div>
+            <div class="sbt-badge-slot" id="badge-hackathon">
+              🔒
+              <span class="tooltip">Hackathon Architect (Hackathon MVP Gönder)</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Level Rules Info -->
+        <div class="level-info-box">
+          <h4>⚡ Seviye ve Oy Gücü</h4>
+          <p>Kazanılan her 100 XP seviyenizi artırır. Seviyeniz yükseldikçe DAO yönetim oylamalarındaki oy ağırlığınız katlanarak artar!</p>
+        </div>
+
+      </aside>
+
+      <!-- RIGHT PANEL: VIEW TABS & DETAILS -->
+      <main class="main-view-panel">
+        
+        <!-- TABS -->
+        <nav class="tabs-navigation">
+          <button class="tab-btn active" data-view="dashboard">
+            🖥️ Dashboard
+          </button>
+          <button class="tab-btn" data-view="missions">
+            🎯 Akademi & Görevler
+          </button>
+          <button class="tab-btn" data-view="dao">
+            🏛️ DAO & Yönetişim
+          </button>
+          <button class="tab-btn" data-view="leaderboard">
+            🏆 Liderlik Tablosu
+          </button>
+        </nav>
+
+        <!-- VIEW 1: DASHBOARD -->
+        <section id="view-dashboard" class="view-content active">
+          <div class="view-header">
+            <h2>KULÜP KONTROL PANELİ</h2>
+            <p>PRU Blockchain topluluk canlı verileri ve zincir içi aktiviteler.</p>
+          </div>
+
+          <!-- Stats Grid -->
+          <div class="stats-grid">
+            <div class="stat-card">
+              <div class="stat-glow-indicator"></div>
+              <div class="stat-label">Aktif Topluluk Üyeleri</div>
+              <div class="stat-val"><span id="stat-members-count">142</span> Üye</div>
+            </div>
+            <div class="stat-card purple-theme">
+              <div class="stat-glow-indicator"></div>
+              <div class="stat-label">Üretilen dApp Sayısı</div>
+              <div class="stat-val"><span id="stat-dapps-count">18</span> Proje</div>
+            </div>
+            <div class="stat-card green-theme">
+              <div class="stat-glow-indicator"></div>
+              <div class="stat-label">Hackathon Ödül Toplamı</div>
+              <div class="stat-val">$<span id="stat-rewards-count">12,500</span></div>
+            </div>
+          </div>
+
+          <!-- Events & Terminal Row -->
+          <div class="dashboard-details-row">
+            
+            <!-- Event Announcements -->
+            <div class="section-card">
+              <h3 class="section-title">📢 Güncel Topluluk Etkinlikleri</h3>
+              <div class="event-list">
+                
+                <div class="event-card">
+                  <div class="event-header">
+                    <span class="event-tag">Eğitim</span>
+                    <span class="event-date">YARIN - 18:30</span>
+                  </div>
+                  <h4 class="event-title">Solidity ile Akıllı Sözleşme Geliştirme 101</h4>
+                  <p class="event-desc">Akademi sekmesindeki ilk görevi tamamlayarak XP kazanabilir ve on-chain rozetinizi basabilirsiniz.</p>
+                </div>
+
+                <div class="event-card" style="border-left-color: var(--accent-cyan);">
+                  <div class="event-header">
+                    <span class="event-tag" style="background: rgba(6,182,212,0.15); color: var(--accent-cyan);">Buluşma</span>
+                    <span class="event-date">27 HAZİRAN - 15:00</span>
+                  </div>
+                  <h4 class="event-title">Haftalık Fiziksel Coffee & Web3 Meetup</h4>
+                  <p class="event-desc">Kampüs Web3 laboratuvarında toplanıyoruz. QR Kodunuzu taratıp katılım puanınızı almayı unutmayın!</p>
+                </div>
+
+                <div class="event-card" style="border-left-color: var(--accent-green);">
+                  <div class="event-header">
+                    <span class="event-tag" style="background: rgba(16,185,129,0.15); color: var(--accent-green);">Hackathon</span>
+                    <span class="event-date">10-12 TEMMUZ</span>
+                  </div>
+                  <h4 class="event-title">PRU Global Web3 MVP Hackathon</h4>
+                  <p class="event-desc">Büyük ödül havuzlu yerel hackathon. Takımını kur, MVP'ni gönder, kasadan proje fonunu kap.</p>
+                </div>
+
+              </div>
+            </div>
+
+            <!-- Terminal Simulator -->
+            <div class="section-card" style="padding: 0;">
+              <div class="terminal-card">
+                <div class="terminal-header">
+                  <div class="terminal-dots">
+                    <div class="terminal-dot red"></div>
+                    <div class="terminal-dot yellow"></div>
+                    <div class="terminal-dot green"></div>
+                  </div>
+                  <div class="terminal-title">pru-blockchain-node.sh</div>
+                  <div>LIVE</div>
+                </div>
+                <div class="terminal-body" id="terminal-output">
+                  <div class="terminal-line cmd">guest@prubc:~$ ./initialize_node.sh</div>
+                  <div class="terminal-line info">[SYS] Node initialization started.</div>
+                  <div class="terminal-line info">[SYS] Connecting to decentralized PRU testnet...</div>
+                  <div class="terminal-line success">[SYS] Connected to network. Gas price: 12 Gwei.</div>
+                  <div class="terminal-line success">[SYS] Listening for smart contract calls...</div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- VIEW 2: MISSIONS -->
+        <section id="view-missions" class="view-content">
+          <div class="view-header">
+            <h2>AKADEMİ VE GÖREVLER</h2>
+            <p>Görevleri tamamlayarak XP puanı toplayın, seviye atlayın ve Soulbound başarı rozetlerinizi kazanın.</p>
+          </div>
+
+          <div class="missions-grid">
+            
+            <!-- Solidity Quiz Mission -->
+            <div class="mission-card" id="mission-solidity-card">
+              <div class="mission-header">
+                <span class="mission-xp-badge">+25 XP</span>
+                <span class="mission-status" id="status-solidity">Başlanmadı</span>
+              </div>
+              <h3 class="mission-title">Solidity Geliştirici Eğitimi</h3>
+              <p class="mission-desc">Solidity akıllı sözleşme mantığı eğitim videosunu izleyin ve ardından mini-testi başarıyla tamamlayın.</p>
+              <div class="mission-footer">
+                <button class="mission-btn" id="btn-start-solidity">Görevi Başlat</button>
+              </div>
+            </div>
+
+            <!-- Meetup Attend Mission -->
+            <div class="mission-card" id="mission-meetup-card">
+              <div class="mission-header">
+                <span class="mission-xp-badge">+15 XP</span>
+                <span class="mission-status" id="status-meetup">Başlanmadı</span>
+              </div>
+              <h3 class="mission-title">Haftalık Buluşmaya Katılım</h3>
+              <p class="mission-desc">Topluluk buluşmasında veya seminerde sunulan etkinlik QR kodunu sisteme taratarak katılımınızı doğrulayın.</p>
+              <div class="mission-footer">
+                <button class="mission-btn" id="btn-start-meetup">QR Kod Tarat</button>
+              </div>
+            </div>
+
+            <!-- Tokenomics Article Mission -->
+            <div class="mission-card" id="mission-tokenomics-card">
+              <div class="mission-header">
+                <span class="mission-xp-badge">+40 XP</span>
+                <span class="mission-status" id="status-tokenomics">Başlanmadı</span>
+              </div>
+              <h3 class="mission-title">Tokenomics Analiz Gönderimi</h3>
+              <p class="mission-desc">Hazırladığınız teknik araştırma veya tokenomics analiz makalesinin linkini gönderin. Editör onayından sonra ödülünüzü alın.</p>
+              <div class="mission-footer">
+                <button class="mission-btn" id="btn-start-tokenomics">Raporu Gönder</button>
+              </div>
+            </div>
+
+            <!-- Hackathon MVP Mission -->
+            <div class="mission-card" id="mission-hackathon-card">
+              <div class="mission-header">
+                <span class="mission-xp-badge">+80 XP</span>
+                <span class="mission-status" id="status-hackathon">Başlanmadı</span>
+              </div>
+              <h3 class="mission-title">Hackathon MVP Geliştirme</h3>
+              <p class="mission-desc">Kulüp içi veya küresel bir hackathona takım kurup katılarak çalışan bir akıllı sözleşme/arayüz MVP linkini iletin.</p>
+              <div class="mission-footer">
+                <button class="mission-btn" id="btn-start-hackathon">MVP Kaydet</button>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- VIEW 3: DAO GOVERNANCE -->
+        <section id="view-dao" class="view-content">
+          <div class="view-header">
+            <h2>DEMOKRATİK DAO PORTALI</h2>
+            <p>Kulüp yönetimine katılın, bütçeyi yönlendirin ve karesel fonlama hesaplayıcısı ile projeleri değerlendirin.</p>
+          </div>
+
+          <div class="dao-split-layout">
+            
+            <!-- Proposals Section -->
+            <div class="proposals-container">
+              <h3 class="section-title">🗳️ Aktif Karar Oylamaları</h3>
+              
+              <!-- Proposal 1 (Active) -->
+              <div class="proposal-card" id="proposal-ipr12-card">
+                <div class="proposal-meta">
+                  <span class="proposal-status-badge">Aktif Oylama</span>
+                  <span class="proposal-id">IPR-12</span>
+                </div>
+                <h3 class="proposal-title">Kasadan Hackathon Ödül Havuzuna Fon Aktarılsın mı?</h3>
+                <p class="proposal-desc">Temmuz ayındaki PRU MVP Hackathon ödül havuzuna eklemek amacıyla kulüp hazinesinden 1500 MATIC bütçe aktarılması oylanıyor.</p>
+                
+                <div class="proposal-vote-bars">
+                  <div class="vote-bar-group">
+                    <div class="vote-bar-label">
+                      <span>EVET</span>
+                      <span id="vote-yes-percent">62% (<span id="vote-yes-count">34.5</span> Oy)</span>
+                    </div>
+                    <div class="vote-bar-bg">
+                      <div class="vote-bar-fill yes" id="vote-yes-fill" style="width: 62%;"></div>
+                    </div>
+                  </div>
+                  <div class="vote-bar-group">
+                    <div class="vote-bar-label">
+                      <span>HAYIR</span>
+                      <span id="vote-no-percent">38% (<span id="vote-no-count">21</span> Oy)</span>
+                    </div>
+                    <div class="vote-bar-bg">
+                      <div class="vote-bar-fill no" id="vote-no-fill" style="width: 38%;"></div>
+                    </div>
+                  </div>
+                </div>
+
+                <div class="vote-actions">
+                  <button class="vote-btn yes-btn" id="btn-vote-yes">EVET OYU VER</button>
+                  <button class="vote-btn no-btn" id="btn-vote-no">HAYIR OYU VER</button>
+                </div>
+              </div>
+
+              <!-- Proposal 2 (Closed) -->
+              <div class="proposal-card" style="opacity: 0.7;">
+                <div class="proposal-meta">
+                  <span class="proposal-status-badge closed">Tamamlandı</span>
+                  <span class="proposal-id">IPR-11</span>
+                </div>
+                <h3 class="proposal-title">Rust & Solana Geliştirici Eğitmeni Kiralanması</h3>
+                <p class="proposal-desc">Eylül dönemi için dışarıdan profesyonel Rust eğitmeni kiralanması amacıyla kasadan bütçe ayrılması oylaması.</p>
+                <div class="proposal-vote-bars">
+                  <div class="vote-bar-group">
+                    <div class="vote-bar-label">
+                      <span>KABUL (EVET)</span>
+                      <span>85% (122 Oy)</span>
+                    </div>
+                    <div class="vote-bar-bg">
+                      <div class="vote-bar-fill yes" style="width: 85%;"></div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Quadratic Funding Simulator -->
+            <div class="qf-container">
+              <h3 class="section-title">📊 Quadratic Funding (Karesel Fonlama) Simülatörü</h3>
+              <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 12px;">
+                Topluluk fonlarının adil paylaştırılması için formülümüzü deneyimleyin: Balinaların değil, benzersiz destekçi sayısının gücü kazandırır.
+              </p>
+              <div class="qf-formula">
+                Fon Ağırlığı = ( √c₁ + √c₂ + ... + √cₙ )²
+              </div>
+
+              <div class="qf-inputs-list" id="qf-inputs-list">
+                <!-- Project Inputs will be rendered here dynamically -->
+              </div>
+
+              <button class="add-qf-row-btn" id="btn-add-qf-project">+ Yeni Proje Ekle</button>
+
+              <div class="qf-results">
+                <div class="qf-result-item">
+                  <span>Toplam Eşleşme Havuzu:</span>
+                  <span><input type="number" id="qf-total-pool" value="1000" style="width:80px; background:var(--bg-main); border:1px solid rgba(255,255,255,0.1); color:#fff; text-align:center; font-family:var(--font-mono);"> MATIC</span>
+                </div>
+                <div id="qf-matching-results">
+                  <!-- Project calculations will render here -->
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <!-- VIEW 4: LEADERBOARD -->
+        <section id="view-leaderboard" class="view-content">
+          <div class="view-header">
+            <h2>LİDERLİK TABLOSU</h2>
+            <p>Kulübün en aktif Web3 geliştirici ve araştırmacı sıralaması.</p>
+          </div>
+
+          <div class="leaderboard-card">
+            <table class="leaderboard-table">
+              <thead>
+                <tr>
+                  <th style="width: 80px;">Sıra</th>
+                  <th>Üye Kimliği (SBT)</th>
+                  <th style="width: 120px;">Seviye</th>
+                  <th style="width: 150px; text-align: right;">Toplam XP</th>
+                </tr>
+              </thead>
+              <tbody id="leaderboard-tbody">
+                <!-- Leaderboard rows rendered dynamically -->
+              </tbody>
+            </table>
+          </div>
+        </section>
+
+      </main>
+
+    </div>
+
+    <!-- FOOTER -->
+    <footer>
+      <p>© 2026 PRU Blockchain Club | Soulbound Identity System. Built on Testnet. <a href="#" id="reset-system-state">Sıfırla / Reset State</a></p>
+    </footer>
+
+  </div>
+
+  <!-- ==================== MODALS & OVERLAYS ==================== -->
+
+  <!-- 1. WALLET OPTIONS MODAL -->
+  <div class="overlay" id="overlay-wallet">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="btn-close-wallet-modal">&times;</button>
+      <h3 class="modal-title">Cüzdanınızı Bağlayın</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px;">
+        Web3 profilinizi yüklemek ve on-chain başarılarınızı görüntülemek için bir cüzdan seçin.
+      </p>
+      
+      <div class="wallet-options-list" id="wallet-options-list">
+        <div class="wallet-option-item" data-wallet="metamask">
+          <span class="wallet-option-name">🦊 MetaMask</span>
+          <span class="wallet-badge">EVM</span>
+        </div>
+        <div class="wallet-option-item" data-wallet="phantom">
+          <span class="wallet-option-name">👻 Phantom</span>
+          <span class="wallet-badge">Solana / EVM</span>
+        </div>
+        <div class="wallet-option-item" data-wallet="rabby">
+          <span class="wallet-option-name">💳 Rabby Wallet</span>
+          <span class="wallet-badge">EVM</span>
+        </div>
+      </div>
+
+      <!-- Connecting Loading View -->
+      <div class="loading-indicator" id="wallet-connecting-loader" style="display: none;">
+        <div class="spinner"></div>
+        <p style="font-family: var(--font-mono); font-size: 0.85rem;" id="wallet-loading-text">Cüzdana bağlanılıyor...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2. SOLIDITY QUIZ MODAL -->
+  <div class="overlay" id="overlay-quiz">
+    <div class="modal-box" style="max-width: 600px;">
+      <button class="modal-close-btn" id="btn-close-quiz-modal">&times;</button>
+      <h3 class="modal-title">Solidity Geliştirici Görevi</h3>
+      
+      <div class="quiz-container">
+        <!-- Mock Video -->
+        <div class="video-mock" id="video-player-container">
+          <div class="video-timeline" id="video-timeline-bar"></div>
+          <button class="video-play-btn" id="btn-video-play">▶</button>
+          <div id="video-overlay-text" style="position: absolute; font-family: var(--font-mono); font-size: 0.8rem; color: #fff;">Eğitim Videosunu İzle (5 Saniye)</div>
+        </div>
+
+        <!-- Quiz Section (Hidden initially until video completes) -->
+        <div class="quiz-question-box" id="quiz-question-box" style="display: none;">
+          <p class="quiz-question" id="quiz-question-text">Soru buraya gelecek...</p>
+          <div class="quiz-options" id="quiz-options-container">
+            <!-- Options dynamically added -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3. QR CODE SCAN MODAL -->
+  <div class="overlay" id="overlay-qr">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="btn-close-qr-modal">&times;</button>
+      <h3 class="modal-title">Katılım QR Kodu Tarayıcı</h3>
+      
+      <div class="qr-scanner-body">
+        <p style="color: var(--text-muted); font-size: 0.9rem;">
+          Fiziksel meetup salonunda bulunan katılım QR kodunu kameranıza gösterin.
+        </p>
+
+        <!-- QR Scanner Simulator -->
+        <div class="qr-box-mock">
+          <div class="qr-corners"></div>
+          <div class="qr-laser-line"></div>
+          <!-- Mock QR Code SVG -->
+          <svg class="qr-code-svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="1.5">
+            <rect x="2" y="2" width="6" height="6" rx="1"></rect>
+            <rect x="16" y="2" width="6" height="6" rx="1"></rect>
+            <rect x="2" y="16" width="6" height="6" rx="1"></rect>
+            <rect x="7" y="7" width="2" height="2" fill="white"></rect>
+            <rect x="15" y="7" width="2" height="2" fill="white"></rect>
+            <rect x="7" y="15" width="2" height="2" fill="white"></rect>
+            <path d="M12 2v6M12 12v6M16 12h6M16 16h6M2 12h6M12 16h2v2h-2z" stroke-linecap="round"></path>
+          </svg>
+        </div>
+
+        <button class="submit-btn-cyber" id="btn-trigger-scan" style="width: 100%;">Taramayı Simüle Et</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4. TOKENOMICS REPORT MODAL -->
+  <div class="overlay" id="overlay-tokenomics">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="btn-close-tokenomics-modal">&times;</button>
+      <h3 class="modal-title">Tokenomics Analiz Gönderimi</h3>
+      
+      <form class="cyber-form" id="form-tokenomics">
+        <div class="form-group">
+          <label>Makale Başlığı</label>
+          <input type="text" class="form-input" id="input-article-title" placeholder="Örn: Arbitrum DAO Yönetişim ve Tokenomics Yapısı" required>
+        </div>
+        <div class="form-group">
+          <label>Araştırma Linki (Mirror, Medium vb.)</label>
+          <input type="url" class="form-input" id="input-article-link" placeholder="https://mirror.xyz/..." required>
+        </div>
+        <button type="submit" class="submit-btn-cyber">Analiz Raporunu İlet</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- 5. HACKATHON MVP MODAL -->
+  <div class="overlay" id="overlay-hackathon">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="btn-close-hackathon-modal">&times;</button>
+      <h3 class="modal-title">Hackathon MVP Proje Kaydı</h3>
+      
+      <form class="cyber-form" id="form-hackathon">
+        <div class="form-group">
+          <label>Proje Adı</label>
+          <input type="text" class="form-input" id="input-hackathon-title" placeholder="Örn: CyberSBT Smart Vault" required>
+        </div>
+        <div class="form-group">
+          <label>GitHub Kod Deposu (Repository)</label>
+          <input type="url" class="form-input" id="input-hackathon-github" placeholder="https://github.com/..." required>
+        </div>
+        <div class="form-group">
+          <label>Canlı Demo Linki (Vercel, IPFS vb.)</label>
+          <input type="url" class="form-input" id="input-hackathon-demo" placeholder="https://demo.io/..." required>
+        </div>
+        <button type="submit" class="submit-btn-cyber">MVP Kaydını Tamamla</button>
+      </form>
+    </div>
+  </div>
+
+  <!-- TOAST SYSTEM CONTAINER -->
+  <div class="toast-container" id="toast-container"></div>
+
+  <!-- LOGIC SCRIPT -->
+  <script src="app.js"></script>
+</body>
+</html>
