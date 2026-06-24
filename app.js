@@ -310,6 +310,7 @@ function updateUI() {
   updateMissionCardState('meetup');
   updateMissionCardState('tokenomics');
   updateMissionCardState('hackathon');
+  updateMissionCardState('location');
 
   // Update DAO Votes Rendering
   updateDAOProposals();
@@ -495,6 +496,19 @@ document.querySelectorAll('.wallet-option-item').forEach(item => {
       showToast(`Cüzdan başarıyla bağlandı! Hoş geldiniz ${state.walletAddress}`, 'success');
       appendTerminal(`[SYS] Wallet connected: ${state.walletAddress} via ${wallet}. SBT Token ID: #${state.tokenId}`, 'success');
       
+      // Kayıt Dönemi Hoş Geldin Bonusu
+      if (!state.completedQuests.includes('registration')) {
+        setTimeout(() => {
+          state.completedQuests.push('registration');
+          state.pruBalance += 100;
+          saveState();
+          awardXP(25);
+          showToast("🎁 Hoş Geldin Bonusu! Kayıt dönemi ödülü +100 PRU ve +25 XP tanımlandı.", "success");
+          appendTerminal(`[SYS] First time registration detected. Welcome bonus of 100 PRU minted to SBT.`, 'success');
+          updateUI();
+        }, 1000);
+      }
+
       updateUI();
     }, 1500);
   });
@@ -1000,6 +1014,132 @@ function renderLeaderboard() {
   });
 }
 
+// --- GEOLOCATION PRESENCE CHECK-IN ---
+function calculateDistance(lat1, lon1, lat2, lon2) {
+  const R = 6371; // Radius of the Earth in km
+  const dLat = (lat2 - lat1) * Math.PI / 180;
+  const dLon = (lon2 - lon1) * Math.PI / 180;
+  const a = 
+    Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+    Math.cos(lat1 * Math.PI / 180) * Math.cos(lat2 * Math.PI / 180) * 
+    Math.sin(dLon / 2) * Math.sin(dLon / 2);
+  const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+  return R * c; // Distance in km
+}
+
+function verifyLocation() {
+  if (!checkWalletConnected()) return;
+
+  if (state.completedQuests.includes('location')) {
+    sounds.playError();
+    showToast("⚠️ Bu görevi zaten tamamladınız!", "error");
+    return;
+  }
+
+  sounds.playClick();
+  const btn = document.getElementById('btn-start-location');
+  const coordDisplay = document.getElementById('location-coordinates-display');
+  
+  btn.disabled = true;
+  btn.textContent = "Konum Alınıyor...";
+  coordDisplay.style.display = "block";
+  coordDisplay.textContent = "GPS uydularına bağlanılıyor...";
+
+  // Simulated target: Piri Reis University coordinates
+  const targetLat = 40.8741;
+  const targetLng = 29.2720;
+
+  if (navigator.geolocation) {
+    navigator.geolocation.getCurrentPosition(
+      (position) => {
+        const lat = position.coords.latitude;
+        const lng = position.coords.longitude;
+        
+        coordDisplay.textContent = `Koordinatlarınız: ${lat.toFixed(4)}, ${lng.toFixed(4)}`;
+        
+        const dist = calculateDistance(lat, lng, targetLat, targetLng);
+        
+        appendTerminal(`[GPS] Location check received: Lat ${lat.toFixed(4)}, Lng ${lng.toFixed(4)}. Distance to PRU: ${dist.toFixed(2)} km`, 'cmd');
+
+        setTimeout(() => {
+          if (dist < 1.5) { // Proximity of 1.5 km
+            // Real proximity success
+            sounds.playSuccess();
+            state.completedQuests.push('location');
+            state.pruBalance += 50;
+            saveState();
+            awardXP(15);
+            showToast("📍 Konum doğrulandı! Kampüstesiniz. +50 PRU ve +15 XP tanımlandı!", "success");
+            appendTerminal(`[SYS] GPS Check-in matched target coordinates. Meşruiyet kanıtı: OK.`, 'success');
+          } else {
+            // Proximity simulation fallback for testing ease
+            sounds.playSuccess();
+            state.completedQuests.push('location');
+            state.pruBalance += 50;
+            saveState();
+            awardXP(15);
+            showToast(`📍 Kampüs dışındasınız (${dist.toFixed(1)} km). Test için konumunuz onaylandı! +50 PRU / +15 XP`, "success");
+            appendTerminal(`[SYS] GPS simulation activated. Proximity override successful.`, 'success');
+          }
+          updateUI();
+        }, 1500);
+      },
+      (error) => {
+        // Error / blocked geolocation fallback
+        appendTerminal(`[GPS] Geolocation permission denied or failed. Activating simulation fallback...`, 'error');
+        setTimeout(() => {
+          sounds.playSuccess();
+          state.completedQuests.push('location');
+          state.pruBalance += 50;
+          
+          coordDisplay.textContent = `Koordinatlar (Simüle): ${targetLat.toFixed(4)}, ${targetLng.toFixed(4)} (Kampüs)`;
+          
+          saveState();
+          awardXP(15);
+          showToast("📍 GPS devre dışı. Konumunuz simüle edilerek onaylandı! +50 PRU / +15 XP", "success");
+          appendTerminal(`[SYS] Geolocation simulation success: ${targetLat.toFixed(4)}, ${targetLng.toFixed(4)} (Piri Reis Üniversitesi)`, 'success');
+          updateUI();
+        }, 1500);
+      },
+      { enableHighAccuracy: true, timeout: 5000 }
+    );
+  } else {
+    // Geolocation not supported
+    showToast("⚠️ Tarayıcınız konum API'sini desteklemiyor.", "error");
+    btn.disabled = false;
+    btn.textContent = "Konumu Doğrula";
+  }
+}
+
+// --- END OF YEAR COUNTDOWN TIMER ---
+function startYearEndCountdown() {
+  const timerDiv = document.getElementById('prize-countdown-timer');
+  if (!timerDiv) return;
+
+  // Let's target the end of the academic year (e.g. 2027-06-15)
+  const targetDate = new Date('2027-06-15T00:00:00').getTime();
+
+  function updateTimer() {
+    const now = Date.now();
+    const diff = targetDate - now;
+
+    if (diff <= 0) {
+      timerDiv.textContent = "Dağıtım Tamamlandı!";
+      return;
+    }
+
+    const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+    const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+    const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+    const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+
+    timerDiv.textContent = `${days}g : ${hours}s : ${minutes}dk : ${seconds}sn`;
+  }
+
+  updateTimer();
+  setInterval(updateTimer, 1000);
+}
+
 // --- SOUND TOGGLE ---
 document.getElementById('sound-toggle').addEventListener('click', () => {
   state.soundEnabled = !state.soundEnabled;
@@ -1027,5 +1167,13 @@ document.getElementById('reset-system-state').addEventListener('click', (e) => {
 window.addEventListener('DOMContentLoaded', () => {
   loadState();
   updateUI();
+  startYearEndCountdown();
+  
+  // Bind location check-in button click
+  const btnStartLocation = document.getElementById('btn-start-location');
+  if (btnStartLocation) {
+    btnStartLocation.addEventListener('click', () => verifyLocation());
+  }
+
   appendTerminal('[SYS] Web3 interface online. Welcome to Piri Reis Blockchain Hub.', 'success');
 });
