@@ -3301,7 +3301,7 @@ function initAcademyView() {
       <div style="text-align: center; padding: 40px 20px;">
         <div class="loading-spinner" style="border-top-color: var(--accent-cyan); animation: spin 1s infinite linear; width: 30px; height: 30px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.05); margin: 0 auto 15px auto;"></div>
         <h4 style="color: var(--accent-cyan);">Ders Kaynakları Yükleniyor...</h4>
-        <p style="color: var(--text-muted); font-size: 0.85rem;">NotebookLM veya yerel kaynaklar derleniyor.</p>
+        <p style="color: #9ca3af; font-size: 0.85rem;">NotebookLM veya yerel kaynaklar derleniyor.</p>
       </div>
     `;
     
@@ -3403,7 +3403,7 @@ function initAcademyView() {
     blackboardBody.innerHTML = `
       <div class="slide-content-wrapper" style="animation: fadeIn 0.4s ease forwards;">
         <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--accent-cyan); margin-bottom: 12px; text-transform: uppercase;">${slide.title}</h4>
-        <ul style="list-style-type: square; padding-left: 20px; font-size: 0.85rem; color: var(--text-main); display: flex; flex-direction: column; gap: 8px;">
+        <ul style="list-style-type: square; padding-left: 20px; font-size: 0.85rem; color: #e5e7eb; display: flex; flex-direction: column; gap: 8px;">
           ${bulletsHtml}
         </ul>
         
@@ -3501,7 +3501,7 @@ function initAcademyView() {
       items.forEach(item => {
         html += `
           <div style="display:flex; align-items:center; gap:8px;">
-            <span style="width:100px; color:var(--text-muted);">${item.label}:</span>
+            <span style="width:100px; color:#9ca3af;">${item.label}:</span>
             <div style="flex:1; background:rgba(255,255,255,0.03); height:6px; border-radius:3px; overflow:hidden; border:1px solid rgba(255,255,255,0.05);">
               <div style="width:${item.value}%; height:100%; background:${item.color}; box-shadow:0 0 4px ${item.color};"></div>
             </div>
