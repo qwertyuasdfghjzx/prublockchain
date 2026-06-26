@@ -1,0 +1,17 @@
+# Hardhat & build outputs
+artifacts/
+cache/
+
+# Dependencies
+node_modules/
+
+# Credentials / Secrets
+.env
+.env.production
+.env.local
+.env.development
+.env.staging
+
+# System / OS files
+.DS_Store
+Thumbs.db

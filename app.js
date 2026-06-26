@@ -65,6 +65,7 @@ const sounds = new SoundManager();
 
 // --- STATE MANAGEMENT ---
 const DEFAULT_STATE = {
+  networkMode: 'simulation', // 'simulation' or 'onchain'
   userConnected: false,
   walletAddress: '',
   walletType: '',
@@ -78,15 +79,8 @@ const DEFAULT_STATE = {
   pruBalance: 0,
   lastFaucetClaim: 0,
   burnedPru: 0,
-  eventsList: [
-    { id: 1, name: "Solidity ile Akıllı Sözleşme Geliştirme 101", date: "25 HAZİRAN - 18:30", xp: 25, pru: 15, attendees: 34 },
-    { id: 2, name: "Haftalık Coffee & Web3 Meetup", date: "27 HAZİRAN - 15:00", xp: 15, pru: 10, attendees: 21 },
-    { id: 3, name: "PRU Global Web3 MVP Hackathon", date: "10-12 TEMMUZ", xp: 80, pru: 50, attendees: 48 }
-  ],
-  qfProjects: [
-    { id: 1, name: "Decentralized Voting UI", donors: [100, 200, 50] },
-    { id: 2, name: "SBT Badge Smart Contract", donors: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10] }
-  ],
+  eventsList: [],
+  qfProjects: [],
   customProposals: [],
   userRole: 'guest',
   storeInventory: [
@@ -100,12 +94,60 @@ const DEFAULT_STATE = {
 
 let state = { ...DEFAULT_STATE };
 
+// --- WEB3 ON-CHAIN CONFIGURATION ---
+const CONTRACT_ADDRESSES = {
+  PRUToken: "0x0dF5919fb649e2df756CA54C098A84212A9B3448", // Sepolia Deployed Address
+  PRUMembershipSBT: "0x6811Fb205E7Df5bE7e7aEd5e3B83C4A9A4cDa1D1",
+  PRUClubPortal: "0x7aa23b16e687fb9Ed37Eca3BDFD01d173a9B751a"
+};
+
+const ABI_PRU_TOKEN = [
+  "function balanceOf(address) view returns (uint256)",
+  "function claimFaucet() external",
+  "function getFaucetRewardAmount() view returns (uint256)",
+  "function totalSupply() view returns (uint256)",
+  "function approve(address, uint256) returns (bool)",
+  "function allowance(address, address) view returns (uint256)"
+];
+
+const ABI_PRU_SBT = [
+  "function addressToTokenId(address) view returns (uint256)",
+  "function getProfile(uint256) view returns (uint256, uint256, string, string[])",
+  "function getProfileByAddress(address) view returns (uint256, uint256, uint256, string, string[])",
+  "function isQuestCompleted(uint256, string) view returns (bool)",
+  "function hasEarnedBadge(uint256, string) view returns (bool)"
+];
+
+const ABI_PRU_PORTAL = [
+  "function registerProfile(string) external",
+  "function submitQuestReport(string, string, string, string, uint256, uint256) external",
+  "function approveSubmission(uint256) external",
+  "function rejectSubmission(uint256) external",
+  "function purchaseStoreItem(uint256, string) external",
+  "function createDAOProposal(string, string, string) external",
+  "function castDAOVote(uint256, bool) external",
+  "function registerEvent(string, string, uint256, uint256) external",
+  "function claimEventAttendance(uint256) external",
+  "function claimLocationCheckin() external",
+  "function getSubmissionsCount() view returns (uint256)",
+  "function getProposalsCount() view returns (uint256)",
+  "function getEventsCount() view returns (uint256)",
+  "function submissions(uint256) view returns (uint256, address, string, string, string, string, uint256, uint256, bool, bool)",
+  "function proposals(uint256) view returns (string, string, string, uint256, uint256, bool, address)",
+  "function eventsList(uint256) view returns (uint256, string, string, uint256, uint256, uint256)",
+  "function storeInventory(uint256) view returns (uint256, string, uint256, uint256, string)",
+  "function hasAttendedEvent(uint256, address) view returns (bool)"
+];
+
+let web3Provider, web3Signer, tokenContract, sbtContract, portalContract;
+
 function loadState() {
   const saved = localStorage.getItem('prubc_state');
   if (saved) {
     try {
       state = JSON.parse(saved);
       // Ensure complex structures exist
+      if (state.networkMode === undefined) state.networkMode = 'simulation';
       if (!state.qfProjects) state.qfProjects = [...DEFAULT_STATE.qfProjects];
       if (state.pruBalance === undefined) state.pruBalance = 0;
       if (state.lastFaucetClaim === undefined) state.lastFaucetClaim = 0;
@@ -127,6 +169,167 @@ function loadState() {
 
 function saveState() {
   localStorage.setItem('prubc_state', JSON.stringify(state));
+}
+
+// --- WEB3 DATA SYNC LOGIC ---
+async function connectWeb3AndSync() {
+  if (typeof window.ethereum === 'undefined') {
+    showToast("⚠️ Web3 cüzdanı bulunamadı. Lütfen MetaMask yükleyin.", "error");
+    const netModeSelect = document.getElementById('select-network-mode');
+    if (netModeSelect) netModeSelect.value = 'simulation';
+    state.networkMode = 'simulation';
+    saveState();
+    return;
+  }
+
+  try {
+    web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+    const accounts = await web3Provider.listAccounts();
+    if (accounts.length > 0) {
+      web3Signer = web3Provider.getSigner();
+      const addr = await web3Signer.getAddress();
+
+      // Instantiate ethers contracts
+      tokenContract = new ethers.Contract(CONTRACT_ADDRESSES.PRUToken, ABI_PRU_TOKEN, web3Signer);
+      sbtContract = new ethers.Contract(CONTRACT_ADDRESSES.PRUMembershipSBT, ABI_PRU_SBT, web3Signer);
+      portalContract = new ethers.Contract(CONTRACT_ADDRESSES.PRUClubPortal, ABI_PRU_PORTAL, web3Signer);
+
+      await syncDataFromBlockchain(addr);
+    } else {
+      // Disconnected state
+      state.userConnected = false;
+      state.walletAddress = '';
+      state.userRole = 'guest';
+      state.tokenId = '';
+      state.xp = 0;
+      state.level = 1;
+      state.badges = [];
+      state.completedQuests = [];
+      updateUI();
+    }
+  } catch (e) {
+    console.error("Web3 Connection Error:", e);
+    showToast("⚠️ Akıllı sözleşme bağlantısı kurulamadı.", "error");
+  }
+}
+
+async function syncDataFromBlockchain(userAddress) {
+  try {
+    state.userConnected = true;
+    state.walletAddress = userAddress;
+    state.walletType = 'metamask';
+
+    // 1. Load SBT Membership card details
+    const tokenIdRaw = await sbtContract.addressToTokenId(userAddress);
+    const tokenIdVal = tokenIdRaw.toNumber();
+
+    if (tokenIdVal !== 0) {
+      state.tokenId = tokenIdVal.toString();
+      
+      const profile = await sbtContract.getProfile(tokenIdVal);
+      // profile returns (xp, level, role, earnedBadges)
+      state.xp = profile[0].toNumber();
+      state.level = profile[1].toNumber();
+      state.userRole = profile[2];
+      state.badges = profile[3];
+
+      // Sync completed quests
+      state.completedQuests = [];
+      const questKeys = ['registration', 'solidity', 'meetup', 'tokenomics', 'hackathon', 'location'];
+      for (const qKey of questKeys) {
+        const isComp = await sbtContract.isQuestCompleted(tokenIdVal, qKey);
+        if (isComp) {
+          state.completedQuests.push(qKey);
+        }
+      }
+    } else {
+      // Address does not own an SBT profile card
+      state.tokenId = '';
+      state.xp = 0;
+      state.level = 1;
+      state.userRole = 'guest';
+      state.badges = [];
+      state.completedQuests = [];
+    }
+
+    // 2. Load PRU Token balance
+    const balRaw = await tokenContract.balanceOf(userAddress);
+    state.pruBalance = Math.round(parseFloat(ethers.utils.formatEther(balRaw)));
+
+    // 3. Load dynamic on-chain Events
+    const eventsCount = await portalContract.getEventsCount();
+    const evCountVal = eventsCount.toNumber();
+    state.eventsList = [];
+    for (let i = 0; i < evCountVal; i++) {
+      const ev = await portalContract.eventsList(i);
+      state.eventsList.push({
+        id: ev[0].toNumber(),
+        name: ev[1],
+        date: ev[2],
+        xp: ev[3].toNumber(),
+        pru: ev[4].toNumber(),
+        attendees: ev[5].toNumber()
+      });
+
+      // Check if user attended this event on-chain
+      const hasAttended = await portalContract.hasAttendedEvent(ev[0].toNumber(), userAddress);
+      if (hasAttended) {
+        state.completedQuests.push(`event_${ev[0].toNumber()}`);
+      }
+    }
+
+    // 4. Load dynamic on-chain proposals
+    const propCount = await portalContract.getProposalsCount();
+    const propCountVal = propCount.toNumber();
+    state.customProposals = [];
+    for (let i = 0; i < propCountVal; i++) {
+      const prop = await portalContract.proposals(i);
+      state.customProposals.push({
+        id: prop[0], // iprId
+        title: prop[1],
+        desc: prop[2],
+        yesVotes: prop[3].toNumber(),
+        noVotes: prop[4].toNumber(),
+        closed: prop[5],
+        creator: prop[6]
+      });
+    }
+
+    // 5. Load pending academic submissions from the queue
+    const subCount = await portalContract.getSubmissionsCount();
+    const subCountVal = subCount.toNumber();
+    state.pendingSubmissions = [];
+    for (let i = 0; i < subCountVal; i++) {
+      const sub = await portalContract.submissions(i);
+      // Struct: id, student, questId, questTitle, title, detail, xp, pru, approved, rejected
+      if (!sub[8] && !sub[9]) { // Pending review
+        state.pendingSubmissions.push({
+          id: i.toString(), // Store array index to pass into approval tx!
+          student: formatAddress(sub[1]),
+          questId: sub[2],
+          questTitle: sub[3],
+          title: sub[4],
+          detail: sub[5],
+          xp: sub[6].toNumber(),
+          pru: sub[7].toNumber()
+        });
+      }
+    }
+
+    // 6. Load store stocks
+    for (let i = 0; i < 3; i++) {
+      const item = await portalContract.storeInventory(i);
+      const invItem = state.storeInventory.find(inv => inv.id === item[0].toNumber());
+      if (invItem) {
+        invItem.stock = item[3].toNumber();
+        invItem.cost = Math.round(parseFloat(ethers.utils.formatEther(item[2])));
+      }
+    }
+
+    updateUI();
+  } catch (err) {
+    console.error("Error syncing on-chain data:", err);
+  }
 }
 
 // --- UTILITIES ---
@@ -159,12 +362,7 @@ function showToast(message, type = 'info') {
 }
 
 // --- INITIALIZE LEADERBOARD DATA ---
-const STATIC_LEADERBOARD = [
-  { ensName: 'mert.eth', level: 5, xp: 450, badges: ['solidity', 'meetup', 'tokenomics', 'hackathon'] },
-  { ensName: 'selin.eth', level: 4, xp: 380, badges: ['solidity', 'meetup', 'tokenomics'] },
-  { ensName: 'can.eth', level: 3, xp: 290, badges: ['solidity', 'meetup'] },
-  { ensName: 'pru_dean.eth', level: 1, xp: 85, badges: ['meetup'] }
-];
+const STATIC_LEADERBOARD = [];
 
 // --- FAUCET CLAIM LOGIC ---
 let faucetCooldownInterval = null;
@@ -207,6 +405,35 @@ function updateFaucetCooldown() {
 function claimFaucetTokens() {
   if (!checkWalletConnected()) return;
 
+  if (state.networkMode === 'onchain') {
+    sounds.playClick();
+    const claimBtn = document.getElementById('btn-claim-faucet');
+    if (claimBtn) {
+      claimBtn.disabled = true;
+      claimBtn.textContent = "İşlem Gönderiliyor...";
+    }
+    
+    showToast("⏳ Musluk talebi gönderiliyor. Lütfen cüzdanınızdan onaylayın...", "info");
+    
+    tokenContract.claimFaucet()
+      .then(async (tx) => {
+        appendTerminal(`[TX] Faucet.claimFaucet() pending: ${tx.hash}`, 'cmd');
+        const receipt = await tx.wait();
+        sounds.playSuccess();
+        showToast("🎉 Faucet başarıyla talep edildi!", "success");
+        appendTerminal(`[TX] Confirmed: Faucet claimed in block ${receipt.blockNumber}`, 'success');
+        await syncDataFromBlockchain(state.walletAddress);
+      })
+      .catch((err) => {
+        console.error(err);
+        sounds.playError();
+        showToast("❌ Faucet işlemi başarısız veya reddedildi.", "error");
+        appendTerminal(`[TX] Faucet Error: ${err.message || err}`, 'error');
+        updateUI();
+      });
+    return;
+  }
+
   const now = Date.now();
   if (now - state.lastFaucetClaim < 30000) {
     sounds.playError();
@@ -217,8 +444,10 @@ function claimFaucetTokens() {
   // Simulate claiming
   sounds.playClick();
   const claimBtn = document.getElementById('btn-claim-faucet');
-  claimBtn.disabled = true;
-  claimBtn.textContent = "İşlem Gönderiliyor...";
+  if (claimBtn) {
+    claimBtn.disabled = true;
+    claimBtn.textContent = "İşlem Gönderiliyor...";
+  }
 
   const circulating = Math.max(0, 1500 + state.pruBalance - state.burnedPru);
   const rewardAmount = getFaucetRewardAmount(circulating);
@@ -580,12 +809,12 @@ document.querySelectorAll('.tab-btn').forEach(btn => {
   });
 });
 
-// --- WALLET CONNECT SIMULATOR ---
+// --- WALLET CONNECT SIMULATOR & WEB3 ---
 const walletBtn = document.getElementById('wallet-connect-btn');
 const overlayWallet = document.getElementById('overlay-wallet');
 const closeWalletBtn = document.getElementById('btn-close-wallet-modal');
 
-walletBtn.addEventListener('click', () => {
+walletBtn.addEventListener('click', async () => {
   sounds.playClick();
   if (state.userConnected) {
     if (confirm('Cüzdan bağlantısını kesmek istiyor musunuz?')) {
@@ -594,6 +823,10 @@ walletBtn.addEventListener('click', () => {
       state.walletType = '';
       state.tokenId = '';
       state.userRole = 'guest';
+      state.xp = 0;
+      state.level = 1;
+      state.badges = [];
+      state.completedQuests = [];
       saveState();
       updateUI();
       sounds.playClick();
@@ -608,6 +841,12 @@ walletBtn.addEventListener('click', () => {
     document.getElementById('wallet-connecting-loader').style.display = 'none';
     document.getElementById('input-admin-pin').value = '';
     
+    // Toggle warning based on network mode
+    const warnEl = document.getElementById('onchain-wallet-warning');
+    if (warnEl) {
+      warnEl.style.display = state.networkMode === 'onchain' ? 'block' : 'none';
+    }
+
     overlayWallet.classList.add('active');
   }
 });
@@ -620,11 +859,61 @@ closeWalletBtn.addEventListener('click', () => {
 let selectedWallet = '';
 
 document.querySelectorAll('#wallet-options-list .wallet-option-item').forEach(item => {
-  item.addEventListener('click', () => {
+  item.addEventListener('click', async () => {
     sounds.playClick();
     selectedWallet = item.dataset.wallet;
     
-    // Hide provider options, show role selection options
+    if (state.networkMode === 'onchain') {
+      if (typeof window.ethereum === 'undefined') {
+        showToast("⚠️ Web3 cüzdanı bulunamadı. Lütfen MetaMask yükleyin.", "error");
+        return;
+      }
+      
+      const loader = document.getElementById('wallet-connecting-loader');
+      if (loader) {
+        loader.style.display = 'flex';
+        document.getElementById('wallet-loading-text').textContent = "Cüzdan bağlantısı onaylanıyor...";
+      }
+      
+      try {
+        const accounts = await window.ethereum.request({ method: 'eth_requestAccounts' });
+        if (accounts.length > 0) {
+          web3Provider = new ethers.providers.Web3Provider(window.ethereum);
+          web3Signer = web3Provider.getSigner();
+          const addr = accounts[0];
+          
+          tokenContract = new ethers.Contract(CONTRACT_ADDRESSES.PRUToken, ABI_PRU_TOKEN, web3Signer);
+          sbtContract = new ethers.Contract(CONTRACT_ADDRESSES.PRUMembershipSBT, ABI_PRU_SBT, web3Signer);
+          portalContract = new ethers.Contract(CONTRACT_ADDRESSES.PRUClubPortal, ABI_PRU_PORTAL, web3Signer);
+          
+          // Check if SBT exists
+          const tokenIdRaw = await sbtContract.addressToTokenId(addr);
+          const tokenIdVal = tokenIdRaw.toNumber();
+          
+          if (loader) loader.style.display = 'none';
+          
+          if (tokenIdVal !== 0) {
+            // Already registered! Just sync and close modal
+            await syncDataFromBlockchain(addr);
+            overlayWallet.classList.remove('active');
+            sounds.playSuccess();
+            showToast(`Cüzdan başarıyla bağlandı! Hoş geldiniz ${formatAddress(addr)}`, 'success');
+          } else {
+            // Not registered yet! Show role selection so they can register
+            document.getElementById('wallet-options-list').style.display = 'none';
+            document.getElementById('wallet-role-selection').style.display = 'flex';
+          }
+        }
+      } catch (err) {
+        console.error(err);
+        if (loader) loader.style.display = 'none';
+        sounds.playError();
+        showToast("❌ Cüzdan bağlantısı reddedildi.", "error");
+      }
+      return;
+    }
+    
+    // Simulation fallback
     document.getElementById('wallet-options-list').style.display = 'none';
     document.getElementById('wallet-role-selection').style.display = 'flex';
   });
@@ -633,9 +922,40 @@ document.querySelectorAll('#wallet-options-list .wallet-option-item').forEach(it
 // Role selection - Member
 const roleSelectMember = document.getElementById('role-select-member');
 if (roleSelectMember) {
-  roleSelectMember.addEventListener('click', () => {
+  roleSelectMember.addEventListener('click', async () => {
     sounds.playClick();
     document.getElementById('wallet-role-selection').style.display = 'none';
+    
+    if (state.networkMode === 'onchain') {
+      const loader = document.getElementById('wallet-connecting-loader');
+      if (loader) {
+        loader.style.display = 'flex';
+        document.getElementById('wallet-loading-text').textContent = "Üye SBT kaydı oluşturuluyor...";
+      }
+      
+      try {
+        showToast("⏳ Üyelik kaydı işlemi gönderildi. Lütfen cüzdanınızdan onaylayın...", "info");
+        const tx = await portalContract.registerProfile("member");
+        appendTerminal(`[TX] Register profile transaction sent: ${tx.hash}`, 'cmd');
+        
+        await tx.wait();
+        if (loader) loader.style.display = 'none';
+        
+        const addr = await web3Signer.getAddress();
+        await syncDataFromBlockchain(addr);
+        
+        overlayWallet.classList.remove('active');
+        sounds.playSuccess();
+        showToast(`🎉 Üyelik kaydı başarılı! SBT kartınız basıldı.`, 'success');
+      } catch (err) {
+        console.error(err);
+        if (loader) loader.style.display = 'none';
+        sounds.playError();
+        showToast("❌ Kayıt işlemi başarısız.", "error");
+      }
+      return;
+    }
+
     connectWalletSimulate(selectedWallet, 'member');
   });
 }
@@ -669,6 +989,38 @@ function verifyOfficerPinAndConnect() {
   if (pin === 'PRU2026' || pin === '1234') {
     sounds.playClick();
     document.getElementById('wallet-pin-container').style.display = 'none';
+    
+    if (state.networkMode === 'onchain') {
+      const loader = document.getElementById('wallet-connecting-loader');
+      if (loader) {
+        loader.style.display = 'flex';
+        document.getElementById('wallet-loading-text').textContent = "Yönetici SBT kaydı oluşturuluyor...";
+      }
+      
+      showToast("⏳ Yönetici kaydı işlemi gönderildi. Lütfen cüzdanınızdan onaylayın...", "info");
+      
+      portalContract.registerProfile("officer")
+        .then(async (tx) => {
+          appendTerminal(`[TX] Officer registration transaction: ${tx.hash}`, 'cmd');
+          await tx.wait();
+          if (loader) loader.style.display = 'none';
+          
+          const addr = await web3Signer.getAddress();
+          await syncDataFromBlockchain(addr);
+          
+          overlayWallet.classList.remove('active');
+          sounds.playSuccess();
+          showToast(`🎉 Yönetici kaydı başarılı! Yetkili SBT kartınız basıldı.`, 'success');
+        })
+        .catch((err) => {
+          console.error(err);
+          if (loader) loader.style.display = 'none';
+          sounds.playError();
+          showToast("❌ Kayıt işlemi başarısız.", "error");
+        });
+      return;
+    }
+    
     connectWalletSimulate(selectedWallet, 'officer');
   } else {
     sounds.playError();
@@ -852,6 +1204,25 @@ function renderQuiz() {
         appendTerminal("[GAME] Solidity 101 quiz completed correctly.", "success");
         
         setTimeout(() => {
+          if (state.networkMode === 'onchain') {
+            showToast("⏳ Solidity görevi sunuluyor. Lütfen cüzdanınızdan onaylayın...", "info");
+            portalContract.submitQuestReport("solidity", "Solidity Geliştirici Eğitimi", "Quiz Başarılı", "Sorular doğru yanıtlandı.", 25, 0)
+              .then(async (tx) => {
+                appendTerminal(`[TX] Solidity task submit: ${tx.hash}`, 'cmd');
+                await tx.wait();
+                sounds.playSuccess();
+                overlayQuiz.classList.remove('active');
+                showToast("⏳ Göreviniz iletildi. Yönetici onayından sonra ödülünüz eklenecektir.", "info");
+                await syncDataFromBlockchain(state.walletAddress);
+              })
+              .catch((err) => {
+                console.error(err);
+                sounds.playError();
+                showToast("❌ İşlem başarısız.", "error");
+              });
+            return;
+          }
+
           state.completedQuests.push('solidity');
           if (!state.badges.includes('solidity')) state.badges.push('solidity');
           overlayQuiz.classList.remove('active');
@@ -908,6 +1279,31 @@ function simulateQRVerification(sourceLabel) {
     appendTerminal(`[SYS] QR Signature verification request sent to testnet.`, 'info');
     
     setTimeout(() => {
+      if (state.networkMode === 'onchain') {
+        showToast("⏳ Buluşma katılımı gönderiliyor. Lütfen cüzdanınızdan onaylayın...", "info");
+        portalContract.submitQuestReport("meetup", "Haftalık Buluşma Katılımı", "Katılım Doğrulaması", "Taratılan Kaynak: " + sourceLabel, 15, 0)
+          .then(async (tx) => {
+            appendTerminal(`[TX] Meetup submit: ${tx.hash}`, 'cmd');
+            await tx.wait();
+            sounds.playSuccess();
+            overlayQr.classList.remove('active');
+            btnTriggerScan.disabled = false;
+            if (btnLaunchCamera) btnLaunchCamera.disabled = false;
+            btnTriggerScan.textContent = "Taramayı Simüle Et";
+            showToast("⏳ Katılım raporu iletildi. Onaydan sonra ödüller yansıyacaktır.", "info");
+            await syncDataFromBlockchain(state.walletAddress);
+          })
+          .catch((err) => {
+            console.error(err);
+            sounds.playError();
+            btnTriggerScan.disabled = false;
+            if (btnLaunchCamera) btnLaunchCamera.disabled = false;
+            btnTriggerScan.textContent = "Taramayı Simüle Et";
+            showToast("❌ İşlem başarısız.", "error");
+          });
+        return;
+      }
+
       sounds.playSuccess();
       state.completedQuests.push('meetup');
       if (!state.badges.includes('meetup')) state.badges.push('meetup');
@@ -972,6 +1368,26 @@ formTokenomics.addEventListener('submit', (e) => {
   const title = document.getElementById('input-article-title').value;
   const link = document.getElementById('input-article-link').value;
   
+  if (state.networkMode === 'onchain') {
+    showToast("⏳ Tokenomics raporu gönderiliyor. Lütfen cüzdanınızdan onaylayın...", "info");
+    portalContract.submitQuestReport("tokenomics", "Tokenomics Analiz Gönderimi", title, link, 40, 25)
+      .then(async (tx) => {
+        appendTerminal(`[TX] Tokenomics submit pending: ${tx.hash}`, 'cmd');
+        await tx.wait();
+        sounds.playSuccess();
+        overlayTokenomics.classList.remove('active');
+        formTokenomics.reset();
+        showToast("⏳ Raporunuz iletildi. Onaydan sonra ödüller yansıyacaktır.", "info");
+        await syncDataFromBlockchain(state.walletAddress);
+      })
+      .catch((err) => {
+        console.error(err);
+        sounds.playError();
+        showToast("❌ Gönderim başarısız.", "error");
+      });
+    return;
+  }
+  
   if (!state.pendingSubmissions) state.pendingSubmissions = [];
   
   const subId = "sub_" + Math.floor(1000 + Math.random() * 9000);
@@ -1020,6 +1436,26 @@ formHackathon.addEventListener('submit', (e) => {
   const title = document.getElementById('input-hackathon-title').value;
   const repo = document.getElementById('input-hackathon-github').value;
   
+  if (state.networkMode === 'onchain') {
+    showToast("⏳ Hackathon MVP'si gönderiliyor. Lütfen cüzdanınızdan onaylayın...", "info");
+    portalContract.submitQuestReport("hackathon", "Hackathon MVP Geliştirme", title, repo, 80, 50)
+      .then(async (tx) => {
+        appendTerminal(`[TX] Hackathon submit pending: ${tx.hash}`, 'cmd');
+        await tx.wait();
+        sounds.playSuccess();
+        overlayHackathon.classList.remove('active');
+        formHackathon.reset();
+        showToast("⏳ Projeniz iletildi. Onaydan sonra ödüller yansıyacaktır.", "info");
+        await syncDataFromBlockchain(state.walletAddress);
+      })
+      .catch((err) => {
+        console.error(err);
+        sounds.playError();
+        showToast("❌ Gönderim başarısız.", "error");
+      });
+    return;
+  }
+  
   if (!state.pendingSubmissions) state.pendingSubmissions = [];
   
   const subId = "sub_" + Math.floor(1000 + Math.random() * 9000);
@@ -1048,8 +1484,8 @@ formHackathon.addEventListener('submit', (e) => {
 const btnVoteYes = document.getElementById('btn-vote-yes');
 const btnVoteNo = document.getElementById('btn-vote-no');
 
-let baseYesVotes = 34.5;
-let baseNoVotes = 21;
+let baseYesVotes = 0;
+let baseNoVotes = 0;
 
 function updateDAOProposals() {
   const proposalVoted = state.votedProposals['ipr-12'];
@@ -1094,6 +1530,24 @@ function updateDAOProposals() {
 function castVote(choice) {
   if (!checkWalletConnected()) return;
   sounds.playClick();
+
+  if (state.networkMode === 'onchain') {
+    showToast("⏳ Oy gönderiliyor. Lütfen cüzdanınızdan onaylayın...", "info");
+    portalContract.castDAOVote(0, choice === 'yes')
+      .then(async (tx) => {
+        appendTerminal(`[TX] Vote cast for IPR-12: ${tx.hash}`, 'cmd');
+        await tx.wait();
+        sounds.playSuccess();
+        showToast(`Oy başarıyla gönderildi!`, 'success');
+        await syncDataFromBlockchain(state.walletAddress);
+      })
+      .catch((err) => {
+        console.error(err);
+        sounds.playError();
+        showToast("❌ Oy verme işlemi başarısız.", "error");
+      });
+    return;
+  }
 
   state.votedProposals['ipr-12'] = choice;
   saveState();
@@ -1184,6 +1638,30 @@ function castCustomVote(proposalId, choice) {
   if (!checkWalletConnected()) return;
   sounds.playClick();
 
+  if (state.networkMode === 'onchain') {
+    const idx = state.customProposals.findIndex(p => p.id === proposalId);
+    if (idx === -1) {
+      showToast("❌ Teklif bulunamadı.", "error");
+      return;
+    }
+    
+    showToast("⏳ Oy gönderiliyor. Lütfen cüzdanınızdan onaylayın...", "info");
+    portalContract.castDAOVote(idx, choice === 'yes')
+      .then(async (tx) => {
+        appendTerminal(`[TX] Vote cast for ${proposalId}: ${tx.hash}`, 'cmd');
+        await tx.wait();
+        sounds.playSuccess();
+        showToast(`Oy başarıyla gönderildi!`, 'success');
+        await syncDataFromBlockchain(state.walletAddress);
+      })
+      .catch((err) => {
+        console.error(err);
+        sounds.playError();
+        showToast("❌ Oy verme işlemi başarısız.", "error");
+      });
+    return;
+  }
+
   state.votedProposals[proposalId] = choice;
   saveState();
   sounds.playSuccess();
@@ -1203,6 +1681,37 @@ if (formCreateProposal) {
     const propId = document.getElementById('input-proposal-id').value.trim();
     const propTitle = document.getElementById('input-proposal-title').value.trim();
     const propDesc = document.getElementById('input-proposal-desc').value.trim();
+    
+    if (state.networkMode === 'onchain') {
+      showToast("⏳ Teklif oluşturuluyor. Lütfen cüzdanınızdan onaylayın...", "info");
+      
+      const fee = ethers.utils.parseEther("50");
+      tokenContract.allowance(state.walletAddress, CONTRACT_ADDRESSES.PRUClubPortal)
+        .then(async (allowance) => {
+          if (allowance.lt(fee)) {
+            showToast("⏳ Token harcama onayı bekleniyor...", "info");
+            const approveTx = await tokenContract.approve(CONTRACT_ADDRESSES.PRUClubPortal, ethers.constants.MaxUint256);
+            appendTerminal(`[TX] PRU Token approve sent: ${approveTx.hash}`, 'cmd');
+            await approveTx.wait();
+          }
+          
+          showToast("⏳ Teklif yayınlama işlemi gönderiliyor...", "info");
+          const tx = await portalContract.createDAOProposal(propId, propTitle, propDesc);
+          appendTerminal(`[TX] Create DAO Proposal: ${tx.hash}`, 'cmd');
+          
+          await tx.wait();
+          sounds.playSuccess();
+          showToast(`🏛️ Teklif başarıyla yayınlandı!`, "success");
+          formCreateProposal.reset();
+          await syncDataFromBlockchain(state.walletAddress);
+        })
+        .catch((err) => {
+          console.error(err);
+          sounds.playError();
+          showToast("❌ Teklif oluşturma başarısız.", "error");
+        });
+      return;
+    }
     
     if (state.pruBalance < 50) {
       sounds.playError();
@@ -1507,6 +2016,27 @@ function verifyLocation() {
         appendTerminal(`[GPS] Location check received: Lat ${lat.toFixed(4)}, Lng ${lng.toFixed(4)}. Distance to PRU: ${dist.toFixed(2)} km`, 'cmd');
 
         setTimeout(() => {
+          if (state.networkMode === 'onchain') {
+            showToast("⏳ Konum kanıtı gönderiliyor. Lütfen cüzdanınızdan onaylayın...", "info");
+            portalContract.claimLocationCheckin()
+              .then(async (tx) => {
+                appendTerminal(`[TX] Geolocation checkin transaction: ${tx.hash}`, 'cmd');
+                await tx.wait();
+                sounds.playSuccess();
+                showToast("📍 Konum doğrulandı! +50 PRU ve +15 XP tanımlandı!", "success");
+                appendTerminal(`[SYS] GPS Check-in on-chain matching successful.`, 'success');
+                await syncDataFromBlockchain(state.walletAddress);
+              })
+              .catch((err) => {
+                console.error(err);
+                sounds.playError();
+                showToast("❌ Konum kanıtı gönderilemedi.", "error");
+                btn.disabled = false;
+                btn.textContent = "Konumu Doğrula";
+              });
+            return;
+          }
+
           if (dist < 1.5) { // Proximity of 1.5 km
             // Real proximity success
             sounds.playSuccess();
@@ -1533,6 +2063,27 @@ function verifyLocation() {
         // Error / blocked geolocation fallback
         appendTerminal(`[GPS] Geolocation permission denied or failed. Activating simulation fallback...`, 'error');
         setTimeout(() => {
+          if (state.networkMode === 'onchain') {
+            showToast("⏳ Konum kanıtı gönderiliyor. Lütfen cüzdanınızdan onaylayın...", "info");
+            portalContract.claimLocationCheckin()
+              .then(async (tx) => {
+                appendTerminal(`[TX] Geolocation simulation checkin transaction: ${tx.hash}`, 'cmd');
+                await tx.wait();
+                sounds.playSuccess();
+                coordDisplay.textContent = `Koordinatlar (Simüle): ${targetLat.toFixed(4)}, ${targetLng.toFixed(4)} (Kampüs)`;
+                showToast("📍 Konum simüle edilerek onaylandı! +50 PRU / +15 XP", "success");
+                await syncDataFromBlockchain(state.walletAddress);
+              })
+              .catch((err) => {
+                console.error(err);
+                sounds.playError();
+                showToast("❌ Konum kanıtı gönderilemedi.", "error");
+                btn.disabled = false;
+                btn.textContent = "Konumu Doğrula";
+              });
+            return;
+          }
+
           sounds.playSuccess();
           state.completedQuests.push('location');
           state.pruBalance += 50;
@@ -1561,7 +2112,6 @@ function startYearEndCountdown() {
   const timerDiv = document.getElementById('prize-countdown-timer');
   if (!timerDiv) return;
 
-  // Let's target the end of the academic year (e.g. 2027-06-15)
   const targetDate = new Date('2027-06-15T00:00:00').getTime();
 
   function updateTimer() {
@@ -1623,6 +2173,36 @@ if (btnSimulateAttendance) {
     btnSimulateAttendance.disabled = true;
     btnSimulateAttendance.textContent = "Kaydediliyor...";
     
+    if (state.networkMode === 'onchain') {
+      showToast("⏳ Katılım kaydediliyor. Lütfen cüzdanınızdan onaylayın...", "info");
+      
+      portalContract.claimEventAttendance(activeQREvent.id)
+        .then(async (tx) => {
+          appendTerminal(`[TX] Claim event attendance: ${tx.hash}`, 'cmd');
+          await tx.wait();
+          
+          const modal = document.getElementById('overlay-event-qr');
+          if (modal) modal.classList.remove('active');
+          
+          btnSimulateAttendance.disabled = false;
+          btnSimulateAttendance.textContent = "Taramayı Simüle Et";
+          
+          sounds.playSuccess();
+          showToast(`🎉 Etkinlik katılımı doğrulandı! Ödülleriniz cüzdanınıza eklendi.`, "success");
+          appendTerminal(`[GAME] Attended event: "${activeQREvent.name}".`, "success");
+          
+          await syncDataFromBlockchain(state.walletAddress);
+        })
+        .catch((err) => {
+          console.error(err);
+          btnSimulateAttendance.disabled = false;
+          btnSimulateAttendance.textContent = "Taramayı Simüle Et";
+          sounds.playError();
+          showToast("❌ Katılım kaydı başarısız.", "error");
+        });
+      return;
+    }
+    
     setTimeout(() => {
       // Close modal
       const modal = document.getElementById('overlay-event-qr');
@@ -1658,7 +2238,6 @@ if (btnSimulateAttendance) {
   });
 }
 
-// Event QR Flyer Printer Trigger
 const btnPrintEventQR = document.getElementById('btn-print-event-qr');
 if (btnPrintEventQR) {
   btnPrintEventQR.addEventListener('click', () => {
@@ -1748,6 +2327,25 @@ if (formCreateEvent) {
     
     sounds.playClick();
     
+    if (state.networkMode === 'onchain') {
+      showToast("⏳ Etkinlik oluşturuluyor. Lütfen cüzdanınızdan onaylayın...", "info");
+      portalContract.registerEvent(name, date, xp, pru)
+        .then(async (tx) => {
+          appendTerminal(`[TX] Create Event: ${tx.hash}`, 'cmd');
+          await tx.wait();
+          sounds.playSuccess();
+          showToast(`📅 "${name}" etkinliği başarıyla eklendi!`, "success");
+          formCreateEvent.reset();
+          await syncDataFromBlockchain(state.walletAddress);
+        })
+        .catch((err) => {
+          console.error(err);
+          sounds.playError();
+          showToast("❌ Etkinlik oluşturma başarısız.", "error");
+        });
+      return;
+    }
+    
     // Determine next id
     const nextId = state.eventsList.length > 0 ? Math.max(...state.eventsList.map(e => e.id)) + 1 : 1;
     
@@ -1771,7 +2369,6 @@ if (formCreateEvent) {
   });
 }
 
-// CSV download trigger
 const btnDownloadEventReport = document.getElementById('btn-download-event-report');
 if (btnDownloadEventReport) {
   btnDownloadEventReport.addEventListener('click', () => {
@@ -1866,6 +2463,58 @@ function purchaseStoreItem(itemId) {
   const item = state.storeInventory.find(i => i.id === itemId);
   if (!item) return;
   
+  if (state.networkMode === 'onchain') {
+    sounds.playClick();
+    showToast("⏳ Ürün alımı başlatıldı. Lütfen cüzdanınızdan onaylayın...", "info");
+    
+    const costWei = ethers.utils.parseEther(item.cost.toString());
+    const code = `PRU-${Math.floor(1000 + Math.random() * 9000)}-${Math.floor(1000 + Math.random() * 9000)}`;
+
+    tokenContract.allowance(state.walletAddress, CONTRACT_ADDRESSES.PRUClubPortal)
+      .then(async (allowance) => {
+        if (allowance.lt(costWei)) {
+          showToast("⏳ Token harcama onayı bekleniyor...", "info");
+          const approveTx = await tokenContract.approve(CONTRACT_ADDRESSES.PRUClubPortal, ethers.constants.MaxUint256);
+          appendTerminal(`[TX] PRU Token approve sent: ${approveTx.hash}`, 'cmd');
+          await approveTx.wait();
+        }
+        
+        showToast("⏳ Satın alma işlemi gönderiliyor...", "info");
+        const tx = await portalContract.purchaseStoreItem(itemId, code);
+        appendTerminal(`[TX] Store purchase: ${tx.hash}`, 'cmd');
+        
+        await tx.wait();
+        sounds.playSuccess();
+        
+        if (!state.redeemedVouchers) state.redeemedVouchers = [];
+        state.redeemedVouchers.push({
+          code: code,
+          itemId: item.id,
+          itemName: item.name,
+          timestamp: Date.now()
+        });
+        
+        // Show voucher modal
+        const modal = document.getElementById('overlay-voucher');
+        const codeDisplay = document.getElementById('voucher-code-display');
+        if (modal && codeDisplay) {
+          codeDisplay.textContent = code;
+          modal.classList.add('active');
+        }
+        
+        showToast(`🎉 ${item.name} kuponu başarıyla alındı!`, "success");
+        appendTerminal(`[TX] Store redemption successful. Spent ${item.cost} PRU. Voucher: ${code}`, 'success');
+        
+        await syncDataFromBlockchain(state.walletAddress);
+      })
+      .catch((err) => {
+        console.error(err);
+        sounds.playError();
+        showToast("❌ Satın alma işlemi başarısız.", "error");
+      });
+    return;
+  }
+
   if (state.pruBalance < item.cost) {
     sounds.playError();
     showToast("⚠️ Yetersiz Bakiye! Görev yaparak PRU kazanın.", "error");
@@ -1912,7 +2561,6 @@ function purchaseStoreItem(itemId) {
   updateUI();
 }
 
-// Close Store Voucher Modal triggers
 const btnCloseVoucherModal = document.getElementById('btn-close-voucher-modal');
 if (btnCloseVoucherModal) {
   btnCloseVoucherModal.addEventListener('click', () => {
@@ -1983,6 +2631,26 @@ function approveSubmission(subId) {
   const sub = state.pendingSubmissions.find(s => s.id === subId);
   if (!sub) return;
   
+  if (state.networkMode === 'onchain') {
+    showToast("⏳ Ödev onaylanıyor. Lütfen cüzdanınızdan onaylayın...", "info");
+    
+    const subIdx = parseInt(subId);
+    portalContract.approveSubmission(subIdx)
+      .then(async (tx) => {
+        appendTerminal(`[TX] Approve submission ${subId}: ${tx.hash}`, 'cmd');
+        await tx.wait();
+        sounds.playSuccess();
+        showToast(`🎉 Rapor onaylandı! Ödüller dağıtıldı.`, "success");
+        await syncDataFromBlockchain(state.walletAddress);
+      })
+      .catch((err) => {
+        console.error(err);
+        sounds.playError();
+        showToast("❌ Onay işlemi başarısız.", "error");
+      });
+    return;
+  }
+
   state.completedQuests.push(sub.questId);
   if (!state.badges.includes(sub.questId)) state.badges.push(sub.questId);
   
@@ -2005,6 +2673,28 @@ function rejectSubmission(subId) {
   const sub = state.pendingSubmissions.find(s => s.id === subId);
   if (!sub) return;
   
+  if (state.networkMode === 'onchain') {
+    if (confirm(`"${sub.title}" teslimini reddetmek istediğinize emin misiniz?`)) {
+      showToast("⏳ Reddetme işlemi cüzdandan onaylanıyor...", "info");
+      
+      const subIdx = parseInt(subId);
+      portalContract.rejectSubmission(subIdx)
+        .then(async (tx) => {
+          appendTerminal(`[TX] Reject submission ${subId}: ${tx.hash}`, 'cmd');
+          await tx.wait();
+          sounds.playSuccess();
+          showToast(`❌ "${sub.title}" teslimi reddedildi.`, "info");
+          await syncDataFromBlockchain(state.walletAddress);
+        })
+        .catch((err) => {
+          console.error(err);
+          sounds.playError();
+          showToast("❌ Reddetme işlemi başarısız.", "error");
+        });
+    }
+    return;
+  }
+
   if (confirm(`"${sub.title}" teslimini reddetmek istediğinize emin misiniz?`)) {
     state.pendingSubmissions = state.pendingSubmissions.filter(s => s.id !== subId);
     saveState();
@@ -2040,17 +2730,52 @@ document.getElementById('reset-system-state').addEventListener('click', (e) => {
   }
 });
 
-// --- CORE BOOTSTRAP ---
-window.addEventListener('DOMContentLoaded', () => {
+// --- INITIALIZATION ON LOAD ---
+document.addEventListener('DOMContentLoaded', () => {
+  // Load state from local storage
   loadState();
-  updateUI();
-  startYearEndCountdown();
-  
-  // Bind location check-in button click
-  const btnStartLocation = document.getElementById('btn-start-location');
-  if (btnStartLocation) {
-    btnStartLocation.addEventListener('click', () => verifyLocation());
+
+  // Bind network mode switcher selection
+  const netModeSelect = document.getElementById('select-network-mode');
+  if (netModeSelect) {
+    netModeSelect.value = state.networkMode;
+    netModeSelect.addEventListener('change', async (e) => {
+      sounds.playClick();
+      state.networkMode = e.target.value;
+      saveState();
+
+      const modeName = state.networkMode === 'onchain' ? 'On-Chain (Web3)' : 'Simülasyon';
+      showToast(`Şebeke Modu Değiştirildi: ${modeName}`, 'info');
+      appendTerminal(`[SYS] Network mode set to: ${state.networkMode.toUpperCase()}`, 'info');
+
+      if (state.networkMode === 'onchain') {
+        await connectWeb3AndSync();
+      } else {
+        // Fallback to simulation mode: reset Web3 status and load local storage
+        state.userConnected = false;
+        state.walletAddress = '';
+        state.userRole = 'guest';
+        loadState();
+        updateUI();
+      }
+    });
   }
 
-  appendTerminal('[SYS] Web3 interface online. Welcome to Piri Reis Blockchain Hub.', 'success');
+  // Bind Location Check-in button click
+  const btnStartLocation = document.getElementById('btn-start-location');
+  if (btnStartLocation) {
+    btnStartLocation.addEventListener('click', verifyLocation);
+  }
+
+  // Render initial interface and start prize countdown
+  updateUI();
+  startYearEndCountdown();
+
+  // If previous state had onchain mode saved, automatically connect Web3
+  if (state.networkMode === 'onchain') {
+    connectWeb3AndSync();
+  }
 });
+
+
+
