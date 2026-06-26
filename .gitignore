@@ -15,3 +15,8 @@ node_modules/
 # System / OS files
 .DS_Store
 Thumbs.db
+
+# Portable Git
+.mingit/
+download_git.ps1
+

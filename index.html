@@ -112,6 +112,9 @@
           <button class="tab-btn" data-view="dashboard">
             🖥️ Dashboard
           </button>
+          <button class="tab-btn" data-view="departments">
+            ⚓ Bölüm Çözümleri
+          </button>
           <button class="tab-btn" data-view="missions">
             🎯 Akademi & Görevler
           </button>
@@ -500,6 +503,119 @@
               </div>
             </div>
 
+          </div>
+        </section>
+
+        <!-- VIEW 7: DEPARTMENTS (BÖLÜM ÇÖZÜMLERİ) -->
+        <section id="view-departments" class="view-content">
+          <div class="view-header">
+            <h2>PİRİ REİS ÜNİVERSİTESİ BÖLÜM ÇÖZÜMLERİ</h2>
+            <p>Üniversitemiz bölümlerinin sektörlerinde blockchain entegrasyonu ve kilit çözüm senaryoları.</p>
+          </div>
+
+          <!-- Department Selector Grid -->
+          <div class="departments-selector-grid" id="departments-selector-grid">
+            <!-- Dynamically populated from JS -->
+          </div>
+
+          <!-- Active Department Solution Panel -->
+          <div class="department-active-panel" id="department-active-panel" style="display: none;">
+            <div class="dep-panel-header">
+              <button class="mission-btn" id="btn-back-to-departments" style="border-color: var(--accent-cyan); color: var(--accent-cyan); margin-bottom: 15px;">⬅ Bölüm Listesine Dön</button>
+              <h3 id="active-dep-name" style="font-size: 1.6rem; color: var(--accent-cyan); font-family: var(--font-display);">Seçilen Bölüm</h3>
+              <p id="active-dep-desc" style="color: var(--text-muted); font-size: 0.95rem; margin-top: 5px; margin-bottom: 25px;">Bölüm açıklaması...</p>
+            </div>
+
+            <div class="dep-solutions-layout">
+              <!-- Left Sidebar: Solution Titles (10 Solutions) -->
+              <aside class="dep-solutions-sidebar" id="dep-solutions-list">
+                <!-- Dynamically populated solutions list -->
+              </aside>
+
+              <!-- Right Main Area: Selected Solution Details -->
+              <div class="dep-solution-detail" id="dep-solution-detail-panel">
+                
+                <div class="solution-header-card">
+                  <h4 id="sol-detail-title" style="font-size: 1.4rem; color: #fff; font-family: var(--font-display);">Çözüm Başlığı</h4>
+                  <div class="sol-problem-box" style="margin-top: 15px;">
+                    <strong style="color: var(--accent-red); display: block; font-family: var(--font-mono); font-size: 0.8rem; margin-bottom: 5px;">🔴 PROBLEM:</strong>
+                    <p id="sol-detail-problem" style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5;">Problem açıklaması...</p>
+                  </div>
+                </div>
+
+                <!-- Tabs Navigation inside Solution Detail -->
+                <nav class="solution-detail-tabs">
+                  <button class="sol-tab-btn active" data-sol-tab="architecture">🏗️ Mimari & Geliştirme</button>
+                  <button class="sol-tab-btn" data-sol-tab="flowchart">🔗 İş Akış Diyagramı</button>
+                  <button class="sol-tab-btn" data-sol-tab="costbenefit">📊 Fayda-Maliyet & ROI</button>
+                  <button class="sol-tab-btn" data-sol-tab="case">🌍 Gerçek Dünya Uygulaması</button>
+                </nav>
+
+                <!-- Tab content 1: Architecture -->
+                <div class="sol-tab-content active" id="sol-tab-architecture">
+                  <div class="section-card" style="margin-top: 20px; border-color: rgba(6, 182, 212, 0.15);">
+                    <h5 style="color: var(--accent-cyan); font-size: 1rem; margin-bottom: 8px;">Neden Blockchain Kullanılmalı?</h5>
+                    <p id="sol-detail-why" style="font-size: 0.9rem; line-height: 1.6; margin-bottom: 20px;">Neden blockchain kullanılmalı detayları...</p>
+                    
+                    <h5 style="color: var(--accent-purple); font-size: 1rem; margin-bottom: 8px;">Nasıl Geliştirilir? (Teknoloji Yığını)</h5>
+                    <p id="sol-detail-how" style="font-size: 0.9rem; line-height: 1.6; font-family: var(--font-display);">Geliştirme mimarisi ve standartları...</p>
+                  </div>
+                </div>
+
+                <!-- Tab content 2: Flowchart -->
+                <div class="sol-tab-content" id="sol-tab-flowchart">
+                  <div class="section-card" style="margin-top: 20px; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 250px;">
+                    <h5 style="color: var(--accent-cyan); font-size: 1rem; margin-bottom: 15px; align-self: flex-start;">İş Akış Şeması (Flowchart)</h5>
+                    <div class="flowchart-canvas" id="flowchart-canvas">
+                      <!-- Rendered dynamically as HTML/CSS/SVG steps -->
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tab content 3: Cost Benefit & ROI -->
+                <div class="sol-tab-content" id="sol-tab-costbenefit">
+                  <div style="display: grid; grid-template-columns: 1.2fr 1fr; gap: 20px; margin-top: 20px;" class="cost-benefit-grid">
+                    <!-- Cost Analysis Card -->
+                    <div class="section-card" style="border-color: rgba(16, 185, 129, 0.15); display: flex; flex-direction: column; gap: 15px;">
+                      <h5 style="color: var(--accent-green); font-size: 1rem; margin-bottom: 5px;">Maliyet & Yatırım Dönüşü (ROI) Analizi</h5>
+                      <div class="cost-metric-row" style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 8px;">
+                        <span style="color: var(--text-muted);">Kurulum / Geliştirme Maliyeti:</span>
+                        <strong style="color: #fff;" id="sol-cost-setup">Orta</strong>
+                      </div>
+                      <div class="cost-metric-row" style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 8px;">
+                        <span style="color: var(--text-muted);">Operasyonel Gider (Gas/Bakım):</span>
+                        <strong style="color: #fff;" id="sol-cost-operating">Düşük</strong>
+                      </div>
+                      <div class="cost-metric-row" style="display: flex; justify-content: space-between; font-size: 0.85rem; border-bottom: 1px dashed rgba(255,255,255,0.08); padding-bottom: 8px;">
+                        <span style="color: var(--text-muted);">Tasarruf & Verimlilik Oranı:</span>
+                        <strong style="color: var(--accent-green);" id="sol-cost-saving">%80 Zaman</strong>
+                      </div>
+                      <div class="cost-metric-row" style="display: flex; justify-content: space-between; font-size: 0.85rem; padding-bottom: 0;">
+                        <span style="color: var(--text-muted);">Yatırımın Geri Dönüşü (ROI):</span>
+                        <strong style="color: var(--accent-purple);" id="sol-cost-roi">6 Ay</strong>
+                      </div>
+                    </div>
+
+                    <!-- Metrics Radar/Bar Chart using SVG -->
+                    <div class="section-card" style="display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 15px;">
+                      <h5 style="color: var(--text-muted); font-size: 0.8rem; font-family: var(--font-mono); margin-bottom: 15px; align-self: flex-start;">ÇÖZÜM PERFORMANS METRİKLERİ</h5>
+                      <div id="solution-metrics-chart-container" style="width: 100%; height: 160px; display: flex; align-items: center; justify-content: center;">
+                        <!-- SVG chart will be injected here -->
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- Tab content 4: Real World Example -->
+                <div class="sol-tab-content" id="sol-tab-case">
+                  <div class="section-card" style="margin-top: 20px; border-color: rgba(139, 92, 246, 0.15);">
+                    <h5 style="color: var(--accent-purple); font-size: 1.1rem; margin-bottom: 10px;">🌍 Canlı / Gerçek Dünya Uygulaması</h5>
+                    <p id="sol-detail-case" style="font-size: 0.95rem; line-height: 1.6; color: var(--text-main); font-weight: 500;">Gerçek dünya uygulama detayları...</p>
+                  </div>
+                </div>
+
+              </div>
+            </div>
           </div>
         </section>
 
@@ -1189,6 +1305,8 @@
 
   <!-- ETHERS.JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/ethers/5.7.2/ethers.umd.min.js"></script>
+  <!-- DEPARTMENTS DATA -->
+  <script src="departmentsData.js"></script>
   <!-- LOGIC SCRIPT -->
   <script src="app.js"></script>
 </body>

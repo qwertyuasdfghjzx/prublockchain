@@ -1489,8 +1489,8 @@ formHackathon.addEventListener('submit', (e) => {
 const btnVoteYes = document.getElementById('btn-vote-yes');
 const btnVoteNo = document.getElementById('btn-vote-no');
 
-let baseYesVotes = 0;
-let baseNoVotes = 0;
+let baseYesVotes = 34.5;
+let baseNoVotes = 21;
 
 function updateDAOProposals() {
   const proposalVoted = state.votedProposals['ipr-12'];
@@ -1516,17 +1516,18 @@ function updateDAOProposals() {
   }
 
   const sum = yesTotal + noTotal;
-  const yesPct = Math.round((yesTotal / sum) * 100);
-  const noPct = 100 - yesPct;
+  const yesPct = sum > 0 ? Math.round((yesTotal / sum) * 100) : 0;
+  const noPct = sum > 0 ? 100 - yesPct : 0;
 
-  document.getElementById('vote-yes-count').textContent = yesTotal;
-  document.getElementById('vote-no-count').textContent = noTotal;
-  
-  document.getElementById('vote-yes-percent').textContent = `${yesPct}% (${yesTotal} Oy)`;
-  document.getElementById('vote-no-percent').textContent = `${noPct}% (${noTotal} Oy)`;
+  const yesPctEl = document.getElementById('vote-yes-percent');
+  const noPctEl = document.getElementById('vote-no-percent');
+  if (yesPctEl) yesPctEl.innerHTML = `${yesPct}% (<span id="vote-yes-count">${yesTotal}</span> Oy)`;
+  if (noPctEl) noPctEl.innerHTML = `${noPct}% (<span id="vote-no-count">${noTotal}</span> Oy)`;
 
-  document.getElementById('vote-yes-fill').style.width = `${yesPct}%`;
-  document.getElementById('vote-no-fill').style.width = `${noPct}%`;
+  const yesFillEl = document.getElementById('vote-yes-fill');
+  const noFillEl = document.getElementById('vote-no-fill');
+  if (yesFillEl) yesFillEl.style.width = `${yesPct}%`;
+  if (noFillEl) noFillEl.style.width = `${noPct}%`;
 
   // Render dynamic custom proposals
   renderCustomProposals();
@@ -2942,6 +2943,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Vision Explorer
   initVisionExplorer();
 
+  // Initialize Departments Blockchain Solutions View
+  initDepartmentsView();
+
   // Bind Landing page event action buttons (moving to missions tab when clicked)
   document.querySelectorAll('.btn-landing-event-action').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -2982,6 +2986,206 @@ document.addEventListener('DOMContentLoaded', () => {
     connectWeb3AndSync();
   }
 });
+
+// --- DEPARTMENTS BLOCKCHAIN SOLUTIONS MODULE ---
+function initDepartmentsView() {
+  const grid = document.getElementById('departments-selector-grid');
+  const activePanel = document.getElementById('department-active-panel');
+  const backBtn = document.getElementById('btn-back-to-departments');
+  const solList = document.getElementById('dep-solutions-list');
+  
+  if (!grid || !activePanel || !backBtn || !solList) return;
+
+  let activeDepartment = null;
+  let activeSolution = null;
+
+  // Render 10 departments
+  grid.innerHTML = '';
+  window.departmentsData.forEach(dep => {
+    const card = document.createElement('div');
+    card.className = 'department-selector-card';
+    card.innerHTML = `
+      <div class="dep-icon-wrapper">${dep.icon}</div>
+      <h4>${dep.name}</h4>
+      <p>${dep.description}</p>
+      <button class="submit-btn-cyber" style="width: 100%; margin-top: 15px; font-size: 0.8rem; padding: 8px 12px; background: transparent; border: 1.5px solid var(--accent-cyan); color: var(--accent-cyan); box-shadow: var(--shadow-neo);">Detayları Gör ➔</button>
+    `;
+    card.addEventListener('click', () => {
+      sounds.playClick();
+      selectDepartment(dep);
+    });
+    grid.appendChild(card);
+  });
+
+  backBtn.addEventListener('click', () => {
+    sounds.playClick();
+    activePanel.style.display = 'none';
+    grid.style.display = 'grid';
+    activeDepartment = null;
+    activeSolution = null;
+    
+    // Smooth scroll back to top of section
+    document.getElementById('view-departments').scrollIntoView({ behavior: 'smooth' });
+  });
+
+  function selectDepartment(dep) {
+    activeDepartment = dep;
+    grid.style.display = 'none';
+    activePanel.style.display = 'block';
+
+    document.getElementById('active-dep-name').textContent = dep.name;
+    document.getElementById('active-dep-desc').textContent = dep.description;
+
+    // Populate solution list in the sidebar
+    solList.innerHTML = '';
+    dep.solutions.forEach((sol, idx) => {
+      const btn = document.createElement('button');
+      btn.className = 'dep-solution-sidebar-btn';
+      if (idx === 0) btn.classList.add('active');
+      btn.innerHTML = `<span class="sol-num">${idx + 1}</span> <span class="sol-text">${sol.title}</span>`;
+      btn.addEventListener('click', () => {
+        sounds.playClick();
+        document.querySelectorAll('.dep-solution-sidebar-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        selectSolution(sol);
+      });
+      solList.appendChild(btn);
+    });
+
+    // Select the first solution by default
+    if (dep.solutions.length > 0) {
+      selectSolution(dep.solutions[0]);
+    }
+  }
+
+  function selectSolution(sol) {
+    activeSolution = sol;
+    
+    // Set static textual details
+    document.getElementById('sol-detail-title').textContent = sol.title;
+    document.getElementById('sol-detail-problem').textContent = sol.problem;
+    document.getElementById('sol-detail-why').textContent = sol.whyUse;
+    document.getElementById('sol-detail-how').textContent = sol.howToDevelop;
+    document.getElementById('sol-detail-case').textContent = sol.realWorldExample;
+
+    // Set cost benefit details
+    document.getElementById('sol-cost-setup').textContent = sol.costBenefit.setupCost;
+    document.getElementById('sol-cost-operating').textContent = sol.costBenefit.operatingCost;
+    
+    const savingSpan = document.getElementById('sol-cost-saving');
+    savingSpan.textContent = sol.costBenefit.savingRate;
+    
+    const roiSpan = document.getElementById('sol-cost-roi');
+    roiSpan.textContent = sol.costBenefit.roi;
+
+    // Reset inner tabs of solution detail to first tab (Architecture)
+    document.querySelectorAll('.sol-tab-btn').forEach(btn => btn.classList.remove('active'));
+    document.querySelectorAll('.sol-tab-content').forEach(c => c.classList.remove('active'));
+    document.querySelector('.sol-tab-btn[data-sol-tab="architecture"]').classList.add('active');
+    document.getElementById('sol-tab-architecture').classList.add('active');
+
+    // Draw flowchart
+    renderFlowchart(sol.workflow);
+
+    // Draw metrics SVG chart
+    renderMetricsChart(sol.metrics);
+  }
+
+  // Inner solution detail tabs navigation
+  document.querySelectorAll('.sol-tab-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sounds.playClick();
+      const tabName = btn.dataset.solTab;
+      
+      document.querySelectorAll('.sol-tab-btn').forEach(b => b.classList.remove('active'));
+      document.querySelectorAll('.sol-tab-content').forEach(c => c.classList.remove('active'));
+      
+      btn.classList.add('active');
+      document.getElementById(`sol-tab-${tabName}`).classList.add('active');
+    });
+  });
+
+  // Flowchart drawing logic
+  function renderFlowchart(steps) {
+    const canvas = document.getElementById('flowchart-canvas');
+    if (!canvas) return;
+
+    canvas.innerHTML = '';
+    
+    const container = document.createElement('div');
+    container.className = 'flowchart-steps-container';
+    
+    steps.forEach((step, idx) => {
+      const stepEl = document.createElement('div');
+      stepEl.className = 'flowchart-step-node';
+      stepEl.innerHTML = `
+        <div class="step-badge">${step.step}</div>
+        <div class="step-info">
+          <h6>${step.title}</h6>
+          <p>${step.desc}</p>
+        </div>
+      `;
+      container.appendChild(stepEl);
+
+      // Add a connector line if not the last step
+      if (idx < steps.length - 1) {
+        const connector = document.createElement('div');
+        connector.className = 'flowchart-step-connector';
+        connector.innerHTML = `
+          <svg class="connector-svg" width="30" height="40" style="display: block;">
+            <line x1="15" y1="0" x2="15" y2="40" stroke="var(--accent-cyan)" stroke-width="2" stroke-dasharray="4 4" />
+            <polygon points="12,32 15,40 18,32" fill="var(--accent-cyan)" />
+          </svg>
+        `;
+        container.appendChild(connector);
+      }
+    });
+
+    canvas.appendChild(container);
+  }
+
+  // Metrics SVG chart drawing logic
+  function renderMetricsChart(metrics) {
+    const container = document.getElementById('solution-metrics-chart-container');
+    if (!container) return;
+
+    container.innerHTML = '';
+
+    // Create a beautiful SVG bar comparison chart
+    const items = [
+      { label: "Hız (Speed)", value: metrics.speed, color: "var(--accent-cyan)" },
+      { label: "Güvenlik (Security)", value: metrics.security, color: "var(--accent-purple)" },
+      { label: "Maliyet Tasarrufu", value: metrics.costSaving, color: "var(--accent-green)" },
+      { label: "Uyum (Compliance)", value: metrics.compliance, color: "var(--accent-red)" }
+    ];
+
+    let svgContent = `<svg width="100%" height="150" viewBox="0 0 320 150" style="background: transparent;">`;
+
+    items.forEach((item, idx) => {
+      const y = 10 + idx * 35;
+      const barWidth = Math.round((item.value / 100) * 160);
+      
+      svgContent += `
+        <!-- Label -->
+        <text x="5" y="${y + 11}" fill="var(--text-muted)" font-family="var(--font-mono)" font-size="9" font-weight="600">${item.label}</text>
+        
+        <!-- Background Bar -->
+        <rect x="110" y="${y}" width="160" height="14" rx="3" fill="rgba(17, 24, 39, 0.05)" stroke="rgba(17, 24, 39, 0.1)" stroke-width="1" />
+        
+        <!-- Fill Bar with Animation Class -->
+        <rect class="metric-chart-bar" x="110" y="${y}" width="${barWidth}" height="14" rx="3" fill="${item.color}" filter="drop-shadow(0px 0px 2px ${item.color}33)">
+          <animate attributeName="width" from="0" to="${barWidth}" dur="0.8s" fill="freeze" />
+        </rect>
+        
+        <!-- Percentage Value -->
+        <text x="280" y="${y + 11}" fill="var(--text-main)" font-family="var(--font-mono)" font-weight="bold" font-size="10">%${item.value}</text>
+      `;
+    });
+
+    svgContent += `</svg>`;
+    container.innerHTML = svgContent;
+  }
+}
 
 
 
