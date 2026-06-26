@@ -111,6 +111,9 @@
           <button class="tab-btn" data-view="leaderboard">
             🏆 Liderlik Tablosu
           </button>
+          <button class="tab-btn" data-view="store">
+            🛒 Kulüp Mağazası
+          </button>
           <button class="tab-btn" data-view="admin">
             ⚙️ Yönetim & Tokenomics
           </button>
@@ -448,6 +451,17 @@
           </div>
         </section>
 
+        <!-- VIEW 4.5: STORE -->
+        <section id="view-store" class="view-content">
+          <div class="view-header">
+            <h2>KULÜP MAĞAZASI & AKADEMİK REDEEM</h2>
+            <p>Akademik görevlerden ve etkinliklerden kazandığınız PRU Tokenları, fiziksel ödüller ve kafeterya ayrıcalıkları için harcayın (Redeem).</p>
+          </div>
+          <div class="missions-grid" id="store-items-grid">
+            <!-- Rendered dynamically in app.js -->
+          </div>
+        </section>
+
         <!-- VIEW 5: ADMIN & MANAGEMENT -->
         <section id="view-admin" class="view-content">
           <div class="view-header">
@@ -501,6 +515,26 @@
                     </thead>
                     <tbody id="admin-events-tbody">
                       <!-- Dynamically rendered events -->
+                    </tbody>
+                  </table>
+              </div>
+
+              <!-- Academic Review Queue -->
+              <div class="section-card" style="margin-top: 25px;">
+                <h3 class="section-title">📝 Seyir Defteri Onay Sırası</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">Öğrenciler tarafından gönderilen ve akademik/sosyal onay bekleyen raporlar.</p>
+                <div style="overflow-x: auto;">
+                  <table class="leaderboard-table" style="width: 100%; font-size: 0.85rem;">
+                    <thead>
+                      <tr>
+                        <th>Öğrenci</th>
+                        <th>Görev</th>
+                        <th>Detay / Link</th>
+                        <th style="width: 130px; text-align: right;">Eylemler</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-submissions-tbody">
+                      <!-- Dynamically rendered pending submissions -->
                     </tbody>
                   </table>
                 </div>
@@ -784,6 +818,36 @@
           <button class="submit-btn-cyber" id="btn-print-event-qr" style="flex: 1; background: var(--accent-purple); box-shadow: var(--shadow-neo-purple); margin-top: 0; font-size: 0.8rem; padding: 10px;">🖨️ QR Afişi Yazdır</button>
         </div>
       </div>
+    </div>
+  </div>
+
+  <!-- 7. REDEMPTION VOUCHER OVERLAY -->
+  <div class="overlay" id="overlay-voucher">
+    <div class="modal-box" style="text-align: center; max-width: 450px;">
+      <button class="modal-close-btn" id="btn-close-voucher-modal">&times;</button>
+      <h3 class="modal-title" style="color: var(--accent-green); border-bottom-color: rgba(16, 185, 129, 0.3);">Ödül Talebi Başarılı!</h3>
+      <p style="color: var(--text-muted); font-size: 0.9rem; margin-bottom: 20px; line-height: 1.4;">
+        PRU Tokenlarınız başarıyla yakıldı. Aşağıdaki kupon kodunu veya QR'ı kullanarak ödülünüzü kulüp odasından teslim alabilirsiniz.
+      </p>
+      
+      <div style="background: rgba(16, 185, 129, 0.05); border: 2px dashed var(--accent-green); padding: 15px; border-radius: 8px; margin-bottom: 20px;">
+        <div style="font-size: 0.75rem; color: var(--text-muted); font-family: var(--font-mono); margin-bottom: 5px;">HEDİYE KUPON KODU</div>
+        <div style="font-family: var(--font-mono); font-size: 1.4rem; color: #fff; font-weight: bold; letter-spacing: 2px;" id="voucher-code-display">PRU-XXXX-XXXX</div>
+      </div>
+      
+      <div class="qr-box-mock" style="margin: 0 auto 20px auto; border-color: var(--accent-green); width: 160px; height: 160px;">
+        <div class="qr-corners" style="border-color: var(--accent-green);"></div>
+        <svg class="qr-code-svg" viewBox="0 0 24 24" fill="none" stroke="#10B981" stroke-width="1.5" style="width: 110px; height: 110px;">
+          <rect x="2" y="2" width="6" height="6" rx="1"></rect>
+          <rect x="16" y="2" width="6" height="6" rx="1"></rect>
+          <rect x="2" y="16" width="6" height="6" rx="1"></rect>
+          <rect x="7" y="7" width="2" height="2" fill="#10B981"></rect>
+          <rect x="15" y="7" width="2" height="2" fill="#10B981"></rect>
+          <rect x="7" y="15" width="2" height="2" fill="#10B981"></rect>
+          <path d="M12 2v6M12 12v6M16 12h6M16 16h6M2 12h6M12 16h2v2h-2z" stroke-linecap="round"></path>
+        </svg>
+      </div>
+      <button class="submit-btn-cyber" id="btn-close-voucher" style="background: var(--accent-green); box-shadow: var(--shadow-neo-green); width: 100%;">Harika, Kapat</button>
     </div>
   </div>
 

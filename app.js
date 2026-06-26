@@ -88,7 +88,14 @@ const DEFAULT_STATE = {
     { id: 2, name: "SBT Badge Smart Contract", donors: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10] }
   ],
   customProposals: [],
-  userRole: 'guest'
+  userRole: 'guest',
+  storeInventory: [
+    { id: 1, name: "PRU Blockchain Hoodie (Sweatshirt)", cost: 300, stock: 12, category: "Giyim / Merch" },
+    { id: 2, name: "Kampüs Kafeterya Kahve Kuponu", cost: 50, stock: 85, category: "Kafeterya Ayrıcalığı" },
+    { id: 3, name: "Web3 Başlangıç Donanım Cüzdanı (Ledger vb.)", cost: 750, stock: 3, category: "Teknoloji Kitleri" }
+  ],
+  pendingSubmissions: [],
+  redeemedVouchers: []
 };
 
 let state = { ...DEFAULT_STATE };
@@ -106,6 +113,9 @@ function loadState() {
       if (!state.eventsList) state.eventsList = [...DEFAULT_STATE.eventsList];
       if (!state.customProposals) state.customProposals = [];
       if (state.userRole === undefined) state.userRole = 'guest';
+      if (!state.storeInventory) state.storeInventory = [...DEFAULT_STATE.storeInventory];
+      if (!state.pendingSubmissions) state.pendingSubmissions = [];
+      if (!state.redeemedVouchers) state.redeemedVouchers = [];
       sounds.enabled = state.soundEnabled;
     } catch (e) {
       state = { ...DEFAULT_STATE };
@@ -379,6 +389,10 @@ function updateUI() {
 
   // Render Tokenomics Metrics & Admin Panel
   renderTokenomicsAndAdmin();
+
+  // Render Merch Store & submissions
+  renderStore();
+  renderAdminSubmissions();
 }
 
 function getFaucetRewardAmount(circulating) {
@@ -477,6 +491,15 @@ function updateMissionCardState(questId) {
     statusSpan.innerHTML = '✔ Tamamlandı';
     if (btn) {
       btn.textContent = 'Tamamlandı';
+      btn.disabled = true;
+    }
+  } else if (state.pendingSubmissions && state.pendingSubmissions.some(s => s.questId === questId)) {
+    card.classList.remove('completed');
+    statusSpan.textContent = 'Onay Bekliyor';
+    statusSpan.className = 'mission-status';
+    statusSpan.innerHTML = '⏳ Onay Bekliyor';
+    if (btn) {
+      btn.textContent = 'İletildi (Onay Bekliyor)';
       btn.disabled = true;
     }
   } else {
@@ -949,16 +972,28 @@ formTokenomics.addEventListener('submit', (e) => {
   const title = document.getElementById('input-article-title').value;
   const link = document.getElementById('input-article-link').value;
   
-  state.completedQuests.push('tokenomics');
-  if (!state.badges.includes('tokenomics')) state.badges.push('tokenomics');
-  overlayTokenomics.classList.remove('active');
+  if (!state.pendingSubmissions) state.pendingSubmissions = [];
   
-  // Clear form
+  const subId = "sub_" + Math.floor(1000 + Math.random() * 9000);
+  state.pendingSubmissions.push({
+    id: subId,
+    student: formatAddress(state.walletAddress),
+    questId: 'tokenomics',
+    questTitle: 'Tokenomics Analiz Gönderimi',
+    title: title,
+    detail: link,
+    xp: 40,
+    pru: 25
+  });
+  
+  saveState();
+  overlayTokenomics.classList.remove('active');
   formTokenomics.reset();
   
-  awardXP(40);
-  showToast("🎉 Analiz raporunuz iletildi. On-chain rozet basıldı! +40 XP", "success");
-  appendTerminal(`[GAME] Tokenomics submitted: "${title}" (Link: ${link}). Verified successfully.`, "success");
+  showToast("⏳ Raporunuz iletildi. Yetkili veya Hoca onayından sonra ödülleriniz yansıyacaktır.", "info");
+  appendTerminal(`[GAME] Tokenomics submitted: "${title}" queued for validation (ID: ${subId}).`, "info");
+  
+  updateUI();
 });
 
 // --- MISSION 4: HACKATHON MVP SUBMISSION ---
@@ -985,15 +1020,28 @@ formHackathon.addEventListener('submit', (e) => {
   const title = document.getElementById('input-hackathon-title').value;
   const repo = document.getElementById('input-hackathon-github').value;
   
-  state.completedQuests.push('hackathon');
-  if (!state.badges.includes('hackathon')) state.badges.push('hackathon');
-  overlayHackathon.classList.remove('active');
+  if (!state.pendingSubmissions) state.pendingSubmissions = [];
   
+  const subId = "sub_" + Math.floor(1000 + Math.random() * 9000);
+  state.pendingSubmissions.push({
+    id: subId,
+    student: formatAddress(state.walletAddress),
+    questId: 'hackathon',
+    questTitle: 'Hackathon MVP Geliştirme',
+    title: title,
+    detail: repo,
+    xp: 80,
+    pru: 50
+  });
+  
+  saveState();
+  overlayHackathon.classList.remove('active');
   formHackathon.reset();
   
-  awardXP(80);
-  showToast("🎉 Hackathon MVP projeniz kaydedildi! On-chain rozet basıldı. +80 XP", "success");
-  appendTerminal(`[GAME] Hackathon MVP submitted: "${title}" (GitHub: ${repo}). Contract minted.`, "success");
+  showToast("⏳ Projeniz iletildi. Yetkili veya Hoca onayından sonra ödülleriniz yansıyacaktır.", "info");
+  appendTerminal(`[GAME] Hackathon MVP submitted: "${title}" queued for validation (ID: ${subId}).`, "info");
+  
+  updateUI();
 });
 
 // --- DAO VOTING MECHANICS ---
@@ -1755,6 +1803,218 @@ if (btnDownloadEventReport) {
     showToast("📊 Yıllık Etkinlik Raporu CSV olarak indirildi.", "success");
     appendTerminal(`[ADMIN] Event report exported successfully. Total events: ${state.eventsList.length}`, 'success');
   });
+}
+
+// --- KULÜP MAĞAZASI (STORE) MODULE ---
+function renderStore() {
+  const grid = document.getElementById('store-items-grid');
+  if (!grid) return;
+  
+  grid.innerHTML = '';
+  
+  if (!state.storeInventory) state.storeInventory = [...DEFAULT_STATE.storeInventory];
+  
+  state.storeInventory.forEach(item => {
+    const card = document.createElement('div');
+    card.className = `mission-card ${item.stock === 0 ? 'completed' : ''}`;
+    
+    const costText = `${item.cost} PRU`;
+    const stockText = item.stock > 0 ? `${item.stock} Adet` : "Tükendi";
+    
+    card.innerHTML = `
+      <div class="mission-header">
+        <span class="mission-xp-badge" style="background: rgba(139, 92, 246, 0.1); border-color: var(--accent-purple); color: var(--accent-purple); font-family: var(--font-mono);">${costText}</span>
+        <span class="mission-status" style="font-family: var(--font-mono); font-size: 0.8rem;">Stok: ${stockText}</span>
+      </div>
+      <h3 class="mission-title" style="margin-top: 10px; font-size: 1.15rem;">${item.name}</h3>
+      <p class="mission-desc" style="min-height: auto; margin-bottom: 15px; font-size: 0.82rem;">Kategori: <strong>${item.category}</strong></p>
+      <div class="mission-footer">
+        <button class="mission-btn" id="btn-redeem-${item.id}" ${(!state.userConnected || state.pruBalance < item.cost || item.stock === 0) ? 'disabled' : ''} style="width: 100%; border-color: var(--accent-green); color: var(--accent-green);">
+          ${item.stock === 0 ? 'Tükendi' : 'Kupon Al (Redeem)'}
+        </button>
+      </div>
+    `;
+    
+    grid.appendChild(card);
+    
+    const btnRedeem = card.querySelector(`#btn-redeem-${item.id}`);
+    if (btnRedeem && item.stock > 0) {
+      // Styling hover state if enabled
+      btnRedeem.addEventListener('mouseover', () => {
+        if (!btnRedeem.disabled) {
+          btnRedeem.style.backgroundColor = 'var(--accent-green)';
+          btnRedeem.style.color = 'var(--bg-main)';
+        }
+      });
+      btnRedeem.addEventListener('mouseout', () => {
+        if (!btnRedeem.disabled) {
+          btnRedeem.style.backgroundColor = 'transparent';
+          btnRedeem.style.color = 'var(--accent-green)';
+        }
+      });
+      
+      btnRedeem.addEventListener('click', () => {
+        purchaseStoreItem(item.id);
+      });
+    }
+  });
+}
+
+function purchaseStoreItem(itemId) {
+  if (!checkWalletConnected()) return;
+  
+  const item = state.storeInventory.find(i => i.id === itemId);
+  if (!item) return;
+  
+  if (state.pruBalance < item.cost) {
+    sounds.playError();
+    showToast("⚠️ Yetersiz Bakiye! Görev yaparak PRU kazanın.", "error");
+    return;
+  }
+  
+  if (item.stock <= 0) {
+    sounds.playError();
+    showToast("⚠️ Ürün tükendi!", "error");
+    return;
+  }
+  
+  sounds.playClick();
+  
+  // Deduct tokens, burn them
+  state.pruBalance -= item.cost;
+  state.burnedPru += item.cost;
+  item.stock -= 1;
+  
+  // Generate coupon code
+  const code = `PRU-${Math.floor(1000 + Math.random() * 9000)}-${Math.floor(1000 + Math.random() * 9000)}`;
+  if (!state.redeemedVouchers) state.redeemedVouchers = [];
+  state.redeemedVouchers.push({
+    code: code,
+    itemId: item.id,
+    itemName: item.name,
+    timestamp: Date.now()
+  });
+  
+  saveState();
+  sounds.playSuccess();
+  
+  // Show voucher modal
+  const modal = document.getElementById('overlay-voucher');
+  const codeDisplay = document.getElementById('voucher-code-display');
+  if (modal && codeDisplay) {
+    codeDisplay.textContent = code;
+    modal.classList.add('active');
+  }
+  
+  showToast(`🎉 ${item.name} kuponu başarıyla alındı!`, "success");
+  appendTerminal(`[TX] Store redemption. Spent ${item.cost} PRU (Burned). Voucher: ${code}`, 'success');
+  
+  updateUI();
+}
+
+// Close Store Voucher Modal triggers
+const btnCloseVoucherModal = document.getElementById('btn-close-voucher-modal');
+if (btnCloseVoucherModal) {
+  btnCloseVoucherModal.addEventListener('click', () => {
+    sounds.playClick();
+    document.getElementById('overlay-voucher').classList.remove('active');
+  });
+}
+
+const btnCloseVoucher = document.getElementById('btn-close-voucher');
+if (btnCloseVoucher) {
+  btnCloseVoucher.addEventListener('click', () => {
+    sounds.playClick();
+    document.getElementById('overlay-voucher').classList.remove('active');
+  });
+}
+
+// --- ACADEMIC SUBMISSIONS ON-CHAIN VERIFICATION ---
+function renderAdminSubmissions() {
+  const tbody = document.getElementById('admin-submissions-tbody');
+  if (!tbody) return;
+  
+  tbody.innerHTML = '';
+  if (!state.pendingSubmissions) state.pendingSubmissions = [];
+  
+  if (state.pendingSubmissions.length === 0) {
+    tbody.innerHTML = `
+      <tr>
+        <td colspan="4" style="text-align: center; color: var(--text-muted); font-style: italic; padding: 20px;">
+          Onay bekleyen akademik ödev veya rapor bulunmamaktadır.
+        </td>
+      </tr>
+    `;
+    return;
+  }
+  
+  state.pendingSubmissions.forEach(sub => {
+    const row = document.createElement('tr');
+    row.className = 'leaderboard-row';
+    row.innerHTML = `
+      <td style="font-family: var(--font-mono); font-size: 0.8rem; color: var(--accent-cyan);">${sub.student}</td>
+      <td><strong>${sub.questTitle}</strong></td>
+      <td style="font-size: 0.8rem;">
+        <span style="display:block; font-weight:600;">"${sub.title}"</span>
+        <a href="${sub.detail}" target="_blank" style="color: var(--accent-purple); text-decoration: underline; font-family: var(--font-mono);">${sub.detail}</a>
+      </td>
+      <td style="text-align: right; white-space: nowrap;">
+        <button class="mission-btn approve-sub-btn" data-id="${sub.id}" style="padding: 4px 8px; font-size: 0.75rem; border-color: var(--accent-green); color: var(--accent-green); margin-right: 5px;">Onayla</button>
+        <button class="mission-btn reject-sub-btn" data-id="${sub.id}" style="padding: 4px 8px; font-size: 0.75rem; border-color: var(--accent-red); color: var(--accent-red);">Reddet</button>
+      </td>
+    `;
+    
+    tbody.appendChild(row);
+    
+    // Bind approve click
+    row.querySelector('.approve-sub-btn').addEventListener('click', () => {
+      approveSubmission(sub.id);
+    });
+    
+    // Bind reject click
+    row.querySelector('.reject-sub-btn').addEventListener('click', () => {
+      rejectSubmission(sub.id);
+    });
+  });
+}
+
+function approveSubmission(subId) {
+  sounds.playClick();
+  const sub = state.pendingSubmissions.find(s => s.id === subId);
+  if (!sub) return;
+  
+  state.completedQuests.push(sub.questId);
+  if (!state.badges.includes(sub.questId)) state.badges.push(sub.questId);
+  
+  state.pruBalance += sub.pru;
+  
+  // Remove from queue
+  state.pendingSubmissions = state.pendingSubmissions.filter(s => s.id !== subId);
+  
+  saveState();
+  awardXP(sub.xp); // triggers sounds.playSuccess() and UI updates
+  
+  showToast(`🎉 "${sub.title}" raporu onaylandı! Öğrenciye +${sub.xp} XP ve +${sub.pru} PRU basıldı.`, "success");
+  appendTerminal(`[ADMIN] Approved submission ${subId}. Minted rewards for "${sub.title}" to SBT card.`, 'success');
+  
+  updateUI();
+}
+
+function rejectSubmission(subId) {
+  sounds.playClick();
+  const sub = state.pendingSubmissions.find(s => s.id === subId);
+  if (!sub) return;
+  
+  if (confirm(`"${sub.title}" teslimini reddetmek istediğinize emin misiniz?`)) {
+    state.pendingSubmissions = state.pendingSubmissions.filter(s => s.id !== subId);
+    saveState();
+    
+    sounds.playError();
+    showToast(`❌ "${sub.title}" teslimi reddedildi.`, "info");
+    appendTerminal(`[ADMIN] Rejected submission ${subId} for "${sub.title}".`, 'error');
+    
+    updateUI();
+  }
 }
 
 // --- SOUND TOGGLE ---
