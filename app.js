@@ -3208,6 +3208,17 @@ function initAcademyView() {
   const profSvg = document.getElementById('professor-svg');
   const speechWave = document.getElementById('speech-wave');
 
+  // Resource & NotebookLM elements
+  const btnReadSource = document.getElementById('btn-read-source-report');
+  const btnExportNotebookLM = document.getElementById('btn-notebooklm-export');
+  const modalReport = document.getElementById('modal-academy-report');
+  const modalNotebookLM = document.getElementById('modal-notebooklm-instruction');
+  const btnCloseReport = document.getElementById('btn-close-academy-report');
+  const btnCloseNotebookLM = document.getElementById('btn-close-notebooklm-modal');
+  const reportModalTitle = document.getElementById('academy-report-modal-title');
+  const reportModalBody = document.getElementById('academy-report-modal-body');
+  const notebooklmCliCommand = document.getElementById('notebooklm-cli-command');
+
   if (!catalogList || !blackboardBody || !btnPlay) return;
 
   let activeLecture = null;
@@ -3297,6 +3308,11 @@ function initAcademyView() {
 
   async function loadLecture(dep, sol) {
     stopLecture();
+    
+    // Enable source and export buttons
+    if (btnReadSource) btnReadSource.disabled = false;
+    if (btnExportNotebookLM) btnExportNotebookLM.disabled = false;
+
     blackboardBody.innerHTML = `
       <div style="text-align: center; padding: 40px 20px;">
         <div class="loading-spinner" style="border-top-color: var(--accent-cyan); animation: spin 1s infinite linear; width: 30px; height: 30px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.05); margin: 0 auto 15px auto;"></div>
@@ -3822,6 +3838,101 @@ function initAcademyView() {
       }
     }
   });
+
+  // --- SOURCE DOCUMENT & NOTEBOOKLM BINDINGS ---
+  if (btnReadSource) {
+    btnReadSource.addEventListener('click', async () => {
+      if (!activeLecture) return;
+      sounds.playClick();
+      
+      if (reportModalTitle) reportModalTitle.textContent = `${activeLecture.title} - Detaylı Rapor`;
+      if (reportModalBody) reportModalBody.innerHTML = `
+        <div style="text-align: center; padding: 20px;">
+          <div class="loading-spinner" style="border-top-color: var(--accent-cyan); animation: spin 1s infinite linear; width: 25px; height: 25px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.05); margin: 0 auto 10px auto;"></div>
+          <p style="color: var(--accent-cyan);">Rapor verisi yükleniyor...</p>
+        </div>
+      `;
+      
+      if (modalReport) modalReport.style.display = 'flex';
+      
+      try {
+        const response = await fetch(`sources/${activeLecture.id}.md`);
+        if (!response.ok) throw new Error("Rapor dosyası bulunamadı");
+        const mdText = await response.text();
+        if (reportModalBody) reportModalBody.innerHTML = parseMarkdownToHtml(mdText);
+      } catch (err) {
+        console.warn("[ACADEMY] Rapor yüklenemedi:", err.message);
+        if (reportModalBody) reportModalBody.innerHTML = `
+          <p style="color: var(--accent-red); font-weight: bold;">Hata: Rapor içeriği yüklenemedi.</p>
+          <p style="color: var(--text-muted); font-size: 0.8rem;">Detay: ${err.message}</p>
+        `;
+      }
+    });
+  }
+
+  if (btnExportNotebookLM) {
+    btnExportNotebookLM.addEventListener('click', () => {
+      if (!activeLecture) return;
+      sounds.playClick();
+      if (notebooklmCliCommand) notebooklmCliCommand.textContent = `node automate_notebooklm.js ${activeLecture.id}`;
+      if (modalNotebookLM) modalNotebookLM.style.display = 'flex';
+    });
+  }
+
+  if (btnCloseReport && modalReport) {
+    btnCloseReport.addEventListener('click', () => {
+      sounds.playClick();
+      modalReport.style.display = 'none';
+    });
+  }
+  
+  if (btnCloseNotebookLM && modalNotebookLM) {
+    btnCloseNotebookLM.addEventListener('click', () => {
+      sounds.playClick();
+      modalNotebookLM.style.display = 'none';
+    });
+  }
+
+  // Simple Markdown to HTML parser
+  function parseMarkdownToHtml(md) {
+    let html = md;
+    
+    // Code blocks
+    html = html.replace(/```solidity([\s\S]*?)```/g, '<pre style="background:#060a13; border:1px solid rgba(6,182,212,0.15); padding:12px; border-radius:6px; font-family:var(--font-mono); font-size:0.75rem; color:#e2e8f0; overflow-x:auto; margin:10px 0; line-height:1.45;"><code>$1</code></pre>');
+    html = html.replace(/```javascript([\s\S]*?)```/g, '<pre style="background:#060a13; border:1px solid rgba(6,182,212,0.15); padding:12px; border-radius:6px; font-family:var(--font-mono); font-size:0.75rem; color:#e2e8f0; overflow-x:auto; margin:10px 0; line-height:1.45;"><code>$1</code></pre>');
+    html = html.replace(/```([\s\S]*?)```/g, '<pre style="background:#060a13; padding:12px; border-radius:6px; font-family:var(--font-mono); font-size:0.75rem; overflow-x:auto; margin:10px 0; line-height:1.45;"><code>$1</code></pre>');
+    
+    // Inline code
+    html = html.replace(/`([^`]+)`/g, '<code style="background:rgba(255,255,255,0.08); padding:2px 5px; border-radius:3px; font-family:var(--font-mono); font-size:0.78rem; color:var(--accent-cyan);">$1</code>');
+    
+    // Headers
+    html = html.replace(/^## (.*$)/gim, '<h4 style="color:var(--accent-cyan); font-family:var(--font-display); font-size:1.05rem; margin-top:20px; margin-bottom:10px; border-bottom:1px dashed rgba(6,182,212,0.1); padding-bottom:5px; text-transform:uppercase;">$1</h4>');
+    html = html.replace(/^# (.*$)/gim, '<h3 style="color:var(--accent-purple); font-family:var(--font-display); font-size:1.3rem; margin-top:25px; margin-bottom:12px; border-bottom:1px solid rgba(139,92,246,0.2); padding-bottom:8px; text-transform:uppercase;">$1</h3>');
+    
+    // Bullet points
+    html = html.replace(/^\- (.*$)/gim, '<li style="list-style-type:square; margin-left:20px; margin-bottom:6px; color:#cbd5e1;">$1</li>');
+    
+    // Bold text
+    html = html.replace(/\*\*([^*]+)\*\*/g, '<strong style="color:#ffffff; font-weight:bold;">$1</strong>');
+    
+    // Horizontal rules
+    html = html.replace(/^\-\-\-/gim, '<hr style="border:none; border-top:1px solid rgba(255,255,255,0.05); margin:20px 0;" />');
+    
+    // Links
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" style="color:var(--accent-cyan); text-decoration:underline;">$1</a>');
+    
+    // Paragraph tags helper
+    let lines = html.split('\n');
+    let processed = lines.map(line => {
+      let trimmed = line.trim();
+      if (trimmed.startsWith('<h') || trimmed.startsWith('<pre') || trimmed.startsWith('<code') || trimmed.startsWith('<li') || trimmed.startsWith('<hr') || trimmed.startsWith('</pre') || trimmed === '') {
+        return line;
+      }
+      return `<p style="margin-bottom:10px; color:#cbd5e1;">${line}</p>`;
+    });
+    
+    return processed.join('\n');
+  }
 }
 
 

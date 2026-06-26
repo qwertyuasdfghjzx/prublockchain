@@ -650,6 +650,16 @@
                 </div>
               </div>
 
+              <!-- Detailed Source Resource Links -->
+              <div class="academy-resource-links" style="display: flex; gap: 15px; margin-top: -10px; margin-bottom: 15px; justify-content: flex-end; padding: 0 5px;">
+                <button id="btn-read-source-report" class="mission-btn" style="padding: 4px 12px; font-size: 0.72rem; border-radius: 4px; display: flex; align-items: center; gap: 4px;" title="Detaylı Akademik Raporu Oku" disabled>
+                  📄 Rapor Oku
+                </button>
+                <button id="btn-notebooklm-export" class="mission-btn" style="padding: 4px 12px; font-size: 0.72rem; border-color: var(--accent-purple); color: var(--accent-purple); border-radius: 4px; display: flex; align-items: center; gap: 4px;" title="NotebookLM'e Aktar ve Ses/Video Özet Üret" disabled>
+                  ⚡ NotebookLM'e Aktar
+                </button>
+              </div>
+
               <!-- AI Hologram Professor Panel -->
               <div class="academy-professor-panel section-card">
                 <!-- Glowing Holographic Professor Avatar -->
@@ -1411,6 +1421,46 @@
         </svg>
       </div>
       <button class="submit-btn-cyber" id="btn-close-voucher" style="background: var(--accent-green); box-shadow: var(--shadow-neo-green); width: 100%;">Harika, Kapat</button>
+    </div>
+  </div>
+
+  <!-- ACADEMY DETAILED REPORT MODAL -->
+  <div id="modal-academy-report" class="overlay" style="display: none; z-index: 10000;">
+    <div class="quest-modal" style="max-width: 800px; width: 90%; max-height: 85vh; display: flex; flex-direction: column; padding: 25px; border-color: var(--accent-cyan); background: #0b1329;">
+      <div class="modal-cyber-glow" style="border-color: var(--accent-cyan);"></div>
+      <div style="display: flex; justify-content: space-between; align-items: center; border-bottom: 1px dashed rgba(6, 182, 212, 0.2); padding-bottom: 15px; margin-bottom: 15px;">
+        <h3 id="academy-report-modal-title" style="color: var(--accent-cyan); font-family: var(--font-display); font-size: 1.2rem; margin: 0; text-transform: uppercase;">Detaylı Kaynak Raporu</h3>
+        <button id="btn-close-academy-report" class="sound-toggle-btn" style="padding: 4px 8px; font-size: 0.8rem; border-color: rgba(255,255,255,0.1); color: #fff;">✕ Kapat</button>
+      </div>
+      <div id="academy-report-modal-body" style="overflow-y: auto; flex: 1; padding-right: 10px; font-size: 0.88rem; color: #e5e7eb; text-align: left; line-height: 1.6; display: flex; flex-direction: column; gap: 15px; font-family: var(--font-display);">
+        <!-- Markdown content rendered dynamically as HTML -->
+      </div>
+    </div>
+  </div>
+
+  <!-- NOTEBOOKLM INSTRUCTION MODAL -->
+  <div id="modal-notebooklm-instruction" class="overlay" style="display: none; z-index: 10000;">
+    <div class="quest-modal" style="max-width: 550px; width: 90%; padding: 25px; border-color: var(--accent-purple); background: #0b1329; text-align: center;">
+      <div class="modal-cyber-glow" style="border-color: var(--accent-purple);"></div>
+      <div style="font-size: 2.5rem; margin-bottom: 10px; filter: drop-shadow(0 0 8px var(--accent-purple));">🤖</div>
+      <h3 id="notebooklm-modal-title" style="color: var(--accent-purple); font-family: var(--font-display); font-size: 1.15rem; margin-bottom: 10px; text-transform: uppercase;">NotebookLM Otomasyon Rehberi</h3>
+      
+      <div style="text-align: left; font-size: 0.82rem; color: #e5e7eb; line-height: 1.5; margin: 15px 0; background: rgba(0,0,0,0.2); padding: 15px; border: 1px solid rgba(139, 92, 246, 0.2); border-radius: 6px;">
+        <p style="margin-bottom: 10px;">Bu çözüm için detaylı bir araştırma raporu ve Solidity akıllı sözleşme kod taslağı başarıyla üretildi!</p>
+        <p style="margin-bottom: 10px;">Raporu otomatik olarak **Google NotebookLM** platformuna yüklemek ve **Video/Ses Özetini (Audio Overview)** oluşturmak için terminalinizde şu komutu çalıştırabilirsiniz:</p>
+        
+        <div style="background: #060a13; border: 1px solid rgba(255,255,255,0.08); padding: 10px; border-radius: 4px; font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-cyan); word-break: break-all; margin-bottom: 15px; position: relative;">
+          <code id="notebooklm-cli-command">node automate_notebooklm.js mt-1</code>
+        </div>
+        
+        <p style="margin-bottom: 5px; font-weight: bold; color: var(--accent-cyan);">💡 Nasıl Çalışır?</p>
+        <p style="margin-bottom: 10px; color: #9ca3af;">Bu komut yerel Google Chrome tarayıcınızı açacak, oturumunuzu devralacak, NotebookLM'de yeni bir not defteri oluşturup kaynak raporu yükleyecek ve AI Podcast özetini tetikleyecektir.</p>
+        
+        <p style="margin-bottom: 5px; font-weight: bold; color: var(--accent-purple);">📂 Manuel Seçenek:</p>
+        <p style="color: #9ca3af;">Dilerseniz <code>sources/[id].md</code> dosyasını doğrudan <a href="https://notebooklm.google.com" target="_blank" style="color: var(--accent-cyan); text-decoration: underline;">notebooklm.google.com</a> adresine sürükleyip bırakarak da kendi özetinizi manuel oluşturabilirsiniz.</p>
+      </div>
+      
+      <button class="submit-btn-cyber" id="btn-close-notebooklm-modal" style="background: var(--accent-purple); box-shadow: var(--shadow-neo-purple); width: 100%; margin-top: 5px;">Anlaşıldı, Kapat</button>
     </div>
   </div>
 
