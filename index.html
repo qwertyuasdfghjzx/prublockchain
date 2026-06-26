@@ -131,37 +131,56 @@
 
         <!-- VIEW 0: HOME / LANDING -->
         <section id="view-home" class="view-content active">
-          <!-- Hero Section -->
-          <div class="section-card" style="padding: 40px; margin-bottom: 25px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%); border-color: rgba(124, 58, 237, 0.2);">
-            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
-              <h1 style="font-size: 2.5rem; font-family: var(--font-display); font-weight: 800; background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Piri Reis Üniversitesi Blockchain Kulübü</h1>
-              <p style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 25px; line-height: 1.6; font-weight: 500;">
-                Kolektif Web3 dünyasına adım atın! PRU Blockchain, öğrencileri merkeziyetsiz teknolojiler, akıllı sözleşmeler, tokenomics yapıları ve DAO yönetişimi ile tanıştırmak amacıyla kurulmuş, Piri Reis Üniversitesi bünyesinde faaliyet gösteren inovatif bir öğrenci topluluğudur.
+          <div class="landing-hero-container">
+            <!-- Left Column: Title, Description, and CTAs -->
+            <div style="display: flex; flex-direction: column; align-items: flex-start; text-align: left;">
+              <h1 style="font-size: 2.8rem; font-family: var(--font-display); font-weight: 800; background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 20px; text-transform: uppercase; line-height: 1.2; letter-spacing: 0.5px;">
+                Piri Reis Üniversitesi <br><span style="color: var(--text-main); -webkit-text-fill-color: var(--text-main);">Blockchain Kulübü</span>
+              </h1>
+              <p style="font-size: 1.1rem; color: var(--text-muted); margin-bottom: 30px; line-height: 1.6; font-weight: 500; max-width: 680px;">
+                Kolektif Web3 dünyasına hoş geldiniz! PRU Blockchain, denizcilik vizyonunu ve yeşil kampüs kimliğini Web3 ile birleştiren, öğrencileri akıllı sözleşmeler ve DAO yönetişimiyle tanıştıran yenilikçi bir kampüs topluluğudur.
               </p>
-              <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
-                <button class="submit-btn-cyber" id="btn-hero-enter-portal" style="margin-top: 0; background: var(--accent-purple); padding: 12px 30px; font-size: 1rem; border-radius: 6px; box-shadow: var(--shadow-neo-purple);">🎮 Portala Giriş Yap</button>
-                <button class="submit-btn-cyber" id="btn-hero-learn-token" style="margin-top: 0; background: var(--accent-cyan); padding: 12px 30px; font-size: 1rem; border-radius: 6px; box-shadow: var(--shadow-neo); border-color: var(--accent-cyan);">🪙 PRU Token Tanıtımı</button>
+              <div style="display: flex; gap: 15px; flex-wrap: wrap;">
+                <button class="submit-btn-cyber" id="btn-hero-enter-portal" style="margin-top: 0; background: var(--accent-purple); padding: 14px 32px; font-size: 0.95rem; border-radius: 6px; box-shadow: var(--shadow-neo-purple);">🎮 Portala Giriş Yap</button>
+                <button class="submit-btn-cyber" id="btn-hero-learn-token" style="margin-top: 0; background: transparent; border: 2px solid var(--accent-cyan); color: var(--accent-cyan); padding: 12px 30px; font-size: 0.95rem; border-radius: 6px; box-shadow: var(--shadow-neo); cursor: pointer;">⚓ Entegrasyon Vizyonu</button>
+              </div>
+            </div>
+            
+            <!-- Right Column: Abstract Rotating Ship-Wheel Blockchain Node Grid -->
+            <div class="maritime-blockchain-graphic">
+              <div class="orbit-path">
+                <div class="orbiting-node node-1"></div>
+                <div class="orbiting-node node-2"></div>
+                <div class="orbiting-node node-3"></div>
+                <div class="orbiting-node node-4"></div>
+              </div>
+              <div class="ship-wheel-center">
+                <div class="ship-wheel-spoke spoke-1"></div>
+                <div class="ship-wheel-spoke spoke-2"></div>
+                <div class="ship-wheel-spoke spoke-3"></div>
+                <div class="ship-wheel-spoke spoke-4"></div>
+                <div class="inner-hub">⚓</div>
               </div>
             </div>
           </div>
 
           <!-- Feature Columns -->
-          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px;">
             <!-- Club & Community Card -->
-            <div class="section-card" style="border-color: rgba(14, 165, 233, 0.2);">
+            <div class="section-card" style="border-color: rgba(14, 165, 233, 0.2); background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(14,165,233,0.02);">
               <h3 class="section-title" style="color: var(--accent-cyan); display: flex; align-items: center; gap: 10px; font-size: 1.25rem;">🌐 Kulüp & Ekosistem</h3>
               <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 15px;">
-                PRU Blockchain Kulübü, sadece teorik eğitimlerle sınırlı kalmayıp kampüs içi ve dışı Web3 aktivitelerini, hackathonları, teknik makale araştırma gruplarını ve fiziksel Coffee & Web3 meetup'larını koordine eder.
+                Piri Reis Üniversitesi Web3 laboratuvarında toplanan topluluğumuz, sadece teorik eğitimlerle sınırlı kalmayıp aktif Web3 aktivitelerini, hackathonları ve fiziksel Coffee & Web3 meetup'larını koordine eder.
               </p>
               <ul style="list-style-type: none; font-size: 0.85rem; color: var(--text-main); display: flex; flex-direction: column; gap: 10px;">
-                <li style="display: flex; align-items: center; gap: 8px;">🔹 <strong>Akademi & Görevler:</strong> Solidity dersleri, akıllı sözleşme pratikleri ve makale araştırma görevleri ile kendinizi geliştirin.</li>
-                <li style="display: flex; align-items: center; gap: 8px;">🔹 <strong>Fiziksel Buluşmalar:</strong> Her hafta düzenlenen meetup'larda Web3 ekosistemindeki güncel gelişmeleri tartışın ve network kurun.</li>
-                <li style="display: flex; align-items: center; gap: 8px;">🔹 <strong>Sene Sonu Ödülleri:</strong> Sıralamada dereceye girerek konferans biletleri ve donanım cüzdanlar kazanın.</li>
+                <li style="display: flex; align-items: center; gap: 8px;">🔹 <strong>Akademi & Görevler:</strong> Solidity dersleri ve tokenomics raporlarıyla on-chain rozetler kazanın.</li>
+                <li style="display: flex; align-items: center; gap: 8px;">🔹 <strong>Fiziksel Buluşmalar:</strong> Her hafta düzenlenen meetup'larda Web3 ekosistemini tartışın.</li>
+                <li style="display: flex; align-items: center; gap: 8px;">🔹 <strong>Ödüller & Teşvikler:</strong> Sıralamada dereceye girerek konferans biletleri ve donanım cüzdanları kazanın.</li>
               </ul>
             </div>
 
             <!-- Tokenomics & Utility Card -->
-            <div class="section-card" style="border-color: rgba(124, 58, 237, 0.2);" id="landing-token-section">
+            <div class="section-card" style="border-color: rgba(124, 58, 237, 0.2); background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); box-shadow: 0 10px 30px rgba(124,58,237,0.02);" id="landing-token-section">
               <h3 class="section-title" style="color: var(--accent-purple); display: flex; align-items: center; gap: 10px; font-size: 1.25rem;">🪙 PRU Tokenomics (ERC-20)</h3>
               <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 15px;">
                 PRU Token, kulübümüzün on-chain ödüllendirme ve katılım para birimidir. Bitcoin ile aynı ekonomik prensiplere sahip olup arzı <strong>21.000.000 PRU</strong> ile sınırlandırılmıştır.
@@ -169,84 +188,83 @@
               <ul style="list-style-type: none; font-size: 0.85rem; color: var(--text-main); display: flex; flex-direction: column; gap: 10px;">
                 <li style="display: flex; align-items: center; gap: 8px;">⚙️ <strong>Kullanım Alanları:</strong> DAO karar teklifleri sunma, oylamalara katılma ve kulüp mağazasından merch satın alma.</li>
                 <li style="display: flex; align-items: center; gap: 8px;">🔥 <strong>Deflasyonist Model (Token Yakımı):</strong> DAO üzerinde yayınlanan her yeni teklif için spam engelleme amacıyla 50 PRU yakılır.</li>
-                <li style="display: flex; align-items: center; gap: 8px;">⚡ <strong>Yarılanma (Halving):</strong> Toplam dolaşımdaki arz 5 Milyon ve 15 Milyon sınırını aştığında musluk (faucet) ödülleri otomatik olarak yarı yarıya düşer.</li>
+                <li style="display: flex; align-items: center; gap: 8px;">⚡ <strong>Yarılanma (Halving):</strong> Dolaşımdaki arz 5 Milyon ve 15 Milyon sınırını aştığında musluk (faucet) ödülleri yarı yarıya düşer.</li>
               </ul>
             </div>
           </div>
 
           <!-- PRU Integration & Vision Document Section -->
-          <div class="section-card" style="margin-bottom: 25px; border-color: rgba(124, 58, 237, 0.25);">
+          <div class="section-card" style="margin-bottom: 30px; border-color: rgba(124, 58, 237, 0.25); background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px);" id="landing-vision-grid">
             <h3 class="section-title" style="color: var(--accent-purple); font-size: 1.3rem;">⚓ Piri Reis Üniversitesi Web3 Entegrasyon Vizyonu</h3>
-            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
-              PRU Blockchain Club olarak, üniversitemizin köklü denizcilik vizyonunu ve yeşil kampüs kimliğini Web3 teknolojileriyle harmanlayan, finansal olmayan (kripto varlık değeri taşımayan) kulüp içi ödül ve itibar mekanizmamız <strong>"PRU Token"</strong> ekosistemini hayata geçirmeyi hedefliyoruz. Kampüs entegrasyon önerilerimiz:
+            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 25px;">
+              Piri Reis Üniversitesi'nin köklü denizcilik vizyonunu ve yeşil kampüs kimliğini Web3 dünyasıyla birleştiren, finansal olmayan (kripto varlık değeri taşımayan) kulüp içi ödül ve itibar mekanizmamız <strong>"PRU Token"</strong> ekosisteminin entegrasyon vizyonu:
             </p>
             
-            <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 20px;">
+            <div class="vision-grid">
               
               <!-- Point 1 -->
-              <div style="background: rgba(124, 58, 237, 0.02); border: 1px solid rgba(124, 58, 237, 0.1); padding: 15px; border-radius: 8px;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-purple); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">👋 Kayıt Oryantasyonu ve Karşılama</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                  Üniversitemize yeni katılan öğrencilere, ilk kayıt gününde teknolojik vizyon aşılamak amacıyla bir başlangıç PRU Token'ı tanımlanacak; kampüse ve kulüp kültürüne adaptasyonları ilk günden hızlandırılacaktır.
-                </p>
+              <div class="vision-card">
+                <div class="vision-card-title" style="color: var(--accent-purple);">👋 Oryantasyon ve Karşılama</div>
+                <div class="vision-card-desc">
+                  Kayıt döneminde aramıza yeni katılan öğrencilerimize, daha okula ilk adımlarını attıkları anda başlangıç PRU Token'ı tanımlanacak; kampüse ve kulüp kültürüne adaptasyonları ilk günden hızlandırılacaktır.
+                </div>
               </div>
 
               <!-- Point 2 -->
-              <div style="background: rgba(14, 165, 233, 0.02); border: 1px solid rgba(14, 165, 233, 0.1); padding: 15px; border-radius: 8px;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">📝 "Seyir Defteri" ve Akademik Teşvikler</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                  Fakülte hocalarımızın onayıyla; öğrencilerin hazırlayacağı teknik raporlar veya projeler ders ödevi yerine sayılabilecek, başarıları devredilemez başarı belgesi olan SBT rozetleri ve PRU Token ile ödüllendirilecektir.
-                </p>
+              <div class="vision-card cyan-theme">
+                <div class="vision-card-title" style="color: var(--accent-cyan);">📝 "Seyir Defteri" & Akademi</div>
+                <div class="vision-card-desc">
+                  Öğrencilerimizin kulüp bünyesinde hazırlayacağı teknik raporlar veya projeler ders ödevi yerine sayılabilecek; başarıları devredilemez başarı belgesi olan SBT rozetleri ve PRU Token ile ödüllendirilecektir.
+                </div>
               </div>
 
               <!-- Point 3 -->
-              <div style="background: rgba(16, 185, 129, 0.02); border: 1px solid rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-green); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">🚢 Simülasyon ve Turnuva Ödülleri</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                  Gelişmiş köprüüstü ve gemi makineleri simülatörlerimizde Mühendislik, Denizcilik ve Lojistik kulüpleriyle ortaklaşa düzenlenecek senaryo turnuvalarında başarı gösteren öğrencilere PRU Token ödülü verilecektir.
-                </p>
+              <div class="vision-card green-theme">
+                <div class="vision-card-title" style="color: var(--accent-green);">🚢 Simülasyon & Turnuvalar</div>
+                <div class="vision-card-desc">
+                  Gelişmiş köprüüstü ve gemi makineleri simülatörlerimizde Mühendislik, Denizcilik ve Lojistik kulüpleriyle ortaklaşa düzenlenecek turnuva ve senaryolarda başarı gösteren öğrencilere PRU Token ödülü verilecektir.
+                </div>
               </div>
 
               <!-- Point 4 -->
-              <div style="background: rgba(16, 185, 129, 0.02); border: 1px solid rgba(16, 185, 129, 0.1); padding: 15px; border-radius: 8px;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-green); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">🌿 Yeşil Kampüs ve Sürdürülebilirlik</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
+              <div class="vision-card green-theme">
+                <div class="vision-card-title" style="color: var(--accent-green);">🌿 Yeşil Kampüs & Çevre</div>
+                <div class="vision-card-desc">
                   BREEAM sertifikalı çevre dostu kampüsümüzde; geri dönüşüm projelerine katılan ve karbon ayak izini azaltmaya yönelik sürdürülebilirlik faaliyetlerinde bulunan öğrenciler PRU Token ile ödüllendirilecektir.
-                </p>
+                </div>
               </div>
 
               <!-- Point 5 -->
-              <div style="background: rgba(124, 58, 237, 0.02); border: 1px solid rgba(124, 58, 237, 0.1); padding: 15px; border-radius: 8px;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-purple); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">🎟️ Kariyer ve Sektör Günleri Entegrasyonu</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
+              <div class="vision-card">
+                <div class="vision-card-title" style="color: var(--accent-purple);">🎟️ Kariyer ve Zirveler</div>
+                <div class="vision-card-desc">
                   Kampüsümüzde düzenlenecek denizcilik, lojistik ve finans zirvelerinde katılım sağlayan öğrencilere, akıllı sözleşmelere bağlı QR kodlar ile katılım kanıtı (PoA) olarak anında on-chain token yüklenecektir.
-                </p>
+                </div>
               </div>
 
               <!-- Point 6 -->
-              <div style="background: rgba(14, 165, 233, 0.02); border: 1px solid rgba(14, 165, 233, 0.1); padding: 15px; border-radius: 8px;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-cyan); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">💼 Nitelikli Staj ve Kariyer Ayrıcalıkları</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
-                  Sektörün önde gelen kurumları ve tersanelerle kurulacak iş birlikleri kapsamında; platformumuzda teknik görevleri tamamlayarak çalışkanlığı zincir üstünde doğrulanmış öğrencilere öncelikli staj kontenjanı sağlanacaktır.
-                </p>
+              <div class="vision-card cyan-theme">
+                <div class="vision-card-title" style="color: var(--accent-cyan);">💼 Nitelikli Staj İmkanları</div>
+                <div class="vision-card-desc">
+                  Sektörün önde gelen kurumları ve tersanelerle kurulacak iş birlikleri kapsamında; platformumuzda teknik görevleri tamamlayarak çalışkanlığı zincir üstünde doğrulanmış öğrencilere öncelikli staj sağlanacaktır.
+                </div>
               </div>
 
               <!-- Point 7 -->
-              <div style="background: rgba(124, 58, 237, 0.02); border: 1px solid rgba(124, 58, 237, 0.1); padding: 15px; border-radius: 8px; grid-column: span 2;">
-                <h4 style="font-size: 0.95rem; color: var(--accent-purple); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">🎓 Akademik Başarı Ödülü (Eğitim Ücreti İndirimi Teşviki)</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
+              <div class="vision-card" style="grid-column: span 2;">
+                <div class="vision-card-title" style="color: var(--accent-purple);">🎓 Akademik Başarı Ödülü (Eğitim Ücreti İndirimi Teşviki)</div>
+                <div class="vision-card-desc">
                   Mikro-ekonomik deneyimizin motivasyonunu artırmak amacıyla; her akademik yıl sonunda kulüp içi görevlerden en çok PRU Token biriktiren (okula ve üretime en çok katkı sunan) <strong>ilk 3 öğrencimize</strong>, sonraki yılın eğitim ücretinde üniversitemiz senatosunun uygun göreceği oranlarda indirim bursu sunulması önerilmektedir.
-                </p>
+                </div>
               </div>
 
               <!-- Point 8 -->
-              <div style="background: rgba(17, 24, 39, 0.02); border: 1px solid rgba(17, 24, 39, 0.05); padding: 15px; border-radius: 8px; grid-column: span 2;">
-                <h4 style="font-size: 0.95rem; color: var(--text-main); margin-bottom: 6px; display: flex; align-items: center; gap: 8px;">☕ Kampüs İçi Kültürel & Sosyal Teşvikler</h4>
-                <p style="font-size: 0.82rem; color: var(--text-muted); line-height: 1.5; margin: 0;">
+              <div class="vision-card gray-theme" style="grid-column: span 2;">
+                <div class="vision-card-title" style="color: var(--text-main);">☕ Kampüs İçi Kültürel & Sosyal Teşvikler</div>
+                <div class="vision-card-desc">
                   Tamamen sponsor destekleriyle veya kulüp kasasından finanse edilmek üzere; PRU Token biriktiren öğrencilere kulüp sweatshirtleri, teknolojik kitler veya kampüs içi kafeteryalarda ücretsiz kahve kuponu gibi ayrıcalıklar sunularak katılım artırılacaktır.
-                </p>
+                </div>
               </div>
-
             </div>
           </div>
 

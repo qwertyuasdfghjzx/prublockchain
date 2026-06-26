@@ -2794,7 +2794,7 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnHeroLearnToken) {
     btnHeroLearnToken.addEventListener('click', () => {
       sounds.playClick();
-      const tokenSec = document.getElementById('landing-token-section');
+      const tokenSec = document.getElementById('landing-vision-grid');
       if (tokenSec) {
         tokenSec.scrollIntoView({ behavior: 'smooth' });
       }

@@ -1696,3 +1696,215 @@ footer a:hover {
   border-color: var(--text-muted);
   color: var(--text-muted);
 }
+
+/* --- PREMIUM LANDING PAGE STYLING --- */
+
+.landing-hero-container {
+  display: grid;
+  grid-template-columns: 1.25fr 0.75fr;
+  gap: 40px;
+  align-items: center;
+  padding: 60px 45px;
+  margin-bottom: 35px;
+  background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%);
+  border: 1px solid rgba(124, 58, 237, 0.15);
+  border-radius: 16px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.03);
+  position: relative;
+  overflow: hidden;
+}
+
+@media (max-width: 991px) {
+  .landing-hero-container {
+    grid-template-columns: 1fr;
+    padding: 40px 25px;
+    text-align: center;
+  }
+  .maritime-blockchain-graphic {
+    display: none !important;
+  }
+}
+
+/* Floating Maritime Blockchain Graphic */
+.maritime-blockchain-graphic {
+  position: relative;
+  width: 100%;
+  height: 250px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.ship-wheel-center {
+  width: 130px;
+  height: 130px;
+  border: 8px solid var(--accent-purple);
+  border-radius: 50%;
+  position: relative;
+  animation: slow-rotate 25s linear infinite;
+  box-shadow: var(--glow-purple), inset 0 0 15px rgba(124, 58, 237, 0.15);
+}
+
+.ship-wheel-spoke {
+  position: absolute;
+  width: 8px;
+  height: 170px;
+  background: var(--accent-purple);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  border-radius: 4px;
+}
+.ship-wheel-spoke::after, .ship-wheel-spoke::before {
+  content: '';
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: var(--accent-purple);
+  border-radius: 50%;
+  left: 50%;
+  transform: translateX(-50%);
+  box-shadow: 0 0 6px var(--accent-purple);
+}
+.ship-wheel-spoke::before { top: -12px; }
+.ship-wheel-spoke::after { bottom: -12px; }
+
+.spoke-1 { transform: translate(-50%, -50%) rotate(0deg); }
+.spoke-2 { transform: translate(-50%, -50%) rotate(45deg); }
+.spoke-3 { transform: translate(-50%, -50%) rotate(90deg); }
+.spoke-4 { transform: translate(-50%, -50%) rotate(135deg); }
+
+.inner-hub {
+  position: absolute;
+  width: 44px;
+  height: 44px;
+  background: var(--bg-card);
+  border: 4px solid var(--accent-cyan);
+  border-radius: 50%;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: var(--glow-cyan);
+  color: var(--accent-cyan);
+  font-size: 1.1rem;
+  font-weight: bold;
+}
+
+/* Orbiting Blockchain Nodes */
+.orbit-path {
+  position: absolute;
+  width: 210px;
+  height: 210px;
+  border: 1px dashed rgba(14, 165, 233, 0.25);
+  border-radius: 50%;
+  animation: slow-rotate-reverse 18s linear infinite;
+}
+
+.orbiting-node {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--accent-cyan);
+  box-shadow: var(--glow-cyan);
+  animation: pulse-glow 2s ease-in-out infinite alternate;
+}
+.node-1 { top: -7px; left: 50%; transform: translateX(-50%); }
+.node-2 { bottom: -7px; left: 50%; transform: translateX(-50%); }
+.node-3 { left: -7px; top: 50%; transform: translateY(-50%); }
+.node-4 { right: -7px; top: 50%; transform: translateY(-50%); }
+
+@keyframes slow-rotate {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@keyframes slow-rotate-reverse {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(-360deg); }
+}
+
+@keyframes pulse-glow {
+  from {
+    transform: scale(1);
+    box-shadow: 0 0 5px var(--accent-cyan);
+  }
+  to {
+    transform: scale(1.2);
+    box-shadow: 0 0 12px var(--accent-cyan);
+  }
+}
+
+/* Vision Cards Grid & Aesthetics */
+.vision-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 25px;
+  margin-top: 20px;
+}
+
+.vision-card {
+  background: var(--bg-card);
+  border: 1px solid rgba(17, 24, 39, 0.08);
+  border-radius: 12px;
+  padding: 24px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  box-shadow: 0 4px 15px rgba(0,0,0,0.02);
+  position: relative;
+  overflow: hidden;
+}
+
+.vision-card::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 4px;
+  background: var(--accent-purple);
+  opacity: 0.7;
+}
+
+.vision-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 15px 35px rgba(124, 58, 237, 0.08);
+  border-color: rgba(124, 58, 237, 0.2);
+}
+
+.vision-card.cyan-theme::after { background: var(--accent-cyan); }
+.vision-card.cyan-theme:hover {
+  box-shadow: 0 15px 35px rgba(14, 165, 233, 0.08);
+  border-color: rgba(14, 165, 233, 0.2);
+}
+
+.vision-card.green-theme::after { background: var(--accent-green); }
+.vision-card.green-theme:hover {
+  box-shadow: 0 15px 35px rgba(16, 185, 129, 0.08);
+  border-color: rgba(16, 185, 129, 0.2);
+}
+
+.vision-card.gray-theme::after { background: var(--text-muted); }
+.vision-card.gray-theme:hover {
+  box-shadow: 0 15px 35px rgba(17, 24, 39, 0.06);
+  border-color: rgba(17, 24, 39, 0.15);
+}
+
+.vision-card-title {
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: 1.05rem;
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.vision-card-desc {
+  font-size: 0.88rem;
+  color: var(--text-muted);
+  line-height: 1.6;
+}
