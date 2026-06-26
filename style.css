@@ -3058,6 +3058,24 @@ footer a:hover {
   color: #ffffff !important;
 }
 
+/* Slayt Yoklama Sorusu Seçenek Butonları */
+.quiz-option-btn:hover {
+  background: rgba(6, 182, 212, 0.1) !important;
+  border-color: var(--accent-cyan) !important;
+  box-shadow: 0 0 8px rgba(6, 182, 212, 0.2) !important;
+}
+.quiz-option-btn.wrong {
+  background: rgba(239, 68, 68, 0.15) !important;
+  border-color: var(--accent-red) !important;
+  color: var(--accent-red) !important;
+}
+.quiz-option-btn.correct {
+  background: rgba(16, 185, 129, 0.15) !important;
+  border-color: var(--accent-green) !important;
+  color: var(--accent-green) !important;
+}
+
+
 
 
 

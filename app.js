@@ -3386,8 +3386,15 @@ function initAcademyView() {
     };
   }
 
-  function playSlide(idx) {
+  function playSlide(idx, forceBypass = false) {
     if (!activeLecture) return;
+    
+    // Check if Slide 3 (idx === 2) and quiz not completed yet
+    const quizKey = 'lecture_quiz_' + activeLecture.id;
+    if (idx === 2 && !forceBypass && !state.completedQuests.includes(quizKey)) {
+      showMidLectureQuiz();
+      return;
+    }
     
     // Clear any active voice or fallback timers
     cancelSpeech();
@@ -3432,6 +3439,100 @@ function initAcademyView() {
     } else {
       subtitleText.textContent = slide.narrative;
     }
+  }
+
+  function showMidLectureQuiz() {
+    cancelSpeech();
+    isPlaying = false;
+    btnPlay.textContent = "Dersi Başlat";
+    statusPill.textContent = "YOKLAMA";
+    statusPill.style.borderColor = "var(--accent-purple)";
+    statusPill.style.color = "var(--accent-purple)";
+
+    // Find the current solution workflow details
+    let activeSol = null;
+    window.departmentsData.forEach(d => {
+      const found = d.solutions.find(s => s.id === activeLecture.id);
+      if (found) activeSol = found;
+    });
+
+    const correctText = (activeSol && activeSol.workflow && activeSol.workflow[0]) 
+      ? activeSol.workflow[0].title 
+      : "İş akışının başlatılması ve telemetri verilerinin zincire kaydedilmesi";
+
+    const options = [
+      { text: correctText, correct: true },
+      { text: "Tüm işlemlerin iptal edilip veritabanının sıfırlanması", correct: false },
+      { text: "Operatörün manuel olarak kağıt üzerinde evrak doldurması", correct: false }
+    ];
+
+    // Shuffle options
+    options.sort(() => Math.random() - 0.5);
+
+    indicator.textContent = "Yoklama Sorusu";
+
+    blackboardBody.innerHTML = `
+      <div class="academy-quiz-wrapper" style="animation: fadeIn 0.4s ease forwards; padding: 15px; text-align: center; display: flex; flex-direction: column; gap: 10px; justify-content: center; height: 100%;">
+        <div style="font-size: 2.2rem; filter: drop-shadow(0 0 8px var(--accent-purple)); line-height: 1;">🎓</div>
+        <h5 style="color: var(--accent-purple); font-family: var(--font-display); font-size: 0.9rem; text-transform: uppercase; margin: 0; letter-spacing: 1px;">YOKLAMA: PROFESÖRÜ DİNLİYOR MUSUNUZ?</h5>
+        <p style="color: #ffffff; font-size: 0.8rem; font-weight: bold; margin: 5px auto; max-width: 480px; line-height: 1.4;">
+          Soru: "${activeLecture.title}" çözümünün akıllı sözleşme iş akışındaki <strong>ilk adım (Aşama 1)</strong> aşağıdakilerden hangisidir?
+        </p>
+        <div style="display: flex; flex-direction: column; gap: 8px; max-width: 420px; margin: 5px auto 0 auto; width: 100%; text-align: left;">
+          ${options.map((opt, i) => `
+            <button class="quiz-option-btn" data-correct="${opt.correct}" style="padding: 8px 12px; background: rgba(255,255,255,0.02); border: 1px solid rgba(6, 182, 212, 0.2); color: #ffffff; font-size: 0.75rem; border-radius: 6px; cursor: pointer; transition: all 0.2s; width: 100%; display: flex; gap: 8px;">
+              <span style="color: var(--accent-cyan); font-weight: bold;">${String.fromCharCode(65 + i)})</span>
+              <span>${opt.text}</span>
+            </button>
+          `).join('')}
+        </div>
+      </div>
+    `;
+
+    // Bind event listeners to the quiz options
+    const btns = blackboardBody.querySelectorAll('.quiz-option-btn');
+    btns.forEach(btn => {
+      btn.addEventListener('click', () => {
+        const isCorrect = btn.getAttribute('data-correct') === 'true';
+        if (isCorrect) {
+          sounds.playSuccess();
+          btn.classList.add('correct');
+          
+          // Disable all buttons to prevent double clicking
+          btns.forEach(b => b.disabled = true);
+
+          // Award +10 PRU Token
+          const quizKey = 'lecture_quiz_' + activeLecture.id;
+          if (!state.completedQuests.includes(quizKey)) {
+            state.completedQuests.push(quizKey);
+            state.pruBalance += 10;
+            saveState();
+            updateUI();
+            showToast("Tebrikler! Doğru cevap verdiniz. +10 PRU Token cüzdanınıza eklendi!", "success");
+            appendTerminal(`[ACADEMY] Answered mid-lecture quiz for "${activeLecture.title}" correctly. Awarded +10 PRU.`, "success");
+          } else {
+            showToast("Tebrikler! Doğru cevap verdiniz. Derse devam ediliyor.", "success");
+          }
+
+          // Resume lecture after 1.5s delay
+          setTimeout(() => {
+            isPlaying = true;
+            btnPlay.textContent = "Dersi Duraklat";
+            playSlide(2, true); // force bypass the quiz
+          }, 1500);
+
+        } else {
+          sounds.playError();
+          btn.classList.add('wrong');
+          showToast("Yanlış cevap! Lütfen profesörü daha dikkatli dinleyin.", "error");
+          
+          // Reset the button state after a short delay
+          setTimeout(() => {
+            btn.classList.remove('wrong');
+          }, 1000);
+        }
+      });
+    });
   }
 
   function renderFlowchartOnBlackboard() {
