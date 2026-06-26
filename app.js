@@ -77,10 +77,17 @@ const DEFAULT_STATE = {
   soundEnabled: true,
   pruBalance: 0,
   lastFaucetClaim: 0,
+  burnedPru: 0,
+  eventsList: [
+    { id: 1, name: "Solidity ile Akıllı Sözleşme Geliştirme 101", date: "25 HAZİRAN - 18:30", xp: 25, pru: 15, attendees: 34 },
+    { id: 2, name: "Haftalık Coffee & Web3 Meetup", date: "27 HAZİRAN - 15:00", xp: 15, pru: 10, attendees: 21 },
+    { id: 3, name: "PRU Global Web3 MVP Hackathon", date: "10-12 TEMMUZ", xp: 80, pru: 50, attendees: 48 }
+  ],
   qfProjects: [
     { id: 1, name: "Decentralized Voting UI", donors: [100, 200, 50] },
     { id: 2, name: "SBT Badge Smart Contract", donors: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10] }
-  ]
+  ],
+  customProposals: []
 };
 
 let state = { ...DEFAULT_STATE };
@@ -94,6 +101,9 @@ function loadState() {
       if (!state.qfProjects) state.qfProjects = [...DEFAULT_STATE.qfProjects];
       if (state.pruBalance === undefined) state.pruBalance = 0;
       if (state.lastFaucetClaim === undefined) state.lastFaucetClaim = 0;
+      if (state.burnedPru === undefined) state.burnedPru = 0;
+      if (!state.eventsList) state.eventsList = [...DEFAULT_STATE.eventsList];
+      if (!state.customProposals) state.customProposals = [];
       sounds.enabled = state.soundEnabled;
     } catch (e) {
       state = { ...DEFAULT_STATE };
@@ -198,19 +208,22 @@ function claimFaucetTokens() {
   claimBtn.disabled = true;
   claimBtn.textContent = "İşlem Gönderiliyor...";
 
+  const circulating = Math.max(0, 1500 + state.pruBalance - state.burnedPru);
+  const rewardAmount = getFaucetRewardAmount(circulating);
+
   const txHash = "0x" + Array.from({length: 16}, () => Math.floor(Math.random()*16).toString(16)).join('');
-  appendTerminal(`[TX] Faucet.requestTokens(100 PRU) initiated. hash: ${txHash}`, 'cmd');
+  appendTerminal(`[TX] Faucet.requestTokens(${rewardAmount} PRU) initiated. hash: ${txHash}`, 'cmd');
 
   setTimeout(() => {
-    state.pruBalance += 100;
+    state.pruBalance += rewardAmount;
     state.lastFaucetClaim = Date.now();
     saveState();
     updateUI();
     updateFaucetCooldown();
 
     sounds.playSuccess();
-    showToast("🎉 100 PRU Testnet Tokeni cüzdanınıza başarıyla aktarıldı!", "success");
-    appendTerminal(`[TX] Block confirmed. Faucet.requestTokens success. +100 PRU added.`, 'success');
+    showToast(`🎉 ${rewardAmount} PRU Testnet Tokeni cüzdanınıza başarıyla aktarıldı!`, "success");
+    appendTerminal(`[TX] Block confirmed. Faucet.requestTokens success. +${rewardAmount} PRU added.`, 'success');
   }, 1200);
 }
 
@@ -318,6 +331,83 @@ function updateUI() {
   // Render Leaderboard & QF
   renderLeaderboard();
   renderQFSimulator();
+
+  // Render Tokenomics Metrics & Admin Panel
+  renderTokenomicsAndAdmin();
+}
+
+function getFaucetRewardAmount(circulating) {
+  if (circulating < 5000) return 100;
+  if (circulating < 15000) return 50;
+  return 25;
+}
+
+function renderTokenomicsAndAdmin() {
+  const circulating = Math.max(0, 1500 + state.pruBalance - state.burnedPru);
+
+  const circText = document.getElementById('tokenomics-circulating');
+  const circBar = document.getElementById('tokenomics-circulating-bar');
+  const burnedText = document.getElementById('tokenomics-burned-pru');
+  const halvingText = document.getElementById('tokenomics-halving-target');
+  const faucetBtn = document.getElementById('btn-claim-faucet');
+
+  if (circText) circText.textContent = circulating.toLocaleString();
+  if (circBar) {
+    const pct = Math.min(100, (circulating / 50000) * 100);
+    circBar.style.width = `${pct}%`;
+  }
+  if (burnedText) burnedText.textContent = state.burnedPru.toLocaleString();
+
+  const reward = getFaucetRewardAmount(circulating);
+  if (faucetBtn && !faucetBtn.disabled) {
+    faucetBtn.textContent = `${reward} PRU TALEP ET`;
+  }
+
+  let nextTarget = 50000;
+  if (circulating < 5000) {
+    nextTarget = 5000;
+  } else if (circulating < 15000) {
+    nextTarget = 15000;
+  }
+  if (halvingText) halvingText.textContent = nextTarget.toLocaleString();
+
+  const tbody = document.getElementById('admin-events-tbody');
+  if (!tbody) return;
+
+  tbody.innerHTML = '';
+  state.eventsList.forEach(ev => {
+    const row = document.createElement('tr');
+    row.className = 'leaderboard-row';
+    row.innerHTML = `
+      <td><strong>${ev.name}</strong></td>
+      <td style="font-family: var(--font-mono);">${ev.date}</td>
+      <td style="text-align: center; font-family: var(--font-mono); color: var(--accent-cyan); font-weight: bold;">+${ev.xp} XP / +${ev.pru} PRU</td>
+      <td style="text-align: right; white-space: nowrap;">
+        <button class="mission-btn qr-btn" data-id="${ev.id}" style="padding: 4px 8px; font-size: 0.75rem; border-color: var(--accent-purple); color: var(--accent-purple); margin-right: 5px;">QR Göster</button>
+        <button class="mission-btn delete-btn" data-id="${ev.id}" style="padding: 4px 8px; font-size: 0.75rem; border-color: var(--accent-red); color: var(--accent-red);">Sil</button>
+      </td>
+    `;
+
+    // QR click
+    row.querySelector('.qr-btn').addEventListener('click', () => {
+      sounds.playClick();
+      openEventQRModal(ev);
+    });
+
+    // Delete click
+    row.querySelector('.delete-btn').addEventListener('click', () => {
+      sounds.playClick();
+      if (confirm(`"${ev.name}" etkinliğini listeden silmek istediğinize emin misiniz?`)) {
+        state.eventsList = state.eventsList.filter(e => e.id !== ev.id);
+        saveState();
+        updateUI();
+        showToast('Etkinlik başarıyla silindi.', 'info');
+        appendTerminal(`[ADMIN] Event removed from register: "${ev.name}"`, 'error');
+      }
+    });
+
+    tbody.appendChild(row);
+  });
 }
 
 function getBadgeEmoji(badge) {
@@ -773,6 +863,9 @@ function updateDAOProposals() {
 
   document.getElementById('vote-yes-fill').style.width = `${yesPct}%`;
   document.getElementById('vote-no-fill').style.width = `${noPct}%`;
+
+  // Render dynamic custom proposals
+  renderCustomProposals();
 }
 
 function castVote(choice) {
@@ -790,6 +883,135 @@ function castVote(choice) {
 
 btnVoteYes.addEventListener('click', () => castVote('yes'));
 btnVoteNo.addEventListener('click', () => castVote('no'));
+
+// --- DYNAMIC CUSTOM PROPOSALS ---
+function renderCustomProposals() {
+  const container = document.getElementById('custom-proposals-container');
+  if (!container) return;
+  
+  container.innerHTML = '';
+  if (!state.customProposals) state.customProposals = [];
+  
+  state.customProposals.forEach(prop => {
+    const proposalVoted = state.votedProposals[prop.id];
+    
+    const userYes = proposalVoted === 'yes' ? state.level : 0;
+    const userNo = proposalVoted === 'no' ? state.level : 0;
+    
+    const yesTotal = prop.yesVotes + userYes;
+    const noTotal = prop.noVotes + userNo;
+    const sum = yesTotal + noTotal;
+    const yesPct = sum > 0 ? Math.round((yesTotal / sum) * 100) : 0;
+    const noPct = sum > 0 ? (100 - yesPct) : 0;
+    
+    const card = document.createElement('div');
+    card.className = 'proposal-card';
+    card.style.marginTop = '20px';
+    card.innerHTML = `
+      <div class="proposal-meta">
+        <span class="proposal-status-badge">Aktif Oylama</span>
+        <span class="proposal-id">${prop.id}</span>
+      </div>
+      <h3 class="proposal-title">${prop.title}</h3>
+      <p class="proposal-desc">${prop.desc}</p>
+      
+      <div class="proposal-vote-bars">
+        <div class="vote-bar-group">
+          <div class="vote-bar-label">
+            <span>EVET</span>
+            <span id="vote-yes-percent-${prop.id}">${yesPct}% (${yesTotal} Oy)</span>
+          </div>
+          <div class="vote-bar-bg">
+            <div class="vote-bar-fill yes" id="vote-yes-fill-${prop.id}" style="width: ${yesPct}%;"></div>
+          </div>
+        </div>
+        <div class="vote-bar-group">
+          <div class="vote-bar-label">
+            <span>HAYIR</span>
+            <span id="vote-no-percent-${prop.id}">${noPct}% (${noTotal} Oy)</span>
+          </div>
+          <div class="vote-bar-bg">
+            <div class="vote-bar-fill no" id="vote-no-fill-${prop.id}" style="width: ${noPct}%;"></div>
+          </div>
+        </div>
+      </div>
+
+      <div class="vote-actions">
+        <button class="vote-btn yes-btn" id="btn-vote-yes-${prop.id}" ${proposalVoted ? 'disabled' : ''}>
+          ${proposalVoted === 'yes' ? 'EVET OYU VERDİNİZ' : 'EVET OYU VER'}
+        </button>
+        <button class="vote-btn no-btn" id="btn-vote-no-${prop.id}" ${proposalVoted ? 'disabled' : ''}>
+          ${proposalVoted === 'no' ? 'HAYIR OYU VERDİNİZ' : 'HAYIR OYU VER'}
+        </button>
+      </div>
+    `;
+    
+    card.querySelector(`#btn-vote-yes-${prop.id}`).addEventListener('click', () => {
+      castCustomVote(prop.id, 'yes');
+    });
+    card.querySelector(`#btn-vote-no-${prop.id}`).addEventListener('click', () => {
+      castCustomVote(prop.id, 'no');
+    });
+    
+    container.appendChild(card);
+  });
+}
+
+function castCustomVote(proposalId, choice) {
+  if (!checkWalletConnected()) return;
+  sounds.playClick();
+
+  state.votedProposals[proposalId] = choice;
+  saveState();
+  sounds.playSuccess();
+  showToast(`Oy başarıyla gönderildi! Seviyeniz doğrultusunda oy gücünüz: ${state.level} OY.`, 'success');
+  appendTerminal(`[DAO] Vote cast for ${proposalId}. Choice: ${choice.toUpperCase()}. Weight: ${state.level} votes.`, 'success');
+  
+  updateUI();
+}
+
+// Bind custom proposal creation
+const formCreateProposal = document.getElementById('form-create-proposal');
+if (formCreateProposal) {
+  formCreateProposal.addEventListener('submit', (e) => {
+    e.preventDefault();
+    if (!checkWalletConnected()) return;
+    
+    const propId = document.getElementById('input-proposal-id').value.trim();
+    const propTitle = document.getElementById('input-proposal-title').value.trim();
+    const propDesc = document.getElementById('input-proposal-desc').value.trim();
+    
+    if (state.pruBalance < 50) {
+      sounds.playError();
+      showToast("⚠️ Yetersiz Bakiye! Teklif oluşturmak için 50 PRU yakmanız gerekir.", "error");
+      return;
+    }
+    
+    sounds.playClick();
+    
+    // Deduct and burn
+    state.pruBalance -= 50;
+    state.burnedPru += 50;
+    
+    // Create new custom proposal
+    if (!state.customProposals) state.customProposals = [];
+    state.customProposals.push({
+      id: propId,
+      title: propTitle,
+      desc: propDesc,
+      yesVotes: 0,
+      noVotes: 0
+    });
+    
+    saveState();
+    sounds.playSuccess();
+    showToast(`🏛️ Teklif başarıyla yayınlandı ve 50 PRU yakıldı!`, "success");
+    appendTerminal(`[DAO] New proposal published: ${propId} - "${propTitle}". 50 PRU burned.`, 'success');
+    
+    formCreateProposal.reset();
+    updateUI();
+  });
+}
 
 // --- FAUCET TRIGGER ---
 const btnClaimFaucet = document.getElementById('btn-claim-faucet');
@@ -1138,6 +1360,149 @@ function startYearEndCountdown() {
 
   updateTimer();
   setInterval(updateTimer, 1000);
+}
+
+// --- EVENT MANAGEMENT & REPORT MODULE ---
+let activeQREvent = null;
+
+function openEventQRModal(event) {
+  activeQREvent = event;
+  const modal = document.getElementById('overlay-event-qr');
+  const title = document.getElementById('event-qr-modal-title');
+  const rewards = document.getElementById('event-qr-modal-rewards');
+  
+  if (modal && title && rewards) {
+    title.textContent = `"${event.name}" Katılım QR Kodu`;
+    rewards.textContent = `+${event.xp} XP / +${event.pru} PRU`;
+    modal.classList.add('active');
+  }
+}
+
+// Close Event QR modal listener
+const closeEventQRBtn = document.getElementById('btn-close-event-qr-modal');
+if (closeEventQRBtn) {
+  closeEventQRBtn.addEventListener('click', () => {
+    sounds.playClick();
+    const modal = document.getElementById('overlay-event-qr');
+    if (modal) modal.classList.remove('active');
+    activeQREvent = null;
+  });
+}
+
+// Simulate event attendance registration
+const btnSimulateAttendance = document.getElementById('btn-simulate-event-attendance');
+if (btnSimulateAttendance) {
+  btnSimulateAttendance.addEventListener('click', () => {
+    if (!activeQREvent) return;
+    if (!checkWalletConnected()) return;
+    
+    sounds.playClick();
+    btnSimulateAttendance.disabled = true;
+    btnSimulateAttendance.textContent = "Katılım Kaydediliyor...";
+    
+    setTimeout(() => {
+      // Close modal
+      const modal = document.getElementById('overlay-event-qr');
+      if (modal) modal.classList.remove('active');
+      
+      btnSimulateAttendance.disabled = false;
+      btnSimulateAttendance.textContent = "Taramayı Simüle Et (Katılım Kaydet)";
+      
+      // Process attendance
+      // Find the event in the list and increment attendees
+      const ev = state.eventsList.find(e => e.id === activeQREvent.id);
+      if (ev) {
+        ev.attendees = (ev.attendees || 0) + 1;
+      }
+      
+      // Check if user already claimed this event to prevent double claiming
+      if (!state.completedQuests.includes(`event_${activeQREvent.id}`)) {
+        state.completedQuests.push(`event_${activeQREvent.id}`);
+        state.pruBalance += activeQREvent.pru;
+        awardXP(activeQREvent.xp);
+        showToast(`🎉 Etkinlik katılımı doğrulandı! +${activeQREvent.xp} XP ve +${activeQREvent.pru} PRU cüzdanınıza eklendi.`, "success");
+        appendTerminal(`[GAME] Attended event: "${activeQREvent.name}". Claimed +${activeQREvent.xp} XP and +${activeQREvent.pru} PRU.`, "success");
+      } else {
+        sounds.playSuccess();
+        showToast(`✔ Katılımınız zaten kayıtlı, ancak katılım sayacı güncellendi.`, "success");
+        appendTerminal(`[GAME] Attended event: "${activeQREvent.name}" (Already claimed rewards).`, "info");
+      }
+      
+      activeQREvent = null;
+      saveState();
+      updateUI();
+    }, 1200);
+  });
+}
+
+// Event creation form submit
+const formCreateEvent = document.getElementById('form-create-event');
+if (formCreateEvent) {
+  formCreateEvent.addEventListener('submit', (e) => {
+    e.preventDefault();
+    
+    const name = document.getElementById('input-event-name').value.trim();
+    const date = document.getElementById('input-event-date').value.trim();
+    const xp = parseInt(document.getElementById('input-event-xp').value) || 0;
+    const pru = parseInt(document.getElementById('input-event-pru').value) || 0;
+    
+    sounds.playClick();
+    
+    // Determine next id
+    const nextId = state.eventsList.length > 0 ? Math.max(...state.eventsList.map(e => e.id)) + 1 : 1;
+    
+    const newEvent = {
+      id: nextId,
+      name: name,
+      date: date,
+      xp: xp,
+      pru: pru,
+      attendees: 0
+    };
+    
+    state.eventsList.push(newEvent);
+    saveState();
+    sounds.playSuccess();
+    showToast(`📅 "${name}" etkinliği başarıyla eklendi!`, "success");
+    appendTerminal(`[ADMIN] New event registered: "${name}" (+${xp} XP / +${pru} PRU)`, 'success');
+    
+    formCreateEvent.reset();
+    updateUI();
+  });
+}
+
+// CSV download trigger
+const btnDownloadEventReport = document.getElementById('btn-download-event-report');
+if (btnDownloadEventReport) {
+  btnDownloadEventReport.addEventListener('click', () => {
+    sounds.playClick();
+    
+    // Header with BOM for Excel Turkish characters
+    let csvContent = "\ufeff";
+    csvContent += "Etkinlik ID,Etkinlik Adı,Tarih,XP Ödülü,PRU Ödülü,Katılımcı Sayısı,Toplam Dağıtılan PRU,Toplam Dağıtılan XP\n";
+    
+    state.eventsList.forEach(ev => {
+      const totalPru = (ev.attendees || 0) * ev.pru;
+      const totalXp = (ev.attendees || 0) * ev.xp;
+      // Escape quote marks in names
+      const escapedName = `"${ev.name.replace(/"/g, '""')}"`;
+      const escapedDate = `"${ev.date.replace(/"/g, '""')}"`;
+      
+      csvContent += `${ev.id},${escapedName},${escapedDate},${ev.xp},${ev.pru},${ev.attendees || 0},${totalPru},${totalXp}\n`;
+    });
+    
+    const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.setAttribute("href", url);
+    link.setAttribute("download", "pru_etkinlik_raporu_2026.csv");
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+    
+    showToast("📊 Yıllık Etkinlik Raporu CSV olarak indirildi.", "success");
+    appendTerminal(`[ADMIN] Event report exported successfully. Total events: ${state.eventsList.length}`, 'success');
+  });
 }
 
 // --- SOUND TOGGLE ---

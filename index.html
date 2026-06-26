@@ -110,6 +110,9 @@
           <button class="tab-btn" data-view="leaderboard">
             🏆 Liderlik Tablosu
           </button>
+          <button class="tab-btn" data-view="admin">
+            ⚙️ Yönetim & Tokenomics
+          </button>
         </nav>
 
         <!-- VIEW 1: DASHBOARD -->
@@ -349,6 +352,9 @@
                 </div>
               </div>
 
+              <!-- Dynamic Custom Proposals Container -->
+              <div id="custom-proposals-container"></div>
+
             </div>
 
             <!-- Right Column Panels -->
@@ -438,6 +444,135 @@
                 <!-- Leaderboard rows rendered dynamically -->
               </tbody>
             </table>
+          </div>
+        </section>
+
+        <!-- VIEW 5: ADMIN & MANAGEMENT -->
+        <section id="view-admin" class="view-content">
+          <div class="view-header">
+            <h2>KULÜP YÖNETİMİ & TOKENOMİKS</h2>
+            <p>Etkinlik takvimini yönetin, katılım QR kodlarını alın ve ekonomi dinamiklerini denetleyin.</p>
+          </div>
+
+          <div class="dao-split-layout">
+            <!-- Left Column: Event Creator & Reporter -->
+            <div class="proposals-container">
+              <div class="section-card" style="margin-bottom: 25px;">
+                <h3 class="section-title">📅 Yeni Etkinlik Oluştur</h3>
+                <form class="cyber-form" id="form-create-event">
+                  <div class="form-group">
+                    <label>Etkinlik Adı</label>
+                    <input type="text" class="form-input" id="input-event-name" placeholder="Örn: DeFi Borç Alma Protokolleri Analizi" required>
+                  </div>
+                  <div class="form-row" style="display: flex; gap: 15px;">
+                    <div class="form-group" style="flex: 1;">
+                      <label>Etkinlik Tarihi</label>
+                      <input type="text" class="form-input" id="input-event-date" placeholder="Örn: 5 TEMMUZ - 14:00" required>
+                    </div>
+                    <div class="form-group" style="width: 80px;">
+                      <label>XP Ödülü</label>
+                      <input type="number" class="form-input" id="input-event-xp" value="15" required>
+                    </div>
+                    <div class="form-group" style="width: 100px;">
+                      <label>PRU Ödülü</label>
+                      <input type="number" class="form-input" id="input-event-pru" value="10" required>
+                    </div>
+                  </div>
+                  <button type="submit" class="submit-btn-cyber" style="width: 100%; margin-top: 10px;">Etkinlik Defterine Ekle</button>
+                </form>
+              </div>
+
+              <!-- Events Management List -->
+              <div class="section-card">
+                <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px;">
+                  <h3 class="section-title" style="margin-bottom: 0;">📋 Sene İçi Etkinlik Defteri</h3>
+                  <button class="mission-btn" id="btn-download-event-report" style="border-color: var(--accent-green); color: var(--accent-green); font-size: 0.8rem;">📊 CSV Raporu Al</button>
+                </div>
+                <div style="overflow-x: auto;">
+                  <table class="leaderboard-table" style="width: 100%; font-size: 0.85rem;">
+                    <thead>
+                      <tr>
+                        <th>Etkinlik Başlığı</th>
+                        <th style="width: 120px;">Tarih</th>
+                        <th style="width: 80px; text-align: center;">Ödül</th>
+                        <th style="width: 140px; text-align: right;">Eylemler</th>
+                      </tr>
+                    </thead>
+                    <tbody id="admin-events-tbody">
+                      <!-- Dynamically rendered events -->
+                    </tbody>
+                  </table>
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column: Tokenomics Dynamics & DAO Creator -->
+            <div>
+              <!-- Tokenomics Panel -->
+              <div class="qf-container" style="margin-bottom: 25px; border-color: rgba(6, 182, 212, 0.35); box-shadow: var(--shadow-neo);">
+                <h3 class="section-title">📊 PRU Tokenomics Göstergeleri</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+                  Sistemdeki aktif token mekaniklerini ve enflasyon/deflasyon dengesini buradan izleyebilirsiniz.
+                </p>
+                
+                <div style="display: flex; flex-direction: column; gap: 15px;">
+                  <!-- Circulation Bar -->
+                  <div>
+                    <div style="display: flex; justify-content: space-between; font-size: 0.8rem; font-family: var(--font-mono); margin-bottom: 4px;">
+                      <span>Dolaşımdaki Arz (PRU)</span>
+                      <span><span id="tokenomics-circulating">0</span> / 50,000 PRU</span>
+                    </div>
+                    <div class="qf-bar-wrapper" style="height: 12px; border-radius: 6px; overflow: hidden;">
+                      <div class="qf-bar-fill quadratic" id="tokenomics-circulating-bar" style="width: 0%;"></div>
+                    </div>
+                  </div>
+
+                  <!-- Burn details & Halving details -->
+                  <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 12px; font-family: var(--font-mono); font-size: 0.8rem; margin-top: 5px;">
+                    <div style="background: rgba(239, 68, 68, 0.05); border: 1px dashed rgba(239, 68, 68, 0.2); padding: 8px 12px; border-radius: 6px;">
+                      <span style="color: var(--accent-red); display: block; font-size: 0.75rem;">YAKILAN TOPLAM</span>
+                      <strong style="color: #fff; font-size: 1rem;"><span id="tokenomics-burned-pru">0</span> PRU</strong>
+                    </div>
+                    <div style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.2); padding: 8px 12px; border-radius: 6px;">
+                      <span style="color: var(--accent-purple); display: block; font-size: 0.75rem;">SONRAKİ HALVING</span>
+                      <strong style="color: #fff; font-size: 1rem;"><span id="tokenomics-halving-target">5,000</span> PRU</strong>
+                    </div>
+                  </div>
+
+                  <!-- Halving Status Box -->
+                  <div style="border: 1px dashed rgba(6, 182, 212, 0.25); background: rgba(6, 182, 212, 0.02); padding: 12px; font-size: 0.85rem; color: var(--text-muted); line-height: 1.4;">
+                    <div style="font-weight: bold; color: var(--accent-cyan); margin-bottom: 4px;">⚡ Deflasyonist Yarılanma (Halving) Kuralı</div>
+                    Dolaşımdaki arz <strong>5.000 PRU</strong> sınırını aştığında musluk (faucet) ödülleri kalıcı olarak <strong>50 PRU</strong>'ya yarılanacaktır. 15.000 PRU'da ise <strong>25 PRU</strong>'ya inecektir.
+                  </div>
+                </div>
+              </div>
+
+              <!-- Create DAO Proposal Panel -->
+              <div class="qf-container" style="border-color: rgba(139, 92, 246, 0.35); box-shadow: var(--shadow-neo-purple);">
+                <h3 class="section-title">🏛️ Yeni DAO Karar Teklifi Yayınla</h3>
+                <p style="font-size: 0.85rem; color: var(--text-muted); margin-bottom: 15px;">
+                  Kasadan fon talep etmek veya kural değiştirmek için oylama başlatın.
+                </p>
+                <div style="background: rgba(239, 68, 68, 0.08); border: 1px solid var(--accent-red); padding: 10px 12px; font-size: 0.8rem; margin-bottom: 15px; border-radius: 6px; font-family: var(--font-mono); color: #fecaca; line-height: 1.4;">
+                  ⚠️ TEKLİF ÜCRETİ: <strong>50 PRU</strong>. Bu işlem sırasında cüzdanınızdan 50 PRU çekilecek ve spam engelleme amacıyla kalıcı olarak yakılacaktır.
+                </div>
+                <form class="cyber-form" id="form-create-proposal">
+                  <div class="form-group">
+                    <label>Teklif ID (Örn: IPR-13)</label>
+                    <input type="text" class="form-input" id="input-proposal-id" placeholder="IPR-13" required>
+                  </div>
+                  <div class="form-group">
+                    <label>Teklif Başlığı</label>
+                    <input type="text" class="form-input" id="input-proposal-title" placeholder="Örn: Yeni Akıllı Laboratuvar Ekipman Alımı" required>
+                  </div>
+                  <div class="form-group" style="margin-bottom: 10px;">
+                    <label>Teklif Detayı / Açıklaması</label>
+                    <textarea class="form-input" id="input-proposal-desc" rows="3" placeholder="Detaylı teklif metni..." style="resize: none;" required></textarea>
+                  </div>
+                  <button type="submit" class="submit-btn-cyber" id="btn-submit-proposal" style="width: 100%; background: var(--accent-purple); box-shadow: var(--shadow-neo-purple); margin-top: 10px;">Teklifi Yayınla & 50 PRU Yak</button>
+                </form>
+              </div>
+            </div>
           </div>
         </section>
 
@@ -584,6 +719,36 @@
         </div>
         <button type="submit" class="submit-btn-cyber">MVP Kaydını Tamamla</button>
       </form>
+    </div>
+  </div>
+
+  <!-- 6. EVENT QR CODE PREVIEW MODAL -->
+  <div class="overlay" id="overlay-event-qr">
+    <div class="modal-box">
+      <button class="modal-close-btn" id="btn-close-event-qr-modal">&times;</button>
+      <h3 class="modal-title" id="event-qr-modal-title">Etkinlik Katılım QR Kodu</h3>
+      <div class="qr-scanner-body">
+        <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.4; margin-bottom: 15px;">
+          Bu QR kodu kulüp üyelerine göstererek etkinlik katılımını doğrulayabilirsiniz.
+        </p>
+        <!-- QR Code Placeholder -->
+        <div class="qr-box-mock" style="border-color: var(--accent-purple);">
+          <div class="qr-corners" style="border-color: var(--accent-purple);"></div>
+          <!-- Dynamic custom QR content represented by a cool purple SVG -->
+          <svg class="qr-code-svg" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.5">
+            <rect x="2" y="2" width="6" height="6" rx="1"></rect>
+            <rect x="16" y="2" width="6" height="6" rx="1"></rect>
+            <rect x="2" y="16" width="6" height="6" rx="1"></rect>
+            <rect x="7" y="7" width="2" height="2" fill="#8B5CF6"></rect>
+            <rect x="15" y="7" width="2" height="2" fill="#8B5CF6"></rect>
+            <rect x="7" y="15" width="2" height="2" fill="#8B5CF6"></rect>
+            <path d="M12 2v6M12 12v6M16 12h6M16 16h6M2 12h6M12 16h2v2h-2z" stroke-linecap="round"></path>
+          </svg>
+        </div>
+        <div id="event-qr-modal-rewards" style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent-cyan); font-weight: bold; margin: 15px 0;">+15 XP / +10 PRU</div>
+        <!-- Simulated Attend Button for the Admin/User testing convenience -->
+        <button class="submit-btn-cyber" id="btn-simulate-event-attendance" style="width: 100%; background: var(--accent-green); box-shadow: var(--shadow-neo-green); margin-top: 0;">Taramayı Simüle Et (Katılım Kaydet)</button>
+      </div>
     </div>
   </div>
 
