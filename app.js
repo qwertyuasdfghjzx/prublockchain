@@ -2772,6 +2772,35 @@ document.addEventListener('DOMContentLoaded', () => {
     btnStartLocation.addEventListener('click', verifyLocation);
   }
 
+  // Bind Landing page buttons
+  const btnHeroEnterPortal = document.getElementById('btn-hero-enter-portal');
+  if (btnHeroEnterPortal) {
+    btnHeroEnterPortal.addEventListener('click', () => {
+      sounds.playClick();
+      // Switch active tab to dashboard
+      const dashBtn = document.querySelector('button[data-view="dashboard"]');
+      if (dashBtn) {
+        dashBtn.click();
+      }
+      // If wallet not connected, prompt connect
+      if (!state.userConnected) {
+        const connectBtn = document.getElementById('wallet-connect-btn');
+        if (connectBtn) connectBtn.click();
+      }
+    });
+  }
+
+  const btnHeroLearnToken = document.getElementById('btn-hero-learn-token');
+  if (btnHeroLearnToken) {
+    btnHeroLearnToken.addEventListener('click', () => {
+      sounds.playClick();
+      const tokenSec = document.getElementById('landing-token-section');
+      if (tokenSec) {
+        tokenSec.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  }
+
   // Render initial interface and start prize countdown
   updateUI();
   startYearEndCountdown();

@@ -106,7 +106,10 @@
         
         <!-- TABS -->
         <nav class="tabs-navigation">
-          <button class="tab-btn active" data-view="dashboard">
+          <button class="tab-btn active" data-view="home">
+            🏠 Tanıtım & Rehber
+          </button>
+          <button class="tab-btn" data-view="dashboard">
             🖥️ Dashboard
           </button>
           <button class="tab-btn" data-view="missions">
@@ -126,8 +129,77 @@
           </button>
         </nav>
 
+        <!-- VIEW 0: HOME / LANDING -->
+        <section id="view-home" class="view-content active">
+          <!-- Hero Section -->
+          <div class="section-card" style="padding: 40px; margin-bottom: 25px; background: linear-gradient(135deg, rgba(124, 58, 237, 0.05) 0%, rgba(14, 165, 233, 0.05) 100%); border-color: rgba(124, 58, 237, 0.2);">
+            <div style="max-width: 800px; margin: 0 auto; text-align: center;">
+              <h1 style="font-size: 2.5rem; font-family: var(--font-display); font-weight: 800; background: linear-gradient(135deg, var(--accent-purple), var(--accent-cyan)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; margin-bottom: 15px; text-transform: uppercase; letter-spacing: 1px;">Piri Reis Üniversitesi Blockchain Kulübü</h1>
+              <p style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 25px; line-height: 1.6; font-weight: 500;">
+                Kolektif Web3 dünyasına adım atın! PRU Blockchain, öğrencileri merkeziyetsiz teknolojiler, akıllı sözleşmeler, tokenomics yapıları ve DAO yönetişimi ile tanıştırmak amacıyla kurulmuş, Piri Reis Üniversitesi bünyesinde faaliyet gösteren inovatif bir öğrenci topluluğudur.
+              </p>
+              <div style="display: flex; gap: 15px; justify-content: center; flex-wrap: wrap;">
+                <button class="submit-btn-cyber" id="btn-hero-enter-portal" style="margin-top: 0; background: var(--accent-purple); padding: 12px 30px; font-size: 1rem; border-radius: 6px; box-shadow: var(--shadow-neo-purple);">🎮 Portala Giriş Yap</button>
+                <button class="submit-btn-cyber" id="btn-hero-learn-token" style="margin-top: 0; background: var(--accent-cyan); padding: 12px 30px; font-size: 1rem; border-radius: 6px; box-shadow: var(--shadow-neo); border-color: var(--accent-cyan);">🪙 PRU Token Tanıtımı</button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Feature Columns -->
+          <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 25px;">
+            <!-- Club & Community Card -->
+            <div class="section-card" style="border-color: rgba(14, 165, 233, 0.2);">
+              <h3 class="section-title" style="color: var(--accent-cyan); display: flex; align-items: center; gap: 10px; font-size: 1.25rem;">🌐 Kulüp & Ekosistem</h3>
+              <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 15px;">
+                PRU Blockchain Kulübü, sadece teorik eğitimlerle sınırlı kalmayıp kampüs içi ve dışı Web3 aktivitelerini, hackathonları, teknik makale araştırma gruplarını ve fiziksel Coffee & Web3 meetup'larını koordine eder.
+              </p>
+              <ul style="list-style-type: none; font-size: 0.85rem; color: var(--text-main); display: flex; flex-direction: column; gap: 10px;">
+                <li style="display: flex; align-items: center; gap: 8px;">🔹 <strong>Akademi & Görevler:</strong> Solidity dersleri, akıllı sözleşme pratikleri ve makale araştırma görevleri ile kendinizi geliştirin.</li>
+                <li style="display: flex; align-items: center; gap: 8px;">🔹 <strong>Fiziksel Buluşmalar:</strong> Her hafta düzenlenen meetup'larda Web3 ekosistemindeki güncel gelişmeleri tartışın ve network kurun.</li>
+                <li style="display: flex; align-items: center; gap: 8px;">🔹 <strong>Sene Sonu Ödülleri:</strong> Sıralamada dereceye girerek konferans biletleri ve donanım cüzdanlar kazanın.</li>
+              </ul>
+            </div>
+
+            <!-- Tokenomics & Utility Card -->
+            <div class="section-card" style="border-color: rgba(124, 58, 237, 0.2);" id="landing-token-section">
+              <h3 class="section-title" style="color: var(--accent-purple); display: flex; align-items: center; gap: 10px; font-size: 1.25rem;">🪙 PRU Tokenomics (ERC-20)</h3>
+              <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 15px;">
+                PRU Token, kulübümüzün on-chain ödüllendirme ve katılım para birimidir. Bitcoin ile aynı ekonomik prensiplere sahip olup arzı <strong>21.000.000 PRU</strong> ile sınırlandırılmıştır.
+              </p>
+              <ul style="list-style-type: none; font-size: 0.85rem; color: var(--text-main); display: flex; flex-direction: column; gap: 10px;">
+                <li style="display: flex; align-items: center; gap: 8px;">⚙️ <strong>Kullanım Alanları:</strong> DAO karar teklifleri sunma, oylamalara katılma ve kulüp mağazasından merch satın alma.</li>
+                <li style="display: flex; align-items: center; gap: 8px;">🔥 <strong>Deflasyonist Model (Token Yakımı):</strong> DAO üzerinde yayınlanan her yeni teklif için spam engelleme amacıyla 50 PRU yakılır.</li>
+                <li style="display: flex; align-items: center; gap: 8px;">⚡ <strong>Yarılanma (Halving):</strong> Toplam dolaşımdaki arz 5 Milyon ve 15 Milyon sınırını aştığında musluk (faucet) ödülleri otomatik olarak yarı yarıya düşer.</li>
+              </ul>
+            </div>
+          </div>
+
+          <!-- Soulbound Identity Card Explanation -->
+          <div class="section-card" style="margin-bottom: 25px; border-color: rgba(16, 185, 129, 0.2);">
+            <h3 class="section-title" style="color: var(--accent-green); display: flex; align-items: center; gap: 10px; font-size: 1.25rem;">🆔 Soulbound Identity (SBT Kimliği)</h3>
+            <div style="display: flex; gap: 20px; align-items: center; flex-wrap: wrap;">
+              <div style="flex: 1; min-width: 280px;">
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 12px;">
+                  Kulübümüzün en önemli on-chain mekanizmalarından biri **Soulbound Token (SBT)** tabanlı Web3 üyelik kartıdır. Bu kart, transfer edilemez bir NFT olup doğrudan blockchain üzerinde kimliğinizi oluşturur.
+                </p>
+                <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6;">
+                  Kazandığınız her görevden **XP** kazanarak seviyenizi (Level) artırırsınız. Yüksek seviye, **DAO oylamalarında daha fazla oy ağırlığı** kazandırır. Solidity eğitimi gibi akademi testlerini geçtikçe kimlik kartınıza kalıcı başarı rozetleri işlenir.
+                </p>
+              </div>
+              <div style="background: rgba(16, 185, 129, 0.03); border: 1px dashed rgba(16, 185, 129, 0.3); padding: 20px; border-radius: 8px; font-family: var(--font-mono); font-size: 0.8rem; min-width: 250px;">
+                <div style="color: var(--accent-green); font-weight: bold; margin-bottom: 8px;">📋 SBT VERİ YAPISI</div>
+                <div>• Token ID: #SBT-XXXX</div>
+                <div>• Seviye (Level): Katılım ve Katkı Oranı</div>
+                <div>• Deneyim Puanı (XP): 100 XP = +1 Level</div>
+                <div>• DAO Oy Gücü Ağırlığı: (Level × SBT Rozetleri)</div>
+                <div>• Başarı Rozetleri: Solidity, Meetup, Tokenomics, Hackathon</div>
+              </div>
+            </div>
+          </div>
+        </section>
+
         <!-- VIEW 1: DASHBOARD -->
-        <section id="view-dashboard" class="view-content active">
+        <section id="view-dashboard" class="view-content">
           <div class="view-header">
             <h2>KULÜP KONTROL PANELİ</h2>
             <p>PRU Blockchain topluluk canlı verileri ve zincir içi aktiviteler.</p>
