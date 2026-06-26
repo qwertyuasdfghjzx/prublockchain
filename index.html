@@ -164,6 +164,48 @@
             </div>
           </div>
 
+          <!-- Landing Events & Announcements Section -->
+          <div class="section-card" style="margin-bottom: 30px; border-color: rgba(139, 92, 246, 0.25); background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px);">
+            <h3 class="section-title" style="color: var(--accent-purple); font-size: 1.3rem;">📢 Güncel Topluluk Etkinlikleri & Canlı Duyurular</h3>
+            <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 20px;">
+              Piri Reis Üniversitesi Web3 topluluğunun yaklaşan etkinliklerine ve eğitimlerine katılarak PRU Token ve XP kazanın.
+            </p>
+            <div class="landing-events-grid">
+              <!-- Event 1 -->
+              <div class="landing-event-card">
+                <div class="event-header">
+                  <span class="event-tag">Eğitim</span>
+                  <span class="event-date">YARIN - 18:30</span>
+                </div>
+                <h4 class="event-title">Solidity ile Akıllı Sözleşme Geliştirme 101</h4>
+                <p class="event-desc">Akademi sekmesindeki ilk görevi tamamlayarak XP kazanabilir ve on-chain rozetinizi basabilirsiniz.</p>
+                <button class="submit-btn-cyber btn-landing-event-action" data-quest="solidity" style="margin-top: 15px; width: 100%; font-size: 0.8rem; padding: 8px 12px; border-radius: 4px;">Eğitime Git ➔</button>
+              </div>
+
+              <!-- Event 2 -->
+              <div class="landing-event-card cyan-theme">
+                <div class="event-header">
+                  <span class="event-tag" style="background: rgba(6,182,212,0.15); color: var(--accent-cyan);">Buluşma</span>
+                  <span class="event-date">27 HAZİRAN - 15:00</span>
+                </div>
+                <h4 class="event-title">Haftalık Fiziksel Coffee & Web3 Meetup</h4>
+                <p class="event-desc">Kampüs Web3 laboratuvarında toplanıyoruz. QR Kodunuzu taratıp katılım puanınızı almayı unutmayın!</p>
+                <button class="submit-btn-cyber btn-landing-event-action" data-quest="meetup" style="margin-top: 15px; width: 100%; font-size: 0.8rem; padding: 8px 12px; border-radius: 4px; background: var(--accent-cyan); box-shadow: var(--shadow-neo);">Konuma Git ➔</button>
+              </div>
+
+              <!-- Event 3 -->
+              <div class="landing-event-card green-theme">
+                <div class="event-header">
+                  <span class="event-tag" style="background: rgba(16,185,129,0.15); color: var(--accent-green);">Hackathon</span>
+                  <span class="event-date">10-12 TEMMUZ</span>
+                </div>
+                <h4 class="event-title">PRU Global Web3 MVP Hackathon</h4>
+                <p class="event-desc">Büyük ödül havuzlu yerel hackathon. Takımını kur, MVP'ni gönder, kasadan proje fonunu kap.</p>
+                <button class="submit-btn-cyber btn-landing-event-action" data-quest="hackathon" style="margin-top: 15px; width: 100%; font-size: 0.8rem; padding: 8px 12px; border-radius: 4px; background: var(--accent-green); box-shadow: var(--shadow-neo-green);">Göreve Git ➔</button>
+              </div>
+            </div>
+          </div>
+
           <!-- Feature Columns -->
           <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 25px; margin-bottom: 30px;">
             <!-- Club & Community Card -->
@@ -194,76 +236,192 @@
           </div>
 
           <!-- PRU Integration & Vision Document Section -->
-          <div class="section-card" style="margin-bottom: 30px; border-color: rgba(124, 58, 237, 0.25); background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px);" id="landing-vision-grid">
-            <h3 class="section-title" style="color: var(--accent-purple); font-size: 1.3rem;">⚓ Piri Reis Üniversitesi Web3 Entegrasyon Vizyonu</h3>
+          <!-- PRU Integration & Vision Document Section -->
+          <div class="section-card" style="margin-bottom: 30px; border-color: rgba(124, 58, 237, 0.25); background: rgba(255, 255, 255, 0.5); backdrop-filter: blur(10px);" id="landing-vision-explorer-section">
+            <h3 class="section-title" style="color: var(--accent-purple); font-size: 1.4rem; margin-bottom: 5px;">⚓ Web3 Entegrasyon Vizyonu Kaşifi</h3>
             <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.6; margin-bottom: 25px;">
-              Piri Reis Üniversitesi'nin köklü denizcilik vizyonunu ve yeşil kampüs kimliğini Web3 dünyasıyla birleştiren, finansal olmayan (kripto varlık değeri taşımayan) kulüp içi ödül ve itibar mekanizmamız <strong>"PRU Token"</strong> ekosisteminin entegrasyon vizyonu:
+              Piri Reis Üniversitesi'nin köklü denizcilik vizyonunu ve yeşil kampüs kimliğini Web3 ile birleştiren önerilerimizi interaktif olarak keşfedin (Otomatik döner, 6sn).
             </p>
-            
-            <div class="vision-grid">
-              
-              <!-- Point 1 -->
-              <div class="vision-card">
-                <div class="vision-card-title" style="color: var(--accent-purple);">👋 Oryantasyon ve Karşılama</div>
-                <div class="vision-card-desc">
-                  Kayıt döneminde aramıza yeni katılan öğrencilerimize, daha okula ilk adımlarını attıkları anda başlangıç PRU Token'ı tanımlanacak; kampüse ve kulüp kültürüne adaptasyonları ilk günden hızlandırılacaktır.
-                </div>
+
+            <div class="vision-explorer-container">
+              <!-- Left Sidebar: Interactive Tabs -->
+              <div class="vision-explorer-sidebar">
+                <button class="explorer-tab-btn active" data-vision="0">
+                  <span class="tab-emoji">👋</span>
+                  <span class="tab-text">Oryantasyon & Karşılama</span>
+                </button>
+                <button class="explorer-tab-btn" data-vision="1">
+                  <span class="tab-emoji">📝</span>
+                  <span class="tab-text">"Seyir Defteri" & Akademi</span>
+                </button>
+                <button class="explorer-tab-btn" data-vision="2">
+                  <span class="tab-emoji">🚢</span>
+                  <span class="tab-text">Simülasyon & Turnuvalar</span>
+                </button>
+                <button class="explorer-tab-btn" data-vision="3">
+                  <span class="tab-emoji">🌿</span>
+                  <span class="tab-text">Yeşil Kampüs & Çevre</span>
+                </button>
+                <button class="explorer-tab-btn" data-vision="4">
+                  <span class="tab-emoji">🎟️</span>
+                  <span class="tab-text">Kariyer ve Zirveler</span>
+                </button>
+                <button class="explorer-tab-btn" data-vision="5">
+                  <span class="tab-emoji">💼</span>
+                  <span class="tab-text">Nitelikli Staj İmkanları</span>
+                </button>
+                <button class="explorer-tab-btn" data-vision="6">
+                  <span class="tab-emoji">🎓</span>
+                  <span class="tab-text">Akademik Başarı Ödülü</span>
+                </button>
+                <button class="explorer-tab-btn" data-vision="7">
+                  <span class="tab-emoji">☕</span>
+                  <span class="tab-text">Sosyal & Kültürel Teşvikler</span>
+                </button>
               </div>
 
-              <!-- Point 2 -->
-              <div class="vision-card cyan-theme">
-                <div class="vision-card-title" style="color: var(--accent-cyan);">📝 "Seyir Defteri" & Akademi</div>
-                <div class="vision-card-desc">
-                  Öğrencilerimizin kulüp bünyesinde hazırlayacağı teknik raporlar veya projeler ders ödevi yerine sayılabilecek; başarıları devredilemez başarı belgesi olan SBT rozetleri ve PRU Token ile ödüllendirilecektir.
+              <!-- Right Area: Interactive Content Cards -->
+              <div class="vision-explorer-display">
+                
+                <!-- Display Card 1: Oryantasyon -->
+                <div class="explorer-display-card active" id="explorer-card-0">
+                  <div class="card-header-badge">KAMPÜS ONBOARDING</div>
+                  <h4 class="card-vision-title">👋 Kayıt Dönemi Oryantasyonu ve İlk Karşılama</h4>
+                  <p class="card-vision-desc">
+                    Üniversitemize yeni kayıt yaptıran öğrencilerimize, daha kampüse ilk adımlarını attıkları anda blockchain cüzdanları ile entegre bir başlangıç PRU Token'ı tanımlanacaktır. Bu sayede öğrenciler hem kulüp faaliyetleriyle tanışacak hem de ilk günden Web3 dünyasının pratik uygulamalarını öğrenerek adaptasyonlarını hızlandıracaktır.
+                  </p>
+                  <div class="reward-prediction-box">
+                    <div class="reward-title">🎁 ON-CHAIN BAŞLANGIÇ HEDİYESİ</div>
+                    <div class="reward-values">
+                      <span><strong>+100 PRU</strong> Token</span>
+                      <span><strong>+25 XP</strong> İtibar Puanı</span>
+                    </div>
+                  </div>
+                  <button class="submit-btn-cyber explorer-widget-btn" id="btn-widget-orientation">İlk Hoşgeldin Token'ını Talep Et (Simüle) ➔</button>
                 </div>
-              </div>
 
-              <!-- Point 3 -->
-              <div class="vision-card green-theme">
-                <div class="vision-card-title" style="color: var(--accent-green);">🚢 Simülasyon & Turnuvalar</div>
-                <div class="vision-card-desc">
-                  Gelişmiş köprüüstü ve gemi makineleri simülatörlerimizde Mühendislik, Denizcilik ve Lojistik kulüpleriyle ortaklaşa düzenlenecek turnuva ve senaryolarda başarı gösteren öğrencilere PRU Token ödülü verilecektir.
+                <!-- Display Card 2: Seyir Defteri -->
+                <div class="explorer-display-card" id="explorer-card-1">
+                  <div class="card-header-badge cyan">AKADEMİK TEŞVİK</div>
+                  <h4 class="card-vision-title">📝 "Seyir Defteri" ve Akademik Ödev Entegrasyonu</h4>
+                  <p class="card-vision-desc">
+                    Öğrencilerimizin kulüp bünyesinde hazırlayacağı teknik raporlar, blockchain tabanlı kod projeleri veya tokenomics analizleri, ilgili derslerin ödev veya vize projeleri yerine sayılması için akademisyenlerimize sunulacaktır. Başarı gösteren raporlar devredilemez Soulbound Token (SBT) akademik başarı rozetleri ve PRU Token ile ödüllendirilecektir.
+                  </p>
+                  <div class="reward-prediction-box cyan">
+                    <div class="reward-title">🎁 AKADEMİK KATKI DESTEĞİ</div>
+                    <div class="reward-values">
+                      <span><strong>+200 PRU</strong> Token</span>
+                      <span><strong>+50 XP</strong> İtibar Puanı</span>
+                      <span><strong>🎓 Smart Contract Wizard SBT Rozeti</strong></span>
+                    </div>
+                  </div>
+                  <button class="submit-btn-cyber explorer-widget-btn cyan" id="btn-widget-academy" style="background: var(--accent-cyan); box-shadow: var(--shadow-neo);">Akademi Eğitimine Başla ➔</button>
                 </div>
-              </div>
 
-              <!-- Point 4 -->
-              <div class="vision-card green-theme">
-                <div class="vision-card-title" style="color: var(--accent-green);">🌿 Yeşil Kampüs & Çevre</div>
-                <div class="vision-card-desc">
-                  BREEAM sertifikalı çevre dostu kampüsümüzde; geri dönüşüm projelerine katılan ve karbon ayak izini azaltmaya yönelik sürdürülebilirlik faaliyetlerinde bulunan öğrenciler PRU Token ile ödüllendirilecektir.
+                <!-- Display Card 3: Simülasyon -->
+                <div class="explorer-display-card" id="explorer-card-2">
+                  <div class="card-header-badge green">KAMPÜS ETKİNLİĞİ</div>
+                  <h4 class="card-vision-title">🚢 Simülasyon Turnuvaları ve Bölümler Arası İş Birliği</h4>
+                  <p class="card-vision-desc">
+                    Piri Reis Üniversitesi'nin sahip olduğu gelişmiş köprüüstü ve gemi makineleri simülatörlerimizde Mühendislik, Denizcilik ve Lojistik kulüpleriyle ortaklaşa büyük ödüllü turnuvalar ve senaryolar düzenlenecektir. Bu zorlu gemi yönetimi ve lojistik turnuvalarında başarı gösteren ekipler on-chain PRU Token ödülü ile taltif edilecektir.
+                  </p>
+                  <div class="reward-prediction-box green">
+                    <div class="reward-title">🎁 SİMÜLATÖR TURNUVA ÖDÜLÜ</div>
+                    <div class="reward-values">
+                      <span><strong>+500 PRU</strong> Token (Ekip Başına)</span>
+                      <span><strong>+80 XP</strong> Takım İtibarı</span>
+                    </div>
+                  </div>
+                  <button class="submit-btn-cyber explorer-widget-btn green" id="btn-widget-simulation" style="background: var(--accent-green); box-shadow: var(--shadow-neo-green);">Turnuva Kayıt Tarihlerini İncele ➔</button>
                 </div>
-              </div>
 
-              <!-- Point 5 -->
-              <div class="vision-card">
-                <div class="vision-card-title" style="color: var(--accent-purple);">🎟️ Kariyer ve Zirveler</div>
-                <div class="vision-card-desc">
-                  Kampüsümüzde düzenlenecek denizcilik, lojistik ve finans zirvelerinde katılım sağlayan öğrencilere, akıllı sözleşmelere bağlı QR kodlar ile katılım kanıtı (PoA) olarak anında on-chain token yüklenecektir.
+                <!-- Display Card 4: Yeşil Kampüs -->
+                <div class="explorer-display-card" id="explorer-card-3">
+                  <div class="card-header-badge green">SÜRDÜRÜLEBİLİRLİK</div>
+                  <h4 class="card-vision-title">🌿 Yeşil Kampüs ve Sürdürülebilirlik Faaliyetleri</h4>
+                  <p class="card-vision-desc">
+                    BREEAM sertifikalı çevre dostu kampüsümüzde sürdürülebilirlik faaliyetlerini teşvik etmek amacıyla; atık geri dönüşüm projelerine katılan, karbon ayak izini azaltmaya yönelik topluluk çalışmalarına destek veren veya kampüs temizlik etkinliklerine katılan öğrencilerimize akıllı sözleşmeler aracılığıyla PRU Token ödülleri dağıtılacaktır.
+                  </p>
+                  <div class="reward-prediction-box green">
+                    <div class="reward-title">🎁 EKOLOJİK KATKI ÖDÜLÜ</div>
+                    <div class="reward-values">
+                      <span><strong>+150 PRU</strong> Token</span>
+                      <span><strong>+30 XP</strong> Çevre Rozeti</span>
+                    </div>
+                  </div>
+                  <button class="submit-btn-cyber explorer-widget-btn green" id="btn-widget-ecology" style="background: var(--accent-green); box-shadow: var(--shadow-neo-green);">Karbon Ayak İzi Görevini Sıfırla (Bilgi Al) ➔</button>
                 </div>
-              </div>
 
-              <!-- Point 6 -->
-              <div class="vision-card cyan-theme">
-                <div class="vision-card-title" style="color: var(--accent-cyan);">💼 Nitelikli Staj İmkanları</div>
-                <div class="vision-card-desc">
-                  Sektörün önde gelen kurumları ve tersanelerle kurulacak iş birlikleri kapsamında; platformumuzda teknik görevleri tamamlayarak çalışkanlığı zincir üstünde doğrulanmış öğrencilere öncelikli staj sağlanacaktır.
+                <!-- Display Card 5: Kariyer -->
+                <div class="explorer-display-card" id="explorer-card-4">
+                  <div class="card-header-badge">SEKTÖR ENTEGRASYONU</div>
+                  <h4 class="card-vision-title">🎟️ Kariyer Günleri, Zirveler ve Katılım Kanıtı (PoA)</h4>
+                  <p class="card-vision-desc">
+                    Kampüsümüzde düzenlenecek denizcilik, lojistik ve finans zirvelerinde katılımcı öğrencilere akıllı sözleşmelere bağlı benzersiz QR kodlar verilecektir. Öğrenciler bu QR kodları cüzdanları ile taratarak blockchain üzerinde "Zirve Katılım Kanıtı" (Proof-of-Attendance) olarak PRU Token and XP kazanacaktır.
+                  </p>
+                  <div class="reward-prediction-box">
+                    <div class="reward-title">🎁 ETKİNLİK KATILIM KANITI (PoA)</div>
+                    <div class="reward-values">
+                      <span><strong>+50 PRU</strong> Token (Her QR Tarama)</span>
+                      <span><strong>+15 XP</strong> Kariyer İtibarı</span>
+                    </div>
+                  </div>
+                  <button class="submit-btn-cyber explorer-widget-btn" id="btn-widget-career">QR Katılım Kodunu Tarat ➔</button>
                 </div>
-              </div>
 
-              <!-- Point 7 -->
-              <div class="vision-card" style="grid-column: span 2;">
-                <div class="vision-card-title" style="color: var(--accent-purple);">🎓 Akademik Başarı Ödülü (Eğitim Ücreti İndirimi Teşviki)</div>
-                <div class="vision-card-desc">
-                  Mikro-ekonomik deneyimizin motivasyonunu artırmak amacıyla; her akademik yıl sonunda kulüp içi görevlerden en çok PRU Token biriktiren (okula ve üretime en çok katkı sunan) <strong>ilk 3 öğrencimize</strong>, sonraki yılın eğitim ücretinde üniversitemiz senatosunun uygun göreceği oranlarda indirim bursu sunulması önerilmektedir.
+                <!-- Display Card 6: Staj -->
+                <div class="explorer-display-card" id="explorer-card-5">
+                  <div class="card-header-badge cyan">KARİYER VE STAJ</div>
+                  <h4 class="card-vision-title">💼 Nitelikli Staj ve Kariyer Ayrıcalıkları</h4>
+                  <p class="card-vision-desc">
+                    Denizcilik ve blockchain sektörünün önde gelen kurumları, armatörleri ve tersaneleri ile özel iş birlikleri yapılacaktır. Kulübümüzün akademi görevlerini tamamlayarak Solidity kod yazma, tokenomics analiz etme ve aktif katılım gösterme gibi yetenekleri zincir üstünde doğrulanmış başarılı öğrencilerimize öncelikli staj imkanları sunulacaktır.
+                  </p>
+                  <div class="reward-prediction-box cyan">
+                    <div class="reward-title">💼 ZİNCİR ÜSTÜ REFERANS REFERRALS</div>
+                    <div class="reward-values">
+                      <span><strong>📜 On-Chain SBT Portfolyo Kanıtı</strong></span>
+                      <span><strong>🌟 Sektör Ortaklığı Öncelikli Staj Kontenjanı</strong></span>
+                    </div>
+                  </div>
+                  <button class="submit-btn-cyber explorer-widget-btn cyan" id="btn-widget-internship" style="background: var(--accent-cyan); box-shadow: var(--shadow-neo);">Anlaşmalı Kurumları Listele ➔</button>
                 </div>
-              </div>
 
-              <!-- Point 8 -->
-              <div class="vision-card gray-theme" style="grid-column: span 2;">
-                <div class="vision-card-title" style="color: var(--text-main);">☕ Kampüs İçi Kültürel & Sosyal Teşvikler</div>
-                <div class="vision-card-desc">
-                  Tamamen sponsor destekleriyle veya kulüp kasasından finanse edilmek üzere; PRU Token biriktiren öğrencilere kulüp sweatshirtleri, teknolojik kitler veya kampüs içi kafeteryalarda ücretsiz kahve kuponu gibi ayrıcalıklar sunularak katılım artırılacaktır.
+                <!-- Display Card 7: Akademik Başarı -->
+                <div class="explorer-display-card" id="explorer-card-6">
+                  <div class="card-header-badge">BURS VE DESTEK</div>
+                  <h4 class="card-vision-title">🎓 Akademik Başarı Ödülü ve Eğitim Ücreti İndirimi Teşviki</h4>
+                  <p class="card-vision-desc">
+                    On-chain mikro-ekonomik deneyimizin motivasyonunu zirveye taşımak amacıyla; her akademik yıl sonunda kulüp içi görevlerden, dApp projelerinden ve katkılarından en çok PRU Token biriktirerek Liderlik Tablosunda ilk 3 sıraya yerleşen öğrencilere, bir sonraki eğitim yılı ücretinde üniversitemiz senatosunun uygun göreceği oranlarda indirim bursu sunulması önerilmektedir.
+                  </p>
+                  <div class="reward-prediction-box">
+                    <div class="reward-title">🏆 YIL SONU LİDERLİK BÜYÜK BURS HEDİYESİ</div>
+                    <div class="reward-values">
+                      <span><strong>🥇 1.lik: Özel Eğitim Bursu Önerisi</strong></span>
+                      <span><strong>🥈 2.lik: Ledger Hardware Wallet</strong></span>
+                      <span><strong>🥉 3.lik: $100 Gas Fee Bütçesi</strong></span>
+                    </div>
+                  </div>
+                  <button class="submit-btn-cyber explorer-widget-btn" id="btn-widget-scholarship">Burs Detaylarını ve Liderleri Gör ➔</button>
                 </div>
+
+                <!-- Display Card 8: Sosyal Teşvikler -->
+                <div class="explorer-display-card" id="explorer-card-7">
+                  <div class="card-header-badge gray">KAMPÜS YAŞAMI</div>
+                  <h4 class="card-vision-title">☕ Kampüs İçi Kültürel & Sosyal Teşvikler</h4>
+                  <p class="card-vision-desc">
+                    Sponsor destekleri ve kulüp kasasından finanse edilmek üzere; görevlerden ve katkılardan PRU Token kazanan öğrencilerimiz, kulüp mağazası üzerinden bu tokenları kulüp sweatshirtleri (merch), teknik kitaplar veya kampüs içi kafeteryalarda ücretsiz kahve kuponu gibi ayrıcalıklar sunularak katılım artırılacaktır.
+                  </p>
+                  <div class="reward-prediction-box gray">
+                    <div class="reward-title">🛒 MAĞAZA VE KAFETERYA ENTEGRASYONU</div>
+                    <div class="reward-values">
+                      <span><strong>☕ 50 PRU: Kahve Kuponu</strong></span>
+                      <span><strong>👕 300 PRU: Kulüp Sweatshirt (Merch)</strong></span>
+                      <span><strong>🛠️ 750 PRU: Teknoloji Kiti</strong></span>
+                    </div>
+                  </div>
+                  <button class="submit-btn-cyber explorer-widget-btn gray" id="btn-widget-store" style="background: var(--text-muted); color: #fff; box-shadow: none;">Kulüp Mağazasına Git ➔</button>
+                </div>
+
               </div>
             </div>
           </div>
@@ -321,44 +479,9 @@
           <!-- Events & Terminal Row -->
           <div class="dashboard-details-row">
             
-            <!-- Event Announcements -->
-            <div class="section-card">
-              <h3 class="section-title">📢 Güncel Topluluk Etkinlikleri</h3>
-              <div class="event-list">
-                
-                <div class="event-card">
-                  <div class="event-header">
-                    <span class="event-tag">Eğitim</span>
-                    <span class="event-date">YARIN - 18:30</span>
-                  </div>
-                  <h4 class="event-title">Solidity ile Akıllı Sözleşme Geliştirme 101</h4>
-                  <p class="event-desc">Akademi sekmesindeki ilk görevi tamamlayarak XP kazanabilir ve on-chain rozetinizi basabilirsiniz.</p>
-                </div>
-
-                <div class="event-card" style="border-left-color: var(--accent-cyan);">
-                  <div class="event-header">
-                    <span class="event-tag" style="background: rgba(6,182,212,0.15); color: var(--accent-cyan);">Buluşma</span>
-                    <span class="event-date">27 HAZİRAN - 15:00</span>
-                  </div>
-                  <h4 class="event-title">Haftalık Fiziksel Coffee & Web3 Meetup</h4>
-                  <p class="event-desc">Kampüs Web3 laboratuvarında toplanıyoruz. QR Kodunuzu taratıp katılım puanınızı almayı unutmayın!</p>
-                </div>
-
-                <div class="event-card" style="border-left-color: var(--accent-green);">
-                  <div class="event-header">
-                    <span class="event-tag" style="background: rgba(16,185,129,0.15); color: var(--accent-green);">Hackathon</span>
-                    <span class="event-date">10-12 TEMMUZ</span>
-                  </div>
-                  <h4 class="event-title">PRU Global Web3 MVP Hackathon</h4>
-                  <p class="event-desc">Büyük ödül havuzlu yerel hackathon. Takımını kur, MVP'ni gönder, kasadan proje fonunu kap.</p>
-                </div>
-
-              </div>
-            </div>
-
             <!-- Terminal Simulator -->
-            <div class="section-card" style="padding: 0;">
-              <div class="terminal-card">
+            <div class="section-card" style="padding: 0; grid-column: span 2;">
+              <div class="terminal-card" style="height: 420px;">
                 <div class="terminal-header">
                   <div class="terminal-dots">
                     <div class="terminal-dot red"></div>

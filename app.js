@@ -2794,12 +2794,184 @@ document.addEventListener('DOMContentLoaded', () => {
   if (btnHeroLearnToken) {
     btnHeroLearnToken.addEventListener('click', () => {
       sounds.playClick();
-      const tokenSec = document.getElementById('landing-vision-grid');
+      const tokenSec = document.getElementById('landing-vision-explorer-section');
       if (tokenSec) {
         tokenSec.scrollIntoView({ behavior: 'smooth' });
       }
     });
   }
+
+  // --- VISION EXPLORER INTERACTIVE LOGIC ---
+  function initVisionExplorer() {
+    const tabs = document.querySelectorAll('.explorer-tab-btn');
+    const cards = document.querySelectorAll('.explorer-display-card');
+    if (tabs.length === 0 || cards.length === 0) return;
+
+    let activeIndex = 0;
+    let cycleInterval = null;
+
+    function showVision(index) {
+      activeIndex = index;
+      tabs.forEach((tab, idx) => {
+        if (idx === index) {
+          tab.classList.add('active');
+        } else {
+          tab.classList.remove('active');
+        }
+      });
+
+      cards.forEach((card, idx) => {
+        if (idx === index) {
+          card.classList.add('active');
+        } else {
+          card.classList.remove('active');
+        }
+      });
+    }
+
+    function startAutoCycle() {
+      stopAutoCycle();
+      cycleInterval = setInterval(() => {
+        let nextIndex = activeIndex + 1;
+        if (nextIndex >= tabs.length) nextIndex = 0;
+        showVision(nextIndex);
+      }, 6000);
+    }
+
+    function stopAutoCycle() {
+      if (cycleInterval) {
+        clearInterval(cycleInterval);
+        cycleInterval = null;
+      }
+    }
+
+    // Tabs click
+    tabs.forEach((tab, idx) => {
+      tab.addEventListener('click', () => {
+        sounds.playClick();
+        showVision(idx);
+        stopAutoCycle(); // Pause auto cycle on user interaction
+      });
+    });
+
+    // Start auto cycle initially
+    startAutoCycle();
+
+    // Widget buttons binding
+    const btnWidgetOrientation = document.getElementById('btn-widget-orientation');
+    if (btnWidgetOrientation) {
+      btnWidgetOrientation.addEventListener('click', () => {
+        sounds.playClick();
+        claimFaucetTokens();
+      });
+    }
+
+    const btnWidgetAcademy = document.getElementById('btn-widget-academy');
+    if (btnWidgetAcademy) {
+      btnWidgetAcademy.addEventListener('click', () => {
+        sounds.playClick();
+        const tabBtn = document.querySelector('button[data-view="missions"]');
+        if (tabBtn) tabBtn.click();
+        setTimeout(() => {
+          const card = document.getElementById('mission-solidity-card');
+          if (card) {
+            card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+            card.style.outline = '3px solid var(--accent-cyan)';
+            setTimeout(() => card.style.outline = 'none', 2000);
+          }
+        }, 200);
+      });
+    }
+
+    const btnWidgetSimulation = document.getElementById('btn-widget-simulation');
+    if (btnWidgetSimulation) {
+      btnWidgetSimulation.addEventListener('click', () => {
+        sounds.playSuccess();
+        showToast("⚓ Turnuva kayıtları Sepolia testnet entegrasyonuyla yakında açılacaktır!", "success");
+      });
+    }
+
+    const btnWidgetEcology = document.getElementById('btn-widget-ecology');
+    if (btnWidgetEcology) {
+      btnWidgetEcology.addEventListener('click', () => {
+        sounds.playSuccess();
+        showToast("🌿 Kampüs içi geri dönüşüm kutularındaki QR kodları taratarak PRU kazanabilirsiniz.", "info");
+      });
+    }
+
+    const btnWidgetCareer = document.getElementById('btn-widget-career');
+    if (btnWidgetCareer) {
+      btnWidgetCareer.addEventListener('click', () => {
+        sounds.playClick();
+        const tabBtn = document.querySelector('button[data-view="missions"]');
+        if (tabBtn) tabBtn.click();
+        setTimeout(() => {
+          const btnStartMeetup = document.getElementById('btn-start-meetup');
+          if (btnStartMeetup) btnStartMeetup.click();
+        }, 200);
+      });
+    }
+
+    const btnWidgetInternship = document.getElementById('btn-widget-internship');
+    if (btnWidgetInternship) {
+      btnWidgetInternship.addEventListener('click', () => {
+        sounds.playSuccess();
+        showToast("💼 Anlaşmalı Kurumlar: PRU Denizcilik Fakültesi, Turkon Line, Arkas ve TR Web3 Lab.", "info");
+      });
+    }
+
+    const btnWidgetScholarship = document.getElementById('btn-widget-scholarship');
+    if (btnWidgetScholarship) {
+      btnWidgetScholarship.addEventListener('click', () => {
+        sounds.playClick();
+        const tabBtn = document.querySelector('button[data-view="leaderboard"]');
+        if (tabBtn) tabBtn.click();
+      });
+    }
+
+    const btnWidgetStore = document.getElementById('btn-widget-store');
+    if (btnWidgetStore) {
+      btnWidgetStore.addEventListener('click', () => {
+        sounds.playClick();
+        const tabBtn = document.querySelector('button[data-view="store"]');
+        if (tabBtn) tabBtn.click();
+      });
+    }
+  }
+
+  // Initialize Vision Explorer
+  initVisionExplorer();
+
+  // Bind Landing page event action buttons (moving to missions tab when clicked)
+  document.querySelectorAll('.btn-landing-event-action').forEach(btn => {
+    btn.addEventListener('click', () => {
+      sounds.playClick();
+      const questId = btn.dataset.quest;
+      if (!questId) return;
+
+      // Switch active tab view to missions
+      const missionsBtn = document.querySelector('button[data-view="missions"]');
+      if (missionsBtn) {
+        missionsBtn.click();
+      }
+
+      // Scroll to target quest and highlight it
+      setTimeout(() => {
+        const questCard = document.getElementById(`mission-${questId}-card`);
+        if (questCard) {
+          questCard.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          // Highlight flash effect
+          questCard.style.outline = '3px solid var(--accent-purple)';
+          questCard.style.transform = 'scale(1.02)';
+          questCard.style.transition = 'all 0.4s ease';
+          setTimeout(() => {
+            questCard.style.outline = 'none';
+            questCard.style.transform = 'none';
+          }, 2000);
+        }
+      }, 200);
+    });
+  });
 
   // Render initial interface and start prize countdown
   updateUI();
