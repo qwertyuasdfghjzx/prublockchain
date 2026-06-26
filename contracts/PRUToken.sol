@@ -11,7 +11,7 @@ import "@openzeppelin/contracts/access/Ownable.sol";
  * Includes a supply-capped, halving-enabled faucet and authorization for the coordinator portal.
  */
 contract PRUToken is ERC20, ERC20Burnable, Ownable {
-    uint256 public constant MAX_SUPPLY = 50000 * 10**18;
+    uint256 public constant MAX_SUPPLY = 21000000 * 10**18;
     uint256 public constant FAUCET_COOLDOWN = 30 seconds; // Short for demonstration/testing
 
     mapping(address => uint256) public lastFaucetClaim;
@@ -26,8 +26,8 @@ contract PRUToken is ERC20, ERC20Burnable, Ownable {
     }
 
     constructor() ERC20("Piri Reis University Blockchain Club Token", "PRU") Ownable(msg.sender) {
-        // Pre-mint 1,500 PRU to owner/treasury for initial liquidity
-        _mint(msg.sender, 1500 * 10**18);
+        // Pre-mint 1,000,000 PRU to owner/treasury for initial liquidity
+        _mint(msg.sender, 1000000 * 10**18);
     }
 
     /**
@@ -66,9 +66,9 @@ contract PRUToken is ERC20, ERC20Burnable, Ownable {
      */
     function getFaucetRewardAmount() public view returns (uint256) {
         uint256 circulating = totalSupply();
-        if (circulating < 5000 * 10**18) {
+        if (circulating < 5000000 * 10**18) {
             return 100 * 10**18;
-        } else if (circulating < 15000 * 10**18) {
+        } else if (circulating < 15000000 * 10**18) {
             return 50 * 10**18;
         } else {
             return 25 * 10**18;

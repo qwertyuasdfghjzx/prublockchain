@@ -5,9 +5,9 @@ async function main() {
   console.log("Initializing portal on network:", hre.network.name);
   console.log("Using account:", deployer.address);
 
-  const tokenAddress = "0x0dF5919fb649e2df756CA54C098A84212A9B3448";
-  const sbtAddress = "0x6811Fb205E7Df5bE7e7aEd5e3B83C4A9A4cDa1D1";
-  const portalAddress = "0x7aa23b16e687fb9Ed37Eca3BDFD01d173a9B751a";
+  const tokenAddress = "0x85dFD16aA6D5ec60375B6C0e60F09bbE1A277896";
+  const sbtAddress = "0xfDB6963188112a1fa05fcA0Ce9842cCa2814D482";
+  const portalAddress = "0x7C8f014D380992464f25AcC2785f2Afd39Ceb430";
 
   const PRUToken = await hre.ethers.getContractFactory("PRUToken");
   const token = PRUToken.attach(tokenAddress);

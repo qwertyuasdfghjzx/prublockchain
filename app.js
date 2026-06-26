@@ -96,9 +96,9 @@ let state = { ...DEFAULT_STATE };
 
 // --- WEB3 ON-CHAIN CONFIGURATION ---
 const CONTRACT_ADDRESSES = {
-  PRUToken: "0x0dF5919fb649e2df756CA54C098A84212A9B3448", // Sepolia Deployed Address
-  PRUMembershipSBT: "0x6811Fb205E7Df5bE7e7aEd5e3B83C4A9A4cDa1D1",
-  PRUClubPortal: "0x7aa23b16e687fb9Ed37Eca3BDFD01d173a9B751a"
+  PRUToken: "0x85dFD16aA6D5ec60375B6C0e60F09bbE1A277896", // Sepolia Deployed Address
+  PRUMembershipSBT: "0xfDB6963188112a1fa05fcA0Ce9842cCa2814D482",
+  PRUClubPortal: "0x7C8f014D380992464f25AcC2785f2Afd39Ceb430"
 };
 
 const ABI_PRU_TOKEN = [
@@ -627,13 +627,13 @@ function updateUI() {
 }
 
 function getFaucetRewardAmount(circulating) {
-  if (circulating < 5000) return 100;
-  if (circulating < 15000) return 50;
+  if (circulating < 5000000) return 100;
+  if (circulating < 15000000) return 50;
   return 25;
 }
 
 function renderTokenomicsAndAdmin() {
-  let circulating = Math.max(0, 1500 + state.pruBalance - state.burnedPru);
+  let circulating = Math.max(0, 1000000 + state.pruBalance - state.burnedPru);
   if (state.networkMode === 'onchain' && state.totalSupply !== undefined) {
     circulating = state.totalSupply;
   }
@@ -646,7 +646,7 @@ function renderTokenomicsAndAdmin() {
 
   if (circText) circText.textContent = circulating.toLocaleString();
   if (circBar) {
-    const pct = Math.min(100, (circulating / 50000) * 100);
+    const pct = Math.min(100, (circulating / 21000000) * 100);
     circBar.style.width = `${pct}%`;
   }
   if (burnedText) burnedText.textContent = state.burnedPru.toLocaleString();
@@ -656,11 +656,11 @@ function renderTokenomicsAndAdmin() {
     faucetBtn.textContent = `${reward} PRU TALEP ET`;
   }
 
-  let nextTarget = 50000;
-  if (circulating < 5000) {
-    nextTarget = 5000;
-  } else if (circulating < 15000) {
-    nextTarget = 15000;
+  let nextTarget = 21000000;
+  if (circulating < 5000000) {
+    nextTarget = 5000000;
+  } else if (circulating < 15000000) {
+    nextTarget = 15000000;
   }
   if (halvingText) halvingText.textContent = nextTarget.toLocaleString();
 
