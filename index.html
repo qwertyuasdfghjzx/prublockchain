@@ -47,6 +47,7 @@
             </div>
             <h3 class="sbt-username" id="sbt-username">Misafir Üye</h3>
             <span class="sbt-wallet-address" id="sbt-wallet-address">Cüzdan Bağlı Değil</span>
+            <div id="sbt-role-badge" style="font-family: var(--font-mono); font-size: 0.72rem; border: 1px dashed rgba(6,182,212,0.3); padding: 2px 8px; border-radius: 4px; color: var(--accent-cyan); display: inline-block; margin-top: 6px;">ROL: MİSAFİR</div>
           </div>
 
           <div class="sbt-level-section">
@@ -611,6 +612,31 @@
           <span class="wallet-option-name">💳 Rabby Wallet</span>
           <span class="wallet-badge">EVM</span>
         </div>
+      </div>
+
+      <!-- Role Selection View (Hidden initially) -->
+      <div id="wallet-role-selection" style="display: none; flex-direction: column; gap: 15px; margin-top: 10px;">
+        <h4 style="font-size: 1rem; color: #fff; text-align: center; margin-bottom: 5px;">Bağlantı Rolünüzü Seçin</h4>
+        
+        <div class="wallet-option-item" id="role-select-member" style="border-color: var(--accent-cyan); background: rgba(6, 182, 212, 0.05);">
+          <span class="wallet-option-name">👤 Kulüp Üyesi Girişi</span>
+          <span class="wallet-badge" style="background: rgba(6,182,212,0.1); color: var(--accent-cyan);">ÜYE</span>
+        </div>
+
+        <div class="wallet-option-item" id="role-select-officer" style="border-color: var(--accent-purple); background: rgba(139, 92, 246, 0.05);">
+          <span class="wallet-option-name">🔑 Yetkili / Yönetici Girişi</span>
+          <span class="wallet-badge" style="background: rgba(139,92,246,0.1); color: var(--accent-purple);">YÖNETİCİ</span>
+        </div>
+      </div>
+
+      <!-- Officer PIN Input View (Hidden initially) -->
+      <div id="wallet-pin-container" style="display: none; flex-direction: column; gap: 12px; margin-top: 15px;">
+        <div class="form-group">
+          <label style="color: var(--accent-purple); font-weight: bold; text-align: center; display: block; font-family: var(--font-mono); font-size: 0.8rem;">Yönetici Güvenlik Kodu</label>
+          <input type="password" class="form-input" id="input-admin-pin" placeholder="PRU2026" style="text-align: center; font-family: var(--font-mono); font-size: 1.1rem; letter-spacing: 2px;">
+        </div>
+        <button class="submit-btn-cyber" id="btn-submit-admin-pin" style="background: var(--accent-purple); box-shadow: var(--shadow-neo-purple); width: 100%; margin-top: 5px;">Bağlantıyı Doğrula</button>
+        <button class="mission-btn" id="btn-back-role" style="border-color: var(--text-muted); color: var(--text-muted); font-size: 0.8rem; width: 100%; margin-top: 5px;">Geri Dön</button>
       </div>
 
       <!-- Connecting Loading View -->

@@ -87,7 +87,8 @@ const DEFAULT_STATE = {
     { id: 1, name: "Decentralized Voting UI", donors: [100, 200, 50] },
     { id: 2, name: "SBT Badge Smart Contract", donors: [10, 10, 10, 10, 10, 10, 10, 10, 10, 10] }
   ],
-  customProposals: []
+  customProposals: [],
+  userRole: 'guest'
 };
 
 let state = { ...DEFAULT_STATE };
@@ -104,6 +105,7 @@ function loadState() {
       if (state.burnedPru === undefined) state.burnedPru = 0;
       if (!state.eventsList) state.eventsList = [...DEFAULT_STATE.eventsList];
       if (!state.customProposals) state.customProposals = [];
+      if (state.userRole === undefined) state.userRole = 'guest';
       sounds.enabled = state.soundEnabled;
     } catch (e) {
       state = { ...DEFAULT_STATE };
@@ -250,6 +252,8 @@ function updateUI() {
   const xpNumbers = document.getElementById('sbt-xp-numbers');
   const xpBarFill = document.getElementById('sbt-xp-bar-fill');
 
+  const roleBadge = document.getElementById('sbt-role-badge');
+
   if (state.userConnected) {
     badgeStatus.textContent = 'On-Chain SBT';
     badgeStatus.style.borderColor = 'var(--accent-green)';
@@ -260,6 +264,18 @@ function updateUI() {
     avatarChar.textContent = state.walletAddress.substring(0, 4).toUpperCase();
     usernameText.textContent = state.walletAddress;
     walletAddrSpan.textContent = formatAddress(state.walletAddress);
+    
+    if (roleBadge) {
+      if (state.userRole === 'officer') {
+        roleBadge.textContent = 'ROL: YÖNETİCİ';
+        roleBadge.style.color = 'var(--accent-purple)';
+        roleBadge.style.borderColor = 'var(--accent-purple)';
+      } else {
+        roleBadge.textContent = 'ROL: ÜYE';
+        roleBadge.style.color = 'var(--accent-cyan)';
+        roleBadge.style.borderColor = 'rgba(6, 182, 212, 0.3)';
+      }
+    }
   } else {
     badgeStatus.textContent = 'Web3 Kimliği Yok';
     badgeStatus.style.borderColor = 'var(--accent-cyan)';
@@ -270,6 +286,35 @@ function updateUI() {
     avatarChar.textContent = '?';
     usernameText.textContent = 'Misafir Üye';
     walletAddrSpan.textContent = 'Cüzdan Bağlı Değil';
+    
+    if (roleBadge) {
+      roleBadge.textContent = 'ROL: MİSAFİR';
+      roleBadge.style.color = 'var(--text-muted)';
+      roleBadge.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+    }
+  }
+
+  // Guard Yönetim & Tokenomics Tab visibility
+  const adminTabBtn = document.querySelector('button[data-view="admin"]');
+  if (adminTabBtn) {
+    if (state.userRole === 'officer') {
+      adminTabBtn.style.display = 'inline-block';
+    } else {
+      adminTabBtn.style.display = 'none';
+      // If admin view is currently active, fall back to dashboard
+      const adminView = document.getElementById('view-admin');
+      if (adminView && adminView.classList.contains('active')) {
+        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+        document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
+        
+        const dashBtn = document.querySelector('button[data-view="dashboard"]');
+        const dashView = document.getElementById('view-dashboard');
+        if (dashBtn && dashView) {
+          dashBtn.classList.add('active');
+          dashView.classList.add('active');
+        }
+      }
+    }
   }
 
   // XP & Level calculations
@@ -525,6 +570,7 @@ walletBtn.addEventListener('click', () => {
       state.walletAddress = '';
       state.walletType = '';
       state.tokenId = '';
+      state.userRole = 'guest';
       saveState();
       updateUI();
       sounds.playClick();
@@ -532,6 +578,13 @@ walletBtn.addEventListener('click', () => {
       appendTerminal('[SYS] Wallet connection disconnected by user.', 'error');
     }
   } else {
+    // Reset modal internal views to start from wallet provider selection
+    document.getElementById('wallet-options-list').style.display = 'flex';
+    document.getElementById('wallet-role-selection').style.display = 'none';
+    document.getElementById('wallet-pin-container').style.display = 'none';
+    document.getElementById('wallet-connecting-loader').style.display = 'none';
+    document.getElementById('input-admin-pin').value = '';
+    
     overlayWallet.classList.add('active');
   }
 });
@@ -541,74 +594,161 @@ closeWalletBtn.addEventListener('click', () => {
   overlayWallet.classList.remove('active');
 });
 
-document.querySelectorAll('.wallet-option-item').forEach(item => {
+let selectedWallet = '';
+
+document.querySelectorAll('#wallet-options-list .wallet-option-item').forEach(item => {
   item.addEventListener('click', () => {
     sounds.playClick();
-    const wallet = item.dataset.wallet;
+    selectedWallet = item.dataset.wallet;
     
-    // Show Loading
+    // Hide provider options, show role selection options
     document.getElementById('wallet-options-list').style.display = 'none';
-    const loader = document.getElementById('wallet-connecting-loader');
-    loader.style.display = 'flex';
-    
-    const loadingTexts = [
-      "Anahtar eşleşmesi kuruluyor...",
-      "On-chain kimlik doğrulanıyor...",
-      "Soulbound Token kontrol ediliyor..."
-    ];
-    
-    let textIndex = 0;
-    const interval = setInterval(() => {
-      document.getElementById('wallet-loading-text').textContent = loadingTexts[textIndex];
-      textIndex = (textIndex + 1) % loadingTexts.length;
-    }, 450);
-
-    setTimeout(() => {
-      clearInterval(interval);
-      
-      // Setup mock connection
-      state.userConnected = true;
-      state.walletType = wallet;
-      
-      // Random mock address
-      const randomHex = Array.from({length: 8}, () => Math.floor(Math.random()*16).toString(16)).join('');
-      state.walletAddress = `pru_member_${randomHex}.eth`;
-      state.tokenId = Math.floor(1000 + Math.random() * 9000).toString();
-      
-      saveState();
-      
-      // Reset loading dialog UI
-      document.getElementById('wallet-options-list').style.display = 'flex';
-      loader.style.display = 'none';
-      overlayWallet.classList.remove('active');
-      
-      sounds.playSuccess();
-      showToast(`Cüzdan başarıyla bağlandı! Hoş geldiniz ${state.walletAddress}`, 'success');
-      appendTerminal(`[SYS] Wallet connected: ${state.walletAddress} via ${wallet}. SBT Token ID: #${state.tokenId}`, 'success');
-      
-      // Kayıt Dönemi Hoş Geldin Bonusu
-      if (!state.completedQuests.includes('registration')) {
-        setTimeout(() => {
-          state.completedQuests.push('registration');
-          state.pruBalance += 100;
-          saveState();
-          awardXP(25);
-          showToast("🎁 Hoş Geldin Bonusu! Kayıt dönemi ödülü +100 PRU ve +25 XP tanımlandı.", "success");
-          appendTerminal(`[SYS] First time registration detected. Welcome bonus of 100 PRU minted to SBT.`, 'success');
-          updateUI();
-        }, 1000);
-      }
-
-      updateUI();
-    }, 1500);
+    document.getElementById('wallet-role-selection').style.display = 'flex';
   });
 });
+
+// Role selection - Member
+const roleSelectMember = document.getElementById('role-select-member');
+if (roleSelectMember) {
+  roleSelectMember.addEventListener('click', () => {
+    sounds.playClick();
+    document.getElementById('wallet-role-selection').style.display = 'none';
+    connectWalletSimulate(selectedWallet, 'member');
+  });
+}
+
+// Role selection - Officer
+const roleSelectOfficer = document.getElementById('role-select-officer');
+if (roleSelectOfficer) {
+  roleSelectOfficer.addEventListener('click', () => {
+    sounds.playClick();
+    document.getElementById('wallet-role-selection').style.display = 'none';
+    document.getElementById('wallet-pin-container').style.display = 'flex';
+  });
+}
+
+// PIN Back button
+const btnBackRole = document.getElementById('btn-back-role');
+if (btnBackRole) {
+  btnBackRole.addEventListener('click', (e) => {
+    e.preventDefault();
+    sounds.playClick();
+    document.getElementById('wallet-pin-container').style.display = 'none';
+    document.getElementById('wallet-role-selection').style.display = 'flex';
+  });
+}
+
+// Verify PIN trigger
+function verifyOfficerPinAndConnect() {
+  const pinInput = document.getElementById('input-admin-pin');
+  const pin = pinInput.value.trim();
+  
+  if (pin === 'PRU2026' || pin === '1234') {
+    sounds.playClick();
+    document.getElementById('wallet-pin-container').style.display = 'none';
+    connectWalletSimulate(selectedWallet, 'officer');
+  } else {
+    sounds.playError();
+    showToast("⚠️ Hatalı PIN kodu! Yetkili girişi engellendi.", "error");
+    pinInput.style.borderColor = 'var(--accent-red)';
+    setTimeout(() => {
+      pinInput.style.borderColor = 'rgba(255, 255, 255, 0.1)';
+    }, 1500);
+  }
+}
+
+const btnSubmitAdminPin = document.getElementById('btn-submit-admin-pin');
+if (btnSubmitAdminPin) {
+  btnSubmitAdminPin.addEventListener('click', (e) => {
+    e.preventDefault();
+    verifyOfficerPinAndConnect();
+  });
+}
+
+const inputAdminPin = document.getElementById('input-admin-pin');
+if (inputAdminPin) {
+  inputAdminPin.addEventListener('keypress', (e) => {
+    if (e.key === 'Enter') {
+      e.preventDefault();
+      verifyOfficerPinAndConnect();
+    }
+  });
+}
+
+function connectWalletSimulate(wallet, role) {
+  const loader = document.getElementById('wallet-connecting-loader');
+  loader.style.display = 'flex';
+  
+  const loadingTexts = [
+    "Anahtar eşleşmesi kuruluyor...",
+    "On-chain kimlik doğrulanıyor...",
+    "Soulbound Token kontrol ediliyor...",
+    role === 'officer' ? "Yetkili imzası alınıyor..." : "Üye kaydı kontrol ediliyor..."
+  ];
+  
+  let textIndex = 0;
+  const interval = setInterval(() => {
+    document.getElementById('wallet-loading-text').textContent = loadingTexts[textIndex];
+    textIndex = (textIndex + 1) % loadingTexts.length;
+  }, 450);
+
+  setTimeout(() => {
+    clearInterval(interval);
+    
+    // Setup state
+    state.userConnected = true;
+    state.walletType = wallet;
+    state.userRole = role;
+    
+    // Generate address depending on role
+    const randomHex = Array.from({length: 8}, () => Math.floor(Math.random()*16).toString(16)).join('');
+    if (role === 'officer') {
+      state.walletAddress = `pru_officer_${randomHex}.eth`;
+    } else {
+      state.walletAddress = `pru_member_${randomHex}.eth`;
+    }
+    state.tokenId = Math.floor(1000 + Math.random() * 9000).toString();
+    
+    saveState();
+    
+    // Reset loader/modal display
+    loader.style.display = 'none';
+    overlayWallet.classList.remove('active');
+    
+    sounds.playSuccess();
+    showToast(`Cüzdan başarıyla bağlandı! Hoş geldiniz ${state.walletAddress}`, 'success');
+    appendTerminal(`[SYS] Wallet connected: ${state.walletAddress} via ${wallet}. SBT Token ID: #${state.tokenId}. Role: ${role.toUpperCase()}`, 'success');
+    
+    // Welcome Bonus for Members & Officers
+    if (!state.completedQuests.includes('registration')) {
+      setTimeout(() => {
+        state.completedQuests.push('registration');
+        state.pruBalance += 100;
+        saveState();
+        awardXP(25);
+        showToast("🎁 Hoş Geldin Bonusu! Kayıt dönemi ödülü +100 PRU ve +25 XP tanımlandı.", "success");
+        appendTerminal(`[SYS] First time registration detected. Welcome bonus of 100 PRU minted to SBT.`, 'success');
+        updateUI();
+      }, 1000);
+    }
+
+    updateUI();
+  }, 1500);
+}
 
 // Helper validation for quests
 function checkWalletConnected() {
   if (!state.userConnected) {
     sounds.playError();
     showToast("⚠️ İşlem Hatası: Lütfen önce cüzdanınızı bağlayın!", "error");
+    
+    // Reset modal internal views to start from wallet provider selection
+    document.getElementById('wallet-options-list').style.display = 'flex';
+    document.getElementById('wallet-role-selection').style.display = 'none';
+    document.getElementById('wallet-pin-container').style.display = 'none';
+    document.getElementById('wallet-connecting-loader').style.display = 'none';
+    document.getElementById('input-admin-pin').value = '';
+
     overlayWallet.classList.add('active');
     return false;
   }
