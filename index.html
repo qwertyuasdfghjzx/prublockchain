@@ -699,7 +699,13 @@
           </svg>
         </div>
 
-        <button class="submit-btn-cyber" id="btn-trigger-scan" style="width: 100%;">Taramayı Simüle Et</button>
+        <!-- Hidden native file input to trigger mobile camera capture -->
+        <input type="file" accept="image/*" capture="environment" id="qr-camera-input" style="display: none;">
+
+        <div style="display: flex; gap: 12px; width: 100%; margin-top: 10px;">
+          <button class="submit-btn-cyber" id="btn-trigger-scan" style="flex: 1; margin-top: 0;">Taramayı Simüle Et</button>
+          <button class="submit-btn-cyber" id="btn-launch-camera" style="flex: 1; background: var(--accent-purple); box-shadow: var(--shadow-neo-purple); margin-top: 0;">📸 Kamerayı Aç</button>
+        </div>
       </div>
     </div>
   </div>
@@ -773,7 +779,10 @@
         </div>
         <div id="event-qr-modal-rewards" style="font-family: var(--font-mono); font-size: 0.9rem; color: var(--accent-cyan); font-weight: bold; margin: 15px 0;">+15 XP / +10 PRU</div>
         <!-- Simulated Attend Button for the Admin/User testing convenience -->
-        <button class="submit-btn-cyber" id="btn-simulate-event-attendance" style="width: 100%; background: var(--accent-green); box-shadow: var(--shadow-neo-green); margin-top: 0;">Taramayı Simüle Et (Katılım Kaydet)</button>
+        <div style="display: flex; gap: 12px; width: 100%; margin-top: 10px;">
+          <button class="submit-btn-cyber" id="btn-simulate-event-attendance" style="flex: 1; background: var(--accent-green); box-shadow: var(--shadow-neo-green); margin-top: 0; font-size: 0.8rem; padding: 10px;">Taramayı Simüle Et</button>
+          <button class="submit-btn-cyber" id="btn-print-event-qr" style="flex: 1; background: var(--accent-purple); box-shadow: var(--shadow-neo-purple); margin-top: 0; font-size: 0.8rem; padding: 10px;">🖨️ QR Afişi Yazdır</button>
+        </div>
       </div>
     </div>
   </div>

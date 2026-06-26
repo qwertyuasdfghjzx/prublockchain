@@ -858,6 +858,8 @@ const btnStartMeetup = document.getElementById('btn-start-meetup');
 const overlayQr = document.getElementById('overlay-qr');
 const closeQrBtn = document.getElementById('btn-close-qr-modal');
 const btnTriggerScan = document.getElementById('btn-trigger-scan');
+const btnLaunchCamera = document.getElementById('btn-launch-camera');
+const qrCameraInput = document.getElementById('qr-camera-input');
 
 btnStartMeetup.addEventListener('click', () => {
   sounds.playClick();
@@ -870,25 +872,58 @@ closeQrBtn.addEventListener('click', () => {
   overlayQr.classList.remove('active');
 });
 
-btnTriggerScan.addEventListener('click', () => {
-  sounds.playClick();
+// Helper for scanner loading and verification sequence
+function simulateQRVerification(sourceLabel) {
   btnTriggerScan.disabled = true;
-  btnTriggerScan.textContent = "Tarama doğrulanıyor...";
+  if (btnLaunchCamera) btnLaunchCamera.disabled = true;
+  btnTriggerScan.textContent = "Analiz ediliyor...";
+  
+  appendTerminal(`[GPS] Image data received from ${sourceLabel}. Checking hashes...`, 'info');
   
   setTimeout(() => {
-    sounds.playSuccess();
-    state.completedQuests.push('meetup');
-    if (!state.badges.includes('meetup')) state.badges.push('meetup');
-    overlayQr.classList.remove('active');
+    btnTriggerScan.textContent = "On-Chain Doğrulanıyor...";
+    appendTerminal(`[SYS] QR Signature verification request sent to testnet.`, 'info');
     
-    btnTriggerScan.disabled = false;
-    btnTriggerScan.textContent = "Taramayı Simüle Et";
-    
-    awardXP(15);
-    showToast("🎉 Buluşma katılımı doğrulandı! On-chain rozet basıldı. +15 XP", "success");
-    appendTerminal("[GAME] Meetup attendance verified via mock QR code.", "success");
-  }, 1800);
-});
+    setTimeout(() => {
+      sounds.playSuccess();
+      state.completedQuests.push('meetup');
+      if (!state.badges.includes('meetup')) state.badges.push('meetup');
+      
+      overlayQr.classList.remove('active');
+      
+      btnTriggerScan.disabled = false;
+      if (btnLaunchCamera) btnLaunchCamera.disabled = false;
+      btnTriggerScan.textContent = "Taramayı Simüle Et";
+      
+      awardXP(15);
+      showToast("🎉 Buluşma katılımı doğrulandı! On-chain rozet basıldı. +15 XP", "success");
+      appendTerminal(`[GAME] Meetup attendance verified via ${sourceLabel} signature contract.`, "success");
+      
+      updateUI();
+    }, 1200);
+  }, 1200);
+}
+
+if (btnTriggerScan) {
+  btnTriggerScan.addEventListener('click', () => {
+    sounds.playClick();
+    simulateQRVerification("Simulator");
+  });
+}
+
+if (btnLaunchCamera && qrCameraInput) {
+  btnLaunchCamera.addEventListener('click', () => {
+    sounds.playClick();
+    qrCameraInput.click(); // Trigger mobile file upload camera capture
+  });
+  
+  qrCameraInput.addEventListener('change', (e) => {
+    if (e.target.files && e.target.files.length > 0) {
+      sounds.playClick();
+      simulateQRVerification("Mobile Camera Capture");
+    }
+  });
+}
 
 // --- MISSION 3: TOKENOMICS SUBMISSION ---
 const btnStartTokenomics = document.getElementById('btn-start-tokenomics');
@@ -1538,7 +1573,7 @@ if (btnSimulateAttendance) {
     
     sounds.playClick();
     btnSimulateAttendance.disabled = true;
-    btnSimulateAttendance.textContent = "Katılım Kaydediliyor...";
+    btnSimulateAttendance.textContent = "Kaydediliyor...";
     
     setTimeout(() => {
       // Close modal
@@ -1546,7 +1581,7 @@ if (btnSimulateAttendance) {
       if (modal) modal.classList.remove('active');
       
       btnSimulateAttendance.disabled = false;
-      btnSimulateAttendance.textContent = "Taramayı Simüle Et (Katılım Kaydet)";
+      btnSimulateAttendance.textContent = "Taramayı Simüle Et";
       
       // Process attendance
       // Find the event in the list and increment attendees
@@ -1573,6 +1608,83 @@ if (btnSimulateAttendance) {
       updateUI();
     }, 1200);
   });
+}
+
+// Event QR Flyer Printer Trigger
+const btnPrintEventQR = document.getElementById('btn-print-event-qr');
+if (btnPrintEventQR) {
+  btnPrintEventQR.addEventListener('click', () => {
+    if (!activeQREvent) return;
+    sounds.playClick();
+    printQRFlyer(activeQREvent);
+  });
+}
+
+function printQRFlyer(event) {
+  const printWindow = window.open('', '_blank');
+  if (!printWindow) {
+    showToast("⚠️ Yazdırma penceresi engellendi! Lütfen pop-up engelleyicisini kapatın.", "error");
+    return;
+  }
+  
+  printWindow.document.write(`
+    <html>
+    <head>
+      <title>Etkinlik QR Afişi - ${event.name}</title>
+      <style>
+        body { font-family: sans-serif; text-align: center; padding: 40px; color: #070A13; background: #fff; }
+        .card { border: 4px double #8B5CF6; padding: 50px 40px; border-radius: 12px; max-width: 600px; margin: 0 auto; box-shadow: 0 4px 12px rgba(0,0,0,0.1); }
+        .header { font-size: 1.1rem; font-weight: bold; color: #8B5CF6; margin-bottom: 25px; letter-spacing: 1.5px; text-transform: uppercase; }
+        .title { font-size: 2.2rem; margin: 25px 0; font-weight: 800; line-height: 1.2; }
+        .date { font-size: 1.2rem; color: #4b5563; margin-bottom: 20px; font-weight: bold; }
+        .qr-box { border: 3px solid #8B5CF6; padding: 20px; display: inline-block; background: #fff; margin-bottom: 25px; border-radius: 8px; }
+        .rewards { font-size: 1.4rem; font-weight: bold; color: #10B981; margin-bottom: 30px; }
+        .instructions { font-size: 1rem; color: #374151; line-height: 1.6; text-align: left; background: #f3f4f6; padding: 20px; border-radius: 8px; border-left: 5px solid #8B5CF6; }
+        .instructions strong { color: #8B5CF6; }
+        @media print {
+          body { padding: 0; background: none; }
+          .card { border: none; box-shadow: none; max-width: 100%; }
+        }
+      </style>
+    </head>
+    <body>
+      <div class="card">
+        <div class="header">🔗 PİRİ REİS ÜNİVERSİTESİ BLOCKCHAIN KULÜBÜ</div>
+        <hr style="border: 0; border-top: 2px dashed #8B5CF6; margin-bottom: 20px;">
+        <div class="title">${event.name}</div>
+        <div class="date">📅 Tarih: ${event.date}</div>
+        <div class="rewards">🎁 Katılım Ödülü: +${event.xp} XP / +${event.pru} PRU</div>
+        <div class="qr-box">
+          <svg width="250" height="250" viewBox="0 0 24 24" fill="none" stroke="#8B5CF6" stroke-width="1.5">
+            <rect x="2" y="2" width="6" height="6" rx="0.5"></rect>
+            <rect x="16" y="2" width="6" height="6" rx="0.5"></rect>
+            <rect x="2" y="16" width="6" height="6" rx="0.5"></rect>
+            <rect x="7" y="7" width="2" height="2" fill="#8B5CF6"></rect>
+            <rect x="15" y="7" width="2" height="2" fill="#8B5CF6"></rect>
+            <rect x="7" y="15" width="2" height="2" fill="#8B5CF6"></rect>
+            <path d="M12 2v6M12 12v6M16 12h6M16 16h6M2 12h6M12 16h2v2h-2z" stroke-linecap="round"></path>
+          </svg>
+        </div>
+        <div class="instructions">
+          <strong>Katılım ve Ödül Talep Adımları:</strong><br>
+          1. Akıllı telefonunuzdan <strong>prubc.github.io</strong> portalına girin ve cüzdanınızı bağlayın.<br>
+          2. Arayüzdeki <strong>"Akademi & Görevler"</strong> sekmesine giderek <strong>"Buluşma QR Kod Tarat"</strong> butonuna basın.<br>
+          3. Açılan kameranız ile bu QR kodu taratın ve ödülünüzü anında cüzdanınıza (SBT) tanımlayın!
+        </div>
+      </div>
+      <script>
+        window.onload = function() {
+          setTimeout(function() {
+            window.print();
+            window.close();
+          }, 300);
+        }
+      </script>
+    </body>
+    </html>
+  `);
+  printWindow.document.close();
+  appendTerminal(`[ADMIN] QR Flyer generated and print triggered for: "${event.name}"`, 'success');
 }
 
 // Event creation form submit
