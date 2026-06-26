@@ -252,9 +252,15 @@ async function syncDataFromBlockchain(userAddress) {
       state.completedQuests = [];
     }
 
-    // 2. Load PRU Token balance
+    // 2. Load PRU Token balance & total supply
     const balRaw = await tokenContract.balanceOf(userAddress);
     state.pruBalance = Math.round(parseFloat(ethers.utils.formatEther(balRaw)));
+    try {
+      const supplyRaw = await tokenContract.totalSupply();
+      state.totalSupply = Math.round(parseFloat(ethers.utils.formatEther(supplyRaw)));
+    } catch (e) {
+      console.error("Error fetching total supply:", e);
+    }
 
     // 3. Load dynamic on-chain Events
     const eventsCount = await portalContract.getEventsCount();
@@ -533,26 +539,22 @@ function updateUI() {
     }
   }
 
-  // Guard Yönetim & Tokenomics Tab visibility
+  // Guard Yönetim & Tokenomics Tab visibility (now always visible to allow anyone to inspect Tokenomics)
   const adminTabBtn = document.querySelector('button[data-view="admin"]');
   if (adminTabBtn) {
+    adminTabBtn.style.display = 'inline-block';
+  }
+
+  // Toggle officer actions vs lock placeholder
+  const officerPanels = document.getElementById('admin-officer-panels');
+  const lockPlaceholder = document.getElementById('admin-officer-lock-placeholder');
+  if (officerPanels && lockPlaceholder) {
     if (state.userRole === 'officer') {
-      adminTabBtn.style.display = 'inline-block';
+      officerPanels.style.display = 'flex';
+      lockPlaceholder.style.display = 'none';
     } else {
-      adminTabBtn.style.display = 'none';
-      // If admin view is currently active, fall back to dashboard
-      const adminView = document.getElementById('view-admin');
-      if (adminView && adminView.classList.contains('active')) {
-        document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
-        document.querySelectorAll('.view-content').forEach(v => v.classList.remove('active'));
-        
-        const dashBtn = document.querySelector('button[data-view="dashboard"]');
-        const dashView = document.getElementById('view-dashboard');
-        if (dashBtn && dashView) {
-          dashBtn.classList.add('active');
-          dashView.classList.add('active');
-        }
-      }
+      officerPanels.style.display = 'none';
+      lockPlaceholder.style.display = 'block';
     }
   }
 
@@ -631,7 +633,10 @@ function getFaucetRewardAmount(circulating) {
 }
 
 function renderTokenomicsAndAdmin() {
-  const circulating = Math.max(0, 1500 + state.pruBalance - state.burnedPru);
+  let circulating = Math.max(0, 1500 + state.pruBalance - state.burnedPru);
+  if (state.networkMode === 'onchain' && state.totalSupply !== undefined) {
+    circulating = state.totalSupply;
+  }
 
   const circText = document.getElementById('tokenomics-circulating');
   const circBar = document.getElementById('tokenomics-circulating-bar');

@@ -122,7 +122,7 @@
             🛒 Kulüp Mağazası
           </button>
           <button class="tab-btn" data-view="admin">
-            ⚙️ Yönetim & Tokenomics
+            📊 Tokenomics & Yönetim
           </button>
         </nav>
 
@@ -477,8 +477,19 @@
           </div>
 
           <div class="dao-split-layout">
+            <!-- Placeholder for Non-Officers -->
+            <div class="section-card" id="admin-officer-lock-placeholder" style="display: none; border-color: rgba(139, 92, 246, 0.25);">
+              <div style="text-align: center; padding: 45px 20px;">
+                <div style="font-size: 3rem; margin-bottom: 15px; filter: drop-shadow(0 0 10px rgba(139,92,246,0.3));">🔒</div>
+                <h3 style="color: var(--accent-purple); font-family: var(--font-mono); font-size: 1.1rem; margin-bottom: 10px; text-transform: uppercase; letter-spacing: 1px;">Yönetici Yetkisi Gerekli</h3>
+                <p style="color: var(--text-muted); font-size: 0.85rem; line-height: 1.5; max-width: 320px; margin: 0 auto;">
+                  Etkinlik oluşturma, defter kaydı silme ve akademik onaylama sırası sadece yetkili <strong>Yönetici (Officer)</strong> hesaplarına özeldir.
+                </p>
+              </div>
+            </div>
+
             <!-- Left Column: Event Creator & Reporter -->
-            <div class="proposals-container">
+            <div class="proposals-container" id="admin-officer-panels">
               <div class="section-card" style="margin-bottom: 25px;">
                 <h3 class="section-title">📅 Yeni Etkinlik Oluştur</h3>
                 <form class="cyber-form" id="form-create-event">
@@ -613,6 +624,28 @@
                   </div>
                   <button type="submit" class="submit-btn-cyber" id="btn-submit-proposal" style="width: 100%; background: var(--accent-purple); box-shadow: var(--shadow-neo-purple); margin-top: 10px;">Teklifi Yayınla & 50 PRU Yak</button>
                 </form>
+              </div>
+
+              <!-- Smart Contract Addresses Panel -->
+              <div class="qf-container" style="margin-top: 25px; border-color: rgba(139, 92, 246, 0.25);">
+                <h3 class="section-title" style="color: var(--accent-cyan); margin-bottom: 10px;">🔗 Sepolia Akıllı Sözleşmeleri</h3>
+                <p style="font-size: 0.8rem; color: var(--text-muted); margin-bottom: 12px; line-height: 1.4;">
+                  Sistemimiz Ethereum Sepolia testnet ağı üzerinde canlı olarak çalışmaktadır. İşlemleri ve sözleşmeleri Etherscan üzerinden inceleyebilirsiniz:
+                </p>
+                <div style="display: flex; flex-direction: column; gap: 10px; font-family: var(--font-mono); font-size: 0.75rem;">
+                  <div style="background: rgba(255,255,255,0.02); padding: 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: var(--accent-purple); font-weight: bold; display: block; margin-bottom: 2px;">PRU Token (ERC-20)</span>
+                    <a href="https://sepolia.etherscan.io/address/0x0dF5919fb649e2df756CA54C098A84212A9B3448" target="_blank" style="color: var(--accent-cyan); text-decoration: none; word-break: break-all;">0x0dF5919fb649e2df756CA54C098A84212A9B3448 ↗</a>
+                  </div>
+                  <div style="background: rgba(255,255,255,0.02); padding: 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: var(--accent-purple); font-weight: bold; display: block; margin-bottom: 2px;">PRU Üyelik SBT (ERC-721)</span>
+                    <a href="https://sepolia.etherscan.io/address/0x6811Fb205E7Df5bE7e7aEd5e3B83C4A9A4cDa1D1" target="_blank" style="color: var(--accent-cyan); text-decoration: none; word-break: break-all;">0x6811Fb205E7Df5bE7e7aEd5e3B83C4A9A4cDa1D1 ↗</a>
+                  </div>
+                  <div style="background: rgba(255,255,255,0.02); padding: 8px; border-radius: 4px; border: 1px solid rgba(255,255,255,0.05);">
+                    <span style="color: var(--accent-purple); font-weight: bold; display: block; margin-bottom: 2px;">PRU Portal Kontratı</span>
+                    <a href="https://sepolia.etherscan.io/address/0x7aa23b16e687fb9Ed37Eca3BDFD01d173a9B751a" target="_blank" style="color: var(--accent-cyan); text-decoration: none; word-break: break-all;">0x7aa23b16e687fb9Ed37Eca3BDFD01d173a9B751a ↗</a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
