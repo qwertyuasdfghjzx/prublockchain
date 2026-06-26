@@ -1,0 +1,56 @@
+{
+  "id": "ib-2",
+  "title": "Gümrük Tarifesi ve Otomatik Vergilendirme",
+  "department": "Uluslararası İşletmecilik ve Ticaret",
+  "slides": [
+    {
+      "title": "1. Gümrük Tarifesi ve Otomatik Vergilendirme - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: İthalat kapılarında gümrük tarifelerinin (HS Kodları) manuel hesaplanması vergi kaçakçılığına ve gecikmelere yol açar.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası İşletmecilik ve Ticaret bölümümüz için kritik bir çözüm olan Gümrük Tarifesi ve Otomatik Vergilendirme konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, i̇thalat kapılarında gümrük tarifelerinin (hs kodları) manuel hesaplanması vergi kaçakçılığına ve gecikmelere yol açar. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Fatura verileri ve HS kodları zincir üzerinde eşleştirilerek gümrük vergileri akıllı sözleşme ile otomatik hesaplanır ve tahsil edilir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, fatura verileri ve hs kodları zincir üzerinde eşleştirilerek gümrük vergileri akıllı sözleşme ile otomatik hesaplanır ve tahsil edilir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Beyan Girişi - İthalatçı malın HS kodunu ve fatura değerini zincirde beyan eder.",
+        "2. Adım: Tarife Hesaplama - Akıllı sözleşme ülkenin güncel gümrük vergisini onchain hesaplar.",
+        "3. Adım: Vergi Tahsili - Vergi tutarı ithalatçı cüzdanından gümrük bakanlığı cüzdanına aktarılır ve ithalat onaylanır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Çok Yüksek ($65,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 Doğru Vergilendirme, Gümrük Geçiş Sürelerinde %50 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 15 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun çok yüksek ($65,000) olduğunu görüyoruz. Sağlanan %100 doğru vergilendirme, gümrük geçiş sürelerinde %50 azalma verimlilik artışı sayesinde bu teknoloji kendisini 15 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Dünya Gümrük Örgütü HS Kod veri tabanı ile entegre, ithalat beyanı gümrük vergisi ödeme akıllı sözleşmesi yazılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, dünya gümrük örgütü hs kod veri tabanı ile entegre, ithalat beyanı gümrük vergisi ödeme akıllı sözleşmesi yazılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

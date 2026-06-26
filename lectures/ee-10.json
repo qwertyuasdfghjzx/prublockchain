@@ -1,0 +1,56 @@
+{
+  "id": "ee-10",
+  "title": "Mikro-Jenerasyon Enerji Sertifikasyonu (RECs)",
+  "department": "Elektrik-Elektronik Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Mikro-Jenerasyon Enerji Sertifikasyonu (RECs) - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Yenilenebilir yeşil enerji üreten işletmelerin Renewable Energy Certificates (REC) alması hantal ve pahalı bir süreçtir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Elektrik-Elektronik Mühendisliği bölümümüz için kritik bir çözüm olan Mikro-Jenerasyon Enerji Sertifikasyonu (RECs) konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, yenilenebilir yeşil enerji üreten işletmelerin renewable energy certificates (rec) alması hantal ve pahalı bir süreçtir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Yeşil enerji üreten güneş panelleri ürettikleri her MWh enerji için zincir üstünde otomatik yeşil sertifika tokeni (REC) kazanır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, yeşil enerji üreten güneş panelleri ürettikleri her mwh enerji için zincir üstünde otomatik yeşil sertifika tokeni (rec) kazanır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Yeşil Üretim - Kampüs rüzgar türbini 1 MWh temiz elektrik üretir.",
+        "2. Adım: Otomatik Basım - Akıllı sayaç üretimi zincire raporlar, sözleşme yeşil enerji NFT'si basar.",
+        "3. Adım: Sertifika Satışı - Karbon ayak izini düşürmek isteyen tersane, bu REC tokenini satın alarak karbonunu sıfırlar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($26,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %90 Daha Ucuz Sertifikasyon, REC Satışlarından Yeni Ek Gelir",
+        "Yatırım Dönüş Süresi (ROI): 7 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($26,000) olduğunu görüyoruz. Sağlanan %90 daha ucuz sertifikasyon, rec satışlarından yeni ek gelir verimlilik artışı sayesinde bu teknoloji kendisini 7 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Güneş inverteri çıkış sayacı, akıllı sözleşmeyle entegre çalışır. Her 1 MWh üretimde cüzdana 1 REC NFT'si basılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, güneş inverteri çıkış sayacı, akıllı sözleşmeyle entegre çalışır. her 1 mwh üretimde cüzdana 1 rec nft'si basılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "ib-6",
+  "title": "Döviz Kuru Riskinden Korunma (FX Hedging) Akıllı Sözleşmesi",
+  "department": "Uluslararası İşletmecilik ve Ticaret",
+  "slides": [
+    {
+      "title": "1. Döviz Kuru Riskinden Korunma (FX Hedging) Akıllı Sözleşmesi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: İthalatçıların vadeli alımlarda döviz kuru dalgalanmaları nedeniyle zarar etmesi ticari sürdürülebilirliği baltalar.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası İşletmecilik ve Ticaret bölümümüz için kritik bir çözüm olan Döviz Kuru Riskinden Korunma (FX Hedging) Akıllı Sözleşmesi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, i̇thalatçıların vadeli alımlarda döviz kuru dalgalanmaları nedeniyle zarar etmesi ticari sürdürülebilirliği baltalar. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Akıllı sözleşmeler aracı banka olmadan, önceden belirlenmiş kur üzerinden gelecekteki ödemeleri kilitler (FX Forward).",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, akıllı sözleşmeler aracı banka olmadan, önceden belirlenmiş kur üzerinden gelecekteki ödemeleri kilitler (fx forward). Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Forward Anlaşması - Taraflar 3 ay sonrası için $1 = 32 TL kuru üzerinden anlaşma açar.",
+        "2. Adım: Teminat Blokesi - Her iki taraf kur farkı riskine karşı sözleşmeye teminat stabilcoin yatırır.",
+        "3. Adım: Vade Sonu Takas - Vade günü geldiğinde oracle kuru kaç olursa olsun takas 32 TL üzerinden yapılır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($30,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 Kur Riskinden Korunma, Banka Forward Komisyonlarında %80 Düşüş",
+        "Yatırım Dönüş Süresi (ROI): 10 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($30,000) olduğunu görüyoruz. Sağlanan %100 kur riskinden korunma, banka forward komisyonlarında %80 düşüş verimlilik artışı sayesinde bu teknoloji kendisini 10 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Chainlink kur oracle'ı kullanan, vade sonunda belirlenen kurdan stabilcoin takasını garanti eden opsiyon kontratı yazılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, chainlink kur oracle'ı kullanan, vade sonunda belirlenen kurdan stabilcoin takasını garanti eden opsiyon kontratı yazılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

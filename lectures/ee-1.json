@@ -1,0 +1,56 @@
+{
+  "id": "ee-1",
+  "title": "Otopilot IoT Telemetri Doğrulama",
+  "department": "Elektrik-Elektronik Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Otopilot IoT Telemetri Doğrulama - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Otonom gemilerin otopilot sistemlerine yapılan siber müdahaleler rota sapmalarına ve çarpışmalara yol açabilir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Elektrik-Elektronik Mühendisliği bölümümüz için kritik bir çözüm olan Otopilot IoT Telemetri Doğrulama konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, otonom gemilerin otopilot sistemlerine yapılan siber müdahaleler rota sapmalarına ve çarpışmalara yol açabilir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Otopilotun ürettiği dümen ve rota komutları milisaniyelik hash'lerle DLT'ye yazılarak dışarıdan manipülasyon engellenir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, otopilotun ürettiği dümen ve rota komutları milisaniyelik hash'lerle dlt'ye yazılarak dışarıdan manipülasyon engellenir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Rota Komutu Üretimi - Otopilot işlemcisi rota açısını 'iskele 10' olarak hesaplar.",
+        "2. Adım: Komut Hash'leme - İşlemci donanımsal olarak komut verisini hash'ler ve imzalar.",
+        "3. Adım: Zincir İçi Doğrulama - Dümen motoru sürücüsü, gelen komut imzasını zincirden doğrulamadan hareket etmez."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($45,000)",
+        "İşletim / Gas Ücreti: Orta (Edge computing donanımı)",
+        "Verimlilik Artışı: %100 Rota Değiştirilemezliği, Siber Ele Geçirme Risklerinde %90 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 14 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($45,000) olduğunu görüyoruz. Sağlanan %100 rota değiştirilemezliği, siber ele geçirme risklerinde %90 azalma verimlilik artışı sayesinde bu teknoloji kendisini 14 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Otopilot mikrodenetleyicisi (ARM/STM32), her rota değişim komutunu kendi özel anahtarıyla şifreleyerek yerel blockchain düğümüne yollar.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, otopilot mikrodenetleyicisi (arm/stm32), her rota değişim komutunu kendi özel anahtarıyla şifreleyerek yerel blockchain düğümüne yollar. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "mb-6",
+  "title": "Gemi Değerleme ve Finansal Sörvey Sicili",
+  "department": "Denizcilik İşletmeleri Yönetimi",
+  "slides": [
+    {
+      "title": "1. Gemi Değerleme ve Finansal Sörvey Sicili - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Gemilerin ikinci el satışlarında veya kredi teminatı gösterilirken yapılan değerleme raporlarında şeffaflık eksikliği vardır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Denizcilik İşletmeleri Yönetimi bölümümüz için kritik bir çözüm olan Gemi Değerleme ve Finansal Sörvey Sicili konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, gemilerin ikinci el satışlarında veya kredi teminatı gösterilirken yapılan değerleme raporlarında şeffaflık eksikliği vardır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Değerleme uzmanlarının ve sörveyörlerin hazırladığı geçmiş raporlar zincire işlenerek geminin finansal geçmişi şeffaf hale gelir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, değerleme uzmanlarının ve sörveyörlerin hazırladığı geçmiş raporlar zincire işlenerek geminin finansal geçmişi şeffaf hale gelir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Değerleme Talebi - Banka gemi satışı öncesi bağımsız değerleme kuruluşundan rapor ister.",
+        "2. Adım: Rapor İmzalanması - Değerleme uzmanı rapor hash değerini cüzdanı ile onaylayarak zincire yazar.",
+        "3. Adım: Teminat Onayı - Banka zincirdeki raporu kontrol ederek gemi ipoteğini onchain tescil eder."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($15,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %100 Güvenilir Finansal Geçmiş, Kredi Onay Süreçlerinde %50 Hızlanma",
+        "Yatırım Dönüş Süresi (ROI): 6 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($15,000) olduğunu görüyoruz. Sağlanan %100 güvenilir finansal geçmiş, kredi onay süreçlerinde %50 hızlanma verimlilik artışı sayesinde bu teknoloji kendisini 6 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Gemi değerleme raporları şifrelenerek IPFS'e atılır. Rapor hash'i, değerleme firmasının imzasıyla DLT'ye tescil edilir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, gemi değerleme raporları şifrelenerek ipfs'e atılır. rapor hash'i, değerleme firmasının imzasıyla dlt'ye tescil edilir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

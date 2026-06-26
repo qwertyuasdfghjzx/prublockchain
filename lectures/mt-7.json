@@ -1,0 +1,56 @@
+{
+  "id": "mt-7",
+  "title": "Deniz Haydutluğu ve Olay Raporlama Ağı",
+  "department": "Deniz Ulaştırma İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Deniz Haydutluğu ve Olay Raporlama Ağı - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Deniz haydutluğu (piracy) saldırıları ve tehlikeli bölgelerdeki olaylar armatörler ve sigorta şirketleri arasında geç paylaşılmaktadır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Deniz Ulaştırma İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Deniz Haydutluğu ve Olay Raporlama Ağı konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, deniz haydutluğu (piracy) saldırıları ve tehlikeli bölgelerdeki olaylar armatörler ve sigorta şirketleri arasında geç paylaşılmaktadır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Merkeziyetsiz ve anonim raporlama ağı ile gemiler maruz kaldıkları tehditleri anında, sansürlenemez biçimde tüm filolara duyurur.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, merkeziyetsiz ve anonim raporlama ağı ile gemiler maruz kaldıkları tehditleri anında, sansürlenemez biçimde tüm filolara duyurur. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Tehlike Raporu - Saldırıya uğrayan gemi tek tuşla saldırı koordinatlarını zincire gönderir.",
+        "2. Adım: Merkeziyetsiz Dağıtım - Veri anında tüm bölgedeki gemilerin ve sigorta şirketlerinin node'larına yayılır.",
+        "3. Adım: Rota Değişikliği - Diğer gemiler akıllı sözleşme uyarısı ile rotalarını otomatik günceller."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($22,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %99 İletişim Hızı Artışı, %100 Sansür Koruması",
+        "Yatırım Dönüş Süresi (ROI): 9 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($22,000) olduğunu görüyoruz. Sağlanan %99 i̇letişim hızı artışı, %100 sansür koruması verimlilik artışı sayesinde bu teknoloji kendisini 9 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Gemi uydu iletişim terminallerine entegre şifreli mesajlaşma protokolü ile çalışan, IPFS ve ethereum tabanlı acil durum uyarı akıllı sözleşmesi yazılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, gemi uydu iletişim terminallerine entegre şifreli mesajlaşma protokolü ile çalışan, ipfs ve ethereum tabanlı acil durum uyarı akıllı sözleşmesi yazılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

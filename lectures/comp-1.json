@@ -1,0 +1,56 @@
+{
+  "id": "comp-1",
+  "title": "Merkeziyetsiz Kimlik (DID) Altyapısı",
+  "department": "Bilgisayar ve Yazılım Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Kurumsal Kimlik Yönetimi Sorunları",
+      "bullets": [
+        "Merkezi veri tabanlarındaki kimlik bilgileri siber saldırıların ana hedefidir.",
+        "Kullanıcıların kendi verileri üzerinde hiçbir kontrolü yoktur.",
+        "Farklı platformlar arasında kimlik doğrulama entegrasyonu zor ve pahalıdır.",
+        "KVKK ve GDPR uyumluluğu merkezi sistemlerde ciddi güvenlik riskleri barındırır."
+      ],
+      "narrative": "Bilgisayar ve Yazılım Mühendisliği dersimize hoş geldiniz arkadaşlar. Bugün modern yazılım dünyasının en kritik konularından biri olan Merkeziyetsiz Kimlik, yani DID altyapılarını inceleyeceğiz. Günümüzde kullandığımız tüm merkezi kimlik yönetim sistemleri, tek bir noktada toplanan veri tabanlarına dayanır. Bu durum siber saldırganlar için büyük bir hedef oluşturur ve KVKK uyumluluğunu tehlikeye atar. Şimdi bu sorunun blockchain ile nasıl çözüleceğine bakalım."
+    },
+    {
+      "title": "2. DID ve Verifiable Credentials (VC)",
+      "bullets": [
+        "DID: W3C standartlarına uygun, küresel olarak benzersiz merkeziyetsiz kimlik tanımlayıcı.",
+        "Kullanıcılar kendi şifreleme anahtarlarını kontrol eder (Self-Sovereign Identity).",
+        "Doğrulanabilir Bildirimler (VC), kurumlar tarafından kriptografik olarak imzalanmış verilerdir.",
+        "Sıfır Bilgi Kanıtları (ZKP) ile veri sızdırmadan kimlik doğrulaması yapılır."
+      ],
+      "narrative": "İkinci slaytımızda, çözümün teorik altyapısını görüyoruz. W3C standartlarında tanımlanan DID yani Decentralized Identifiers teknolojisi, kişilerin kendi kriptografik özel anahtarlarını kontrol etmesine dayanır. Buna kendi kendine egemen kimlik denir. Üniversite diplomaları veya sertifikalar, kurumlar tarafından kriptografik olarak imzalanmış Doğrulanabilir Bildirimler (VC) olarak kullanıcının cüzdanına verilir. Böylece kullanıcı, bilgilerini üçüncü şahıslara güvenli şekilde kanıtlayabilir."
+    },
+    {
+      "title": "3. Kriptografik Doğrulama Akış Şeması",
+      "bullets": [
+        "Aşama 1: Kurum (Issuer) veriyi imzalar ve kullanıcının cüzdanına teslim eder.",
+        "Aşama 2: Kullanıcı (Holder) veriyi cüzdanında saklar ve sunum (VP) hazırlar.",
+        "Aşama 3: Doğrulayıcı (Verifier) veriyi blockchain'deki genel anahtar ile anında doğrular."
+      ],
+      "narrative": "Üçüncü slaytta iş akışını görüyoruz. Sistemde üç temel aktör vardır: Yayıncı, Tutucu ve Doğrulayıcı. Örneğin üniversite, mezunun kimliğini imzalar ve öğrencinin mobil cüzdanına gönderir. Öğrenci bu veriyi saklar ve bir iş başvurusunda şirkete sunar. Şirket ise herhangi bir merkezi sunucuya bağlanmadan, doğrudan blokzinciri üzerindeki akıllı sözleşme genel anahtarlarını okuyarak diplomanın doğruluğunu saniyeler içinde doğrular."
+    },
+    {
+      "title": "4. Yatırım Dönüşü ve Güvenlik Kazançları",
+      "bullets": [
+        "Kurulum Geliştirme Maliyeti: Orta-Yüksek ($40,000 standart uyum geliştirme).",
+        "İşlem Giderleri: Sıfıra Yakın (Kullanıcı doğrulaması tamamen çevrimdışı kriptografik işlemlerle yapılır).",
+        "Veri Güvenliği Kazancı: Veri tabanı sızıntı riski %100 engellenir.",
+        "Operasyonel Tasarruf: Manuel kimlik doğrulama süreçleri tamamen ortadan kalkar."
+      ],
+      "narrative": "Maliyet analizine baktığımızda, DID altyapısı kurmak kurumsal standartlara ve entegrasyonlara bağlı olarak yaklaşık 40 bin dolarlık bir yatırım gerektirebilir. Ancak işletim maliyetleri neredeyse sıfırdır, çünkü doğrulama işlemleri ağda işlem yapmadan yerel kriptografik imzalar üzerinden yürütülür. En büyük kazanç ise veri sızıntı riskinin ve idari kontrol yükümlülüklerinin tamamen ortadan kalkmasıdır."
+    },
+    {
+      "title": "5. Yazılım Mimarisi ve Kod Entegrasyonu",
+      "bullets": [
+        "Standartlar: W3C DID Core 1.0 ve DID Resolution standartları.",
+        "Akıllı Sözleşmeler: Ethereum DID Registry (ERC-1056) akıllı sözleşmesi.",
+        "Kütüphaneler: Veramo, DID-Resolver ve Ethers.js entegrasyon kütüphaneleri.",
+        "Ağ Altyapısı: Sepolia Testnet veya özel izinli Enterprise EVM ağları."
+      ],
+      "narrative": "Son slaytımızda yazılım mimarisine değiniyoruz. Bir yazılım mühendisi olarak bu sistemi geliştirmek için W3C standartlarını temel alarak ERC-1056 DID Registry akıllı sözleşmesini kullanabiliriz. Veramo veya DID-Resolver gibi popüler kütüphaneleri Node.js projemize dahil ederek, kullanıcıların cüzdan adreslerini genel DID tanımlayıcılarına dönüştürür ve on-chain kimlik kayıtlarını yönetiriz. Dersimiz burada bitmiştir, dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

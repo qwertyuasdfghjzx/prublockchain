@@ -2946,6 +2946,9 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initialize Departments Blockchain Solutions View
   initDepartmentsView();
 
+  // Initialize Virtual Academy View
+  initAcademyView();
+
   // Bind Landing page event action buttons (moving to missions tab when clicked)
   document.querySelectorAll('.btn-landing-event-action').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -3185,6 +3188,539 @@ function initDepartmentsView() {
     svgContent += `</svg>`;
     container.innerHTML = svgContent;
   }
+}
+
+// --- VIRTUAL ACADEMY CLASSROOM MODULE ---
+function initAcademyView() {
+  const catalogList = document.getElementById('academy-catalog-list');
+  const catalogCount = document.getElementById('academy-catalog-count');
+  const searchBar = document.getElementById('input-academy-search');
+  const blackboardBody = document.getElementById('academy-slide-body');
+  const indicator = document.getElementById('academy-slide-indicator');
+  const topicText = document.getElementById('academy-lecture-topic');
+  const btnPrev = document.getElementById('btn-academy-prev');
+  const btnNext = document.getElementById('btn-academy-next');
+  const btnPlay = document.getElementById('btn-academy-play');
+  const btnMute = document.getElementById('btn-academy-mute');
+  const speechStatus = document.getElementById('academy-speech-status');
+  const subtitleText = document.getElementById('academy-subtitle-text');
+  const statusPill = document.getElementById('lecture-status-pill');
+  const profSvg = document.getElementById('professor-svg');
+  const speechWave = document.getElementById('speech-wave');
+
+  if (!catalogList || !blackboardBody || !btnPlay) return;
+
+  let activeLecture = null;
+  let currentSlideIndex = 0;
+  let isPlaying = false;
+  let isMuted = false;
+  let synthUtterance = null;
+  let fallbackTimer = null;
+
+  // Initialize Speech Synthesis
+  if ('speechSynthesis' in window) {
+    // Trigger voice load
+    window.speechSynthesis.getVoices();
+  } else {
+    isMuted = true;
+    if (speechStatus) speechStatus.textContent = "SES DESTEKLENMİYOR";
+    if (btnMute) btnMute.textContent = "❌";
+  }
+
+  // Populate total Solutions Catalog
+  let totalSolutions = [];
+  window.departmentsData.forEach(dep => {
+    dep.solutions.forEach(sol => {
+      totalSolutions.push({ dep, sol });
+    });
+  });
+  if (catalogCount) catalogCount.textContent = `0 / ${totalSolutions.length}`;
+
+  populateCatalog('');
+
+  // Search filter
+  if (searchBar) {
+    searchBar.addEventListener('input', (e) => {
+      populateCatalog(e.target.value.trim());
+    });
+  }
+
+  function populateCatalog(filterText = '') {
+    catalogList.innerHTML = '';
+    const query = filterText.toLowerCase();
+
+    window.departmentsData.forEach(dep => {
+      // Find matching solutions in this department
+      const matchingSols = dep.solutions.filter(sol => 
+        sol.title.toLowerCase().includes(query) || 
+        sol.problem.toLowerCase().includes(query) ||
+        dep.name.toLowerCase().includes(query)
+      );
+
+      if (matchingSols.length === 0) return;
+
+      const depHeader = document.createElement('div');
+      depHeader.className = 'academy-dep-header';
+      depHeader.innerHTML = `${dep.icon} ${dep.name}`;
+      catalogList.appendChild(depHeader);
+
+      matchingSols.forEach(sol => {
+        const item = document.createElement('div');
+        item.className = 'academy-catalog-item';
+        
+        // Show indicator if custom JSON file exists or if it's local
+        const isPreloaded = ['mt-1', 'comp-1'].includes(sol.id);
+        const sourceBadge = isPreloaded 
+          ? '<span class="source-badge spec">NotebookLM</span>' 
+          : '<span class="source-badge local">Akademi</span>';
+
+        // Check if user already finished this course
+        const isCompleted = state.completedQuests.includes('lecture_' + sol.id);
+        const completionBadge = isCompleted ? '<span class="complete-badge">✓ Tamamlandı</span>' : '';
+
+        item.innerHTML = `
+          <div class="item-title">${sol.title}</div>
+          <div class="item-meta">${sourceBadge} ${completionBadge}</div>
+        `;
+
+        item.addEventListener('click', () => {
+          sounds.playClick();
+          document.querySelectorAll('.academy-catalog-item').forEach(i => i.classList.remove('active'));
+          item.classList.add('active');
+          loadLecture(dep, sol);
+        });
+
+        catalogList.appendChild(item);
+      });
+    });
+  }
+
+  async function loadLecture(dep, sol) {
+    stopLecture();
+    blackboardBody.innerHTML = `
+      <div style="text-align: center; padding: 40px 20px;">
+        <div class="loading-spinner" style="border-top-color: var(--accent-cyan); animation: spin 1s infinite linear; width: 30px; height: 30px; border-radius: 50%; border: 3px solid rgba(255,255,255,0.05); margin: 0 auto 15px auto;"></div>
+        <h4 style="color: var(--accent-cyan);">Ders Kaynakları Yükleniyor...</h4>
+        <p style="color: var(--text-muted); font-size: 0.85rem;">NotebookLM veya yerel kaynaklar derleniyor.</p>
+      </div>
+    `;
+    
+    // Check if it's one of our preloaded JSON files
+    const isPreloaded = ['mt-1', 'comp-1'].includes(sol.id);
+    
+    if (isPreloaded) {
+      try {
+        const response = await fetch(`lectures/${sol.id}.json`);
+        if (!response.ok) throw new Error("Dosya bulunamadı");
+        activeLecture = await response.json();
+      } catch (err) {
+        console.warn(`[ACADEMY] Ders dosyası yüklenemedi, yerel oluşturucu kullanılıyor:`, err.message);
+        activeLecture = generateLocalLecture(dep, sol);
+      }
+    } else {
+      // Generate instantly from template
+      activeLecture = generateLocalLecture(dep, sol);
+    }
+
+    currentSlideIndex = 0;
+    topicText.textContent = activeLecture.title;
+    playSlide(0);
+  }
+
+  function generateLocalLecture(dep, sol) {
+    return {
+      id: sol.id,
+      title: sol.title,
+      department: dep.name,
+      slides: [
+        {
+          title: "1. Sektörel Problem Analizi",
+          bullets: [
+            `Mevcut Sistem Sorunu: ${sol.problem}`,
+            "Geleneksel merkezi sistemlerde yüksek bürokrasi ve gecikme riski.",
+            "Verilerin tahrif edilme ve kaybolma olasılıkları iş akışını aksatır.",
+            "Paydaşlar arasındaki güven eksikliği operasyonel giderleri artırır."
+          ],
+          narrative: `Değerli arkadaşlar, dersimize hoş geldiniz. Bugün ${dep.name} alanında blockchain çözümlerini ele alacağız. Konumuz ${sol.title}. Sektörde karşılaştığımız en kritik sorun şudur: ${sol.problem} Bu sorun süreçlerin uzamasına ve yüksek masraflara yol açıyor.`
+        },
+        {
+          title: "2. Neden Blockchain Entegrasyonu?",
+          bullets: [
+            `Temel Çözüm: ${sol.whyUse}`,
+            "Merkeziyetsiz dağıtık defter ile tek ve şeffaf veri kaynağı.",
+            "Geriye dönük değiştirilemezlik (Immutability) ile veri güvenliği.",
+            "Aracı kurumları ortadan kaldıran akıllı sözleşme mimarisi."
+          ],
+          narrative: `Peki neden blockchain kullanmalıyız? Çünkü blockchain teknolojisi, ${sol.whyUse.toLowerCase()} Bu sayede verilerimiz kriptografik güvence altına alınır ve yetkisiz müdahaleler tamamen engellenir.`
+        },
+        {
+          title: "3. Akıllı Sözleşme İş Akışı",
+          bullets: [
+            `Aşama 1: ${sol.workflow[0] ? sol.workflow[0].title : 'Veri Kaydı'} - ${sol.workflow[0] ? sol.workflow[0].desc : 'Verilerin zincire işlenmesi.'}`,
+            `Aşama 2: ${sol.workflow[1] ? sol.workflow[1].title : 'On-Chain Onay'} - ${sol.workflow[1] ? sol.workflow[1].desc : 'Akıllı sözleşme kurallarının doğrulanması.'}`,
+            `Aşama 3: ${sol.workflow[2] ? sol.workflow[2].title : 'İşlem Sonlanması'} - ${sol.workflow[2] ? sol.workflow[2].desc : 'İşlemin akıllı sözleşmeyle tamamlanması.'}`
+          ],
+          narrative: `Çözümümüzün iş akışını incelediğimizde üç temel aşama görüyoruz. İlk aşamada veri akışı başlatılır. İkinci aşamada akıllı sözleşme tetiklenerek kurallar zincir üzerinde doğrulanır. Son aşamada ise işlem güvenli bir şekilde tamamlanır.`
+        },
+        {
+          title: "4. Fayda-Maliyet & Yatırım Dönüşü (ROI)",
+          bullets: [
+            `Kurulum / Geliştirme Maliyeti: ${sol.costBenefit.setupCost}`,
+            `Operasyonel Gider (Gas/Bakım): ${sol.costBenefit.operatingCost}`,
+            `Zaman & Maliyet Tasarrufu: ${sol.costBenefit.savingRate}`,
+            `Yatırımın Geri Dönüşü (ROI): ${sol.costBenefit.roi}`
+          ],
+          narrative: `Yatırım analizi tarafına bakarsak, bu sistemin kurulumu ${sol.costBenefit.setupCost.toLowerCase()} seviyesindedir. Ancak sağladığı ${sol.costBenefit.savingRate.toLowerCase()} tasarruf oranı sayesinde sistem kendisini ${sol.costBenefit.roi.toLowerCase()} gibi kısa bir sürede amorti eder.`
+        },
+        {
+          title: "5. Yazılım Geliştirme ve Mimari",
+          bullets: [
+            `Teknoloji Yığını: ${sol.howToDevelop}`,
+            "Chainlink API / Oracle bağlantıları ile sensör ve telemetri veri köprüsü.",
+            "Web3 entegrasyonu (Ethers.js) ve akıllı cüzdan kimlik doğrulaması.",
+            "EVM uyumlu Katman-2 ağlarında düşük maliyetli ve ölçeklenebilir altyapı."
+          ],
+          narrative: `Son Slaytımızda geliştirmeye odaklanıyoruz. Bu projeyi hayata geçirirken, ${sol.howToDevelop.toLowerCase()} Bu mimariyi kurarak, sensörlerden gelen IoT verilerini oracles aracılığıyla akıllı sözleşmelere aktarıyoruz. Dinlediğiniz için teşekkür ederim.`
+        }
+      ]
+    };
+  }
+
+  function playSlide(idx) {
+    if (!activeLecture) return;
+    
+    // Clear any active voice or fallback timers
+    cancelSpeech();
+    
+    currentSlideIndex = idx;
+    const slide = activeLecture.slides[idx];
+    
+    // Update Indicators
+    indicator.textContent = `Slayt: ${idx + 1} / ${activeLecture.slides.length}`;
+    
+    // Render Slide Content
+    const bulletsHtml = slide.bullets.map(b => `<li>${b}</li>`).join('');
+    blackboardBody.innerHTML = `
+      <div class="slide-content-wrapper" style="animation: fadeIn 0.4s ease forwards;">
+        <h4 style="font-family: var(--font-display); font-size: 1.15rem; color: var(--accent-cyan); margin-bottom: 12px; text-transform: uppercase;">${slide.title}</h4>
+        <ul style="list-style-type: square; padding-left: 20px; font-size: 0.85rem; color: var(--text-main); display: flex; flex-direction: column; gap: 8px;">
+          ${bulletsHtml}
+        </ul>
+        
+        <!-- Render Flowchart placeholder if Slide 3 -->
+        ${idx === 2 ? '<div id="academy-slide-flowchart" style="margin-top:15px; border-top:1px dashed rgba(255,255,255,0.05); padding-top:12px;"></div>' : ''}
+        
+        <!-- Render Metrics Chart placeholder if Slide 4 -->
+        ${idx === 3 ? '<div id="academy-slide-chart" style="margin-top:15px; border-top:1px dashed rgba(255,255,255,0.05); padding-top:12px;"></div>' : ''}
+      </div>
+    `;
+
+    // Render interactive widgets on the blackboard
+    if (idx === 2) {
+      renderFlowchartOnBlackboard();
+    } else if (idx === 3) {
+      renderChartOnBlackboard();
+    }
+
+    // Toggle navigation buttons disabled state
+    btnPrev.disabled = idx === 0;
+    btnNext.disabled = idx === activeLecture.slides.length - 1;
+
+    // Trigger narrative read
+    if (isPlaying) {
+      narrateSlide(slide.narrative);
+    } else {
+      subtitleText.textContent = slide.narrative;
+    }
+  }
+
+  function renderFlowchartOnBlackboard() {
+    const flowchartContainer = document.getElementById('academy-slide-flowchart');
+    if (!flowchartContainer) return;
+
+    // Retrieve workflow steps from departmentsData
+    let activeSol = null;
+    window.departmentsData.forEach(d => {
+      const found = d.solutions.find(s => s.id === activeLecture.id);
+      if (found) activeSol = found;
+    });
+
+    if (activeSol) {
+      flowchartContainer.innerHTML = '';
+      const wrapper = document.createElement('div');
+      wrapper.style.display = 'flex';
+      wrapper.style.justifyContent = 'center';
+      wrapper.style.alignItems = 'center';
+      wrapper.style.gap = '10px';
+      wrapper.style.flexWrap = 'wrap';
+      wrapper.style.marginTop = '10px';
+
+      activeSol.workflow.forEach((step, sIdx) => {
+        const node = document.createElement('div');
+        node.className = 'flowchart-step-node';
+        node.style.padding = '6px 10px';
+        node.style.fontSize = '0.7rem';
+        node.style.flexShrink = '0';
+        node.innerHTML = `
+          <div class="step-badge" style="width:16px; height:16px; font-size:0.6rem; line-height:16px;">${step.step}</div>
+          <div class="step-info"><h6 style="font-size:0.75rem; margin:0; color:#fff;">${step.title}</h6></div>
+        `;
+        wrapper.appendChild(node);
+
+        if (sIdx < activeSol.workflow.length - 1) {
+          const arrow = document.createElement('div');
+          arrow.innerHTML = `<span style="color:var(--accent-cyan); font-weight:bold; font-size:0.9rem;">➔</span>`;
+          wrapper.appendChild(arrow);
+        }
+      });
+      flowchartContainer.appendChild(wrapper);
+    }
+  }
+
+  function renderChartOnBlackboard() {
+    const chartContainer = document.getElementById('academy-slide-chart');
+    if (!chartContainer) return;
+
+    let activeSol = null;
+    window.departmentsData.forEach(d => {
+      const found = d.solutions.find(s => s.id === activeLecture.id);
+      if (found) activeSol = found;
+    });
+
+    if (activeSol) {
+      chartContainer.innerHTML = '';
+      const metrics = activeSol.metrics;
+      let html = '<div style="width:90%; display:flex; flex-direction:column; gap:4px; font-family:var(--font-mono); font-size:0.72rem; text-align:left; margin:5px auto 0 auto;">';
+      
+      const items = [
+        { label: "Hız", value: metrics.speed, color: "var(--accent-cyan)" },
+        { label: "Güvenlik", value: metrics.security, color: "var(--accent-purple)" },
+        { label: "Maliyet Tasarrufu", value: metrics.costSaving, color: "var(--accent-green)" }
+      ];
+
+      items.forEach(item => {
+        html += `
+          <div style="display:flex; align-items:center; gap:8px;">
+            <span style="width:100px; color:var(--text-muted);">${item.label}:</span>
+            <div style="flex:1; background:rgba(255,255,255,0.03); height:6px; border-radius:3px; overflow:hidden; border:1px solid rgba(255,255,255,0.05);">
+              <div style="width:${item.value}%; height:100%; background:${item.color}; box-shadow:0 0 4px ${item.color};"></div>
+            </div>
+            <span style="width:30px; text-align:right; font-weight:bold; color:#fff;">%${item.value}</span>
+          </div>
+        `;
+      });
+      html += '</div>';
+      chartContainer.innerHTML = html;
+    }
+  }
+
+  function narrateSlide(text) {
+    cancelSpeech();
+
+    // Typewriter scrolling subtitles
+    subtitleText.textContent = '';
+    let words = text.split(' ');
+    let wordIndex = 0;
+    const wordIntervalMs = 380; 
+
+    if (isMuted || !('speechSynthesis' in window)) {
+      // Muted / Simulated reading mode
+      statusPill.textContent = "ANLATIYOR (SESSİZ)";
+      statusPill.style.borderColor = "var(--accent-purple)";
+      statusPill.style.color = "var(--accent-purple)";
+      speechWave.style.display = 'flex';
+      profSvg.classList.add('speaking');
+
+      fallbackTimer = setInterval(() => {
+        if (wordIndex < words.length) {
+          subtitleText.textContent = words.slice(0, wordIndex + 1).join(' ');
+          wordIndex++;
+        } else {
+          clearInterval(fallbackTimer);
+          fallbackTimer = setTimeout(() => {
+            onSlideNarrativeEnd();
+          }, 2000);
+        }
+      }, wordIntervalMs);
+    } else {
+      // Web Speech TTS voiceover
+      statusPill.textContent = "ANLATIYOR";
+      statusPill.style.borderColor = "var(--accent-cyan)";
+      statusPill.style.color = "var(--accent-cyan)";
+      speechWave.style.display = 'flex';
+      profSvg.classList.add('speaking');
+
+      synthUtterance = new SpeechSynthesisUtterance(text);
+      synthUtterance.lang = 'tr-TR';
+      
+      const voices = window.speechSynthesis.getVoices();
+      const trVoice = voices.find(v => v.lang.includes('tr') || v.lang.includes('TR'));
+      if (trVoice) synthUtterance.voice = trVoice;
+
+      synthUtterance.rate = 1.0;
+      
+      synthUtterance.onboundary = (event) => {
+        if (event.name === 'word') {
+          const charIndex = event.charIndex;
+          const spokenPart = text.substring(0, charIndex);
+          subtitleText.textContent = spokenPart;
+        }
+      };
+
+      synthUtterance.onstart = () => {
+        subtitleText.textContent = text;
+      };
+
+      synthUtterance.onend = () => {
+        onSlideNarrativeEnd();
+      };
+
+      synthUtterance.onerror = (e) => {
+        console.warn("[ACADEMY] TTS Hata oluştu, simülasyona geçiliyor:", e.error);
+        isMuted = true;
+        narrateSlide(text);
+      };
+
+      window.speechSynthesis.speak(synthUtterance);
+    }
+  }
+
+  function onSlideNarrativeEnd() {
+    profSvg.classList.remove('speaking');
+    speechWave.style.display = 'none';
+    statusPill.textContent = "DİNLİYOR";
+    statusPill.style.borderColor = "var(--accent-green)";
+    statusPill.style.color = "var(--accent-green)";
+
+    if (isPlaying && currentSlideIndex < activeLecture.slides.length - 1) {
+      fallbackTimer = setTimeout(() => {
+        currentSlideIndex++;
+        playSlide(currentSlideIndex);
+      }, 1500);
+    } else if (currentSlideIndex === activeLecture.slides.length - 1) {
+      isPlaying = false;
+      btnPlay.textContent = "Dersi Tekrarla";
+      statusPill.textContent = "BİTTİ";
+      statusPill.style.borderColor = "var(--accent-green)";
+      statusPill.style.color = "var(--accent-green)";
+      
+      awardAcademyCredits();
+    }
+  }
+
+  function awardAcademyCredits() {
+    const storageKey = 'lecture_' + activeLecture.id;
+    if (!state.completedQuests.includes(storageKey)) {
+      state.completedQuests.push(storageKey);
+      
+      state.xp += 10;
+      state.pruBalance += 5;
+      
+      saveState();
+      updateUI();
+      
+      populateCatalog(searchBar ? searchBar.value.trim() : '');
+      
+      showToast("🎓 Dersi başarıyla tamamladınız: +10 XP ve +5 PRU kazandınız!", "success");
+      appendTerminal(`[ACADEMY] Completed course: "${activeLecture.title}". Awarded +10 XP, +5 PRU.`, "success");
+      
+      checkLevelUp();
+    }
+  }
+
+  function cancelSpeech() {
+    if (fallbackTimer) {
+      clearTimeout(fallbackTimer);
+      clearInterval(fallbackTimer);
+      fallbackTimer = null;
+    }
+    if ('speechSynthesis' in window) {
+      window.speechSynthesis.cancel();
+    }
+    profSvg.classList.remove('speaking');
+    speechWave.style.display = 'none';
+  }
+
+  function stopLecture() {
+    cancelSpeech();
+    isPlaying = false;
+    btnPlay.textContent = "Dersi Başlat";
+    statusPill.textContent = "BEKLEMEDE";
+    statusPill.style.borderColor = "rgba(255,255,255,0.1)";
+    statusPill.style.color = "var(--text-muted)";
+  }
+
+  function checkLevelUp() {
+    const xpNeeded = state.level * 100;
+    if (state.xp >= xpNeeded) {
+      state.xp -= xpNeeded;
+      state.level += 1;
+      saveState();
+      updateUI();
+      sounds.playLevelUp();
+      showToast(`⚡ TEBRİKLER! Seviye Atladınız! Yeni Seviyeniz: ${state.level}`, "success");
+      appendTerminal(`[LEVEL-UP] Advanced to level ${state.level}! Voting weight increased.`, "success");
+    }
+  }
+
+  // --- BIND EVENT HANDLERS ---
+  btnPlay.addEventListener('click', () => {
+    if (!activeLecture) {
+      showToast("Lütfen ders listesinden bir konu seçin.", "info");
+      return;
+    }
+    sounds.playClick();
+    
+    if (isPlaying) {
+      stopLecture();
+    } else {
+      isPlaying = true;
+      btnPlay.textContent = "Dersi Duraklat";
+      
+      if (currentSlideIndex === activeLecture.slides.length - 1 && statusPill.textContent === "BİTTİ") {
+        currentSlideIndex = 0;
+      }
+      
+      playSlide(currentSlideIndex);
+    }
+  });
+
+  btnPrev.addEventListener('click', () => {
+    if (!activeLecture || currentSlideIndex === 0) return;
+    sounds.playClick();
+    currentSlideIndex--;
+    playSlide(currentSlideIndex);
+  });
+
+  btnNext.addEventListener('click', () => {
+    if (!activeLecture || currentSlideIndex === activeLecture.slides.length - 1) return;
+    sounds.playClick();
+    currentSlideIndex++;
+    playSlide(currentSlideIndex);
+  });
+
+  btnMute.addEventListener('click', () => {
+    sounds.playClick();
+    isMuted = !isMuted;
+    
+    if (isMuted) {
+      btnMute.textContent = "🔇";
+      speechStatus.textContent = "SES KAPALI";
+      speechStatus.style.color = "var(--accent-red)";
+      
+      if (isPlaying) {
+        narrateSlide(activeLecture.slides[currentSlideIndex].narrative);
+      }
+    } else {
+      btnMute.textContent = "🔊";
+      speechStatus.textContent = "SES AKTİF";
+      speechStatus.style.color = "var(--text-muted)";
+      
+      if (isPlaying) {
+        narrateSlide(activeLecture.slides[currentSlideIndex].narrative);
+      }
+    }
+  });
 }
 
 

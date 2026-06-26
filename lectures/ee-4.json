@@ -1,0 +1,56 @@
+{
+  "id": "ee-4",
+  "title": "Köprüüstü Alarm Log Arşivi",
+  "department": "Elektrik-Elektronik Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Köprüüstü Alarm Log Arşivi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Deniz kazalarından sonra gemi karakutusundaki (VDR) alarm loglarının silinmesi veya değiştirilmesi kaza tespitini imkansız kılar.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Elektrik-Elektronik Mühendisliği bölümümüz için kritik bir çözüm olan Köprüüstü Alarm Log Arşivi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, deniz kazalarından sonra gemi karakutusundaki (vdr) alarm loglarının silinmesi veya değiştirilmesi kaza tespitini imkansız kılar. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Köprüüstü alarm panellerinin ürettiği tüm alarmlar eşzamanlı olarak blokzincire yazılarak silinemez kaza kanıtları elde edilir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, köprüüstü alarm panellerinin ürettiği tüm alarmlar eşzamanlı olarak blokzincire yazılarak silinemez kaza kanıtları elde edilir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Alarm Tetiklenmesi - Radar çarpışma uyarısı (CPA alarmı) köprüüstünde çalar.",
+        "2. Adım: Anlık Hash Gönderimi - Alarm kodu ve saniyesi hash'lenerek uyduyla blokzincirine bloklanır.",
+        "3. Adım: Kaza Sonrası Denetim - Kaza sonrası savcılık, alarm saatlerini zincir üstünden değiştirilemez biçimde okur."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($22,000)",
+        "İşletim / Gas Ücreti: Orta (Uydu SMS/veri ücreti)",
+        "Verimlilik Artışı: %100 Delil Güvenilirliği, Kaza Hukuki Davalarında %70 Zaman Tasarrufu",
+        "Yatırım Dönüş Süresi (ROI): 9 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($22,000) olduğunu görüyoruz. Sağlanan %100 delil güvenilirliği, kaza hukuki davalarında %70 zaman tasarrufu verimlilik artışı sayesinde bu teknoloji kendisini 9 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Köprüüstü NMEA-0183/2000 alarm veriyolu, izole bir gateway ile dinlenir. Alarmlar anlık hash'lenerek uyduyla L2 DLT'ye yazılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, köprüüstü nmea-0183/2000 alarm veriyolu, izole bir gateway ile dinlenir. alarmlar anlık hash'lenerek uyduyla l2 dlt'ye yazılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

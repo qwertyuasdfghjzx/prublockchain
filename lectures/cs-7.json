@@ -1,0 +1,56 @@
+{
+  "id": "cs-7",
+  "title": "Web3 Cüzdan ile SSO (Single Sign-On) Giriş Portalı",
+  "department": "Bilgisayar ve Yazılım Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Web3 Cüzdan ile SSO (Single Sign-On) Giriş Portalı - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Şirket içi çalışanların zayıf şifre tercihleri siber saldırıların %80'inin ana nedenidir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Bilgisayar ve Yazılım Mühendisliği bölümümüz için kritik bir çözüm olan Web3 Cüzdan ile SSO (Single Sign-On) Giriş Portalı konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, şirket içi çalışanların zayıf şifre tercihleri siber saldırıların %80'inin ana nedenidir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Çalışanlar kullanıcı adı ve şifre girmeden, sadece soğuk donanım cüzdan imza doğrulaması ile kurumsal portallara giriş yapar.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, çalışanlar kullanıcı adı ve şifre girmeden, sadece soğuk donanım cüzdan imza doğrulaması ile kurumsal portallara giriş yapar. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Giriş İsteği - Kullanıcı portalda 'Cüzdan ile Giriş Yap' butonuna basar.",
+        "2. Adım: İmza Talebi - Portal, anlık bir mesaj (nonce) üretip kullanıcının cüzdanına gönderir.",
+        "3. Adım: Kriptografik Onay - Kullanıcı mesajı cüzdanıyla imzalar, portal imzayı onchain doğrular ve oturum açar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($8,000)",
+        "İşletim / Gas Ücreti: Sıfır",
+        "Verimlilik Artışı: %100 Şifre Kırma Saldırılarının Önlenmesi, Destek Taleplerinde %60 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 3 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($8,000) olduğunu görüyoruz. Sağlanan %100 şifre kırma saldırılarının önlenmesi, destek taleplerinde %60 azalma verimlilik artışı sayesinde bu teknoloji kendisini 3 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Ethereum'un 'Sign-In with Ethereum' (EIP-4361) standardı kurumsal Active Directory / Single Sign-On altyapısına entegre edilir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, ethereum'un 'sign-in with ethereum' (eip-4361) standardı kurumsal active directory / single sign-on altyapısına entegre edilir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

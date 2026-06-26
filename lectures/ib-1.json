@@ -1,0 +1,56 @@
+{
+  "id": "ib-1",
+  "title": "DeFi Akreditif (Letter of Credit) Sözleşmesi",
+  "department": "Uluslararası İşletmecilik ve Ticaret",
+  "slides": [
+    {
+      "title": "1. DeFi Akreditif (Letter of Credit) Sözleşmesi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Dış ticarette bankaların düzenlediği akreditif mektupları haftalar alır ve %3'e varan yüksek komisyonlar içerir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası İşletmecilik ve Ticaret bölümümüz için kritik bir çözüm olan DeFi Akreditif (Letter of Credit) Sözleşmesi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, dış ticarette bankaların düzenlediği akreditif mektupları haftalar alır ve %3'e varan yüksek komisyonlar içerir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Alıcı ve satıcı arasındaki akreditif şartları akıllı sözleşmeyle kurulur; evraklar yüklendiğinde ödeme saniyeler içinde tamamlanır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, alıcı ve satıcı arasındaki akreditif şartları akıllı sözleşmeyle kurulur; evraklar yüklendiğinde ödeme saniyeler içinde tamamlanır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Akreditif Açma - İthalatçı akreditif bedelini stabilcoin olarak akıllı sözleşmeye kilitler.",
+        "2. Adım: Sevkiyat ve Belgeler - İhracatçı yükleme belgelerini (akıllı konşimento) sözleşmeye ibraz eder.",
+        "3. Adım: Otomatik Tahsilat - Sözleşme belgelerin doğruluğunu teyit eder ve fonları ihracatçıya gönderir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($45,000)",
+        "İşletim / Gas Ücreti: Çok Düşük (Banka komisyonu ödenmez)",
+        "Verimlilik Artışı: %90 Uyuşmazlık Çözüm Hızı, İşlem Masraflarında %75 Düşüş",
+        "Yatırım Dönüş Süresi (ROI): 10 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($45,000) olduğunu görüyoruz. Sağlanan %90 uyuşmazlık çözüm hızı, i̇şlem masraflarında %75 düşüş verimlilik artışı sayesinde bu teknoloji kendisini 10 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Solidity'de çok imzalı ve zaman kilitli (Time-locked Escrow) akreditif sözleşmesi yazılır. Belgeler IPFS'e yüklenir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, solidity'de çok imzalı ve zaman kilitli (time-locked escrow) akreditif sözleşmesi yazılır. belgeler ipfs'e yüklenir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

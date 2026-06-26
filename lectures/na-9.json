@@ -1,0 +1,56 @@
+{
+  "id": "na-9",
+  "title": "Yeşil Gemi Geri Dönüşüm Sertifikasyonu",
+  "department": "Gemi İnşaatı ve Gemi Makineleri Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Yeşil Gemi Geri Dönüşüm Sertifikasyonu - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Ömrünü tamamlamış gemilerin söküm tersanelerinde çevre standartlarına uymadan sökülmesi yüksek çevre kirliliğine ve cezalara neden olur.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Gemi İnşaatı ve Gemi Makineleri Mühendisliği bölümümüz için kritik bir çözüm olan Yeşil Gemi Geri Dönüşüm Sertifikasyonu konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, ömrünü tamamlamış gemilerin söküm tersanelerinde çevre standartlarına uymadan sökülmesi yüksek çevre kirliliğine ve cezalara neden olur. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Hong Kong Konvansiyonu uyumluluğu için asbest ve tehlikeli maddelerin envanteri (IHM) blockchain ile doğrulanarak söküm sertifikalandırılır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, hong kong konvansiyonu uyumluluğu için asbest ve tehlikeli maddelerin envanteri (ihm) blockchain ile doğrulanarak söküm sertifikalandırılır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: IHM NFT Oluşturma - İnşa veya bakım aşamasında gemideki asbest ve kurşun envanteri DLT'ye kilitlenir.",
+        "2. Adım: Söküm Kontrolü - Söküm tersanesi kurşun levhaları söktüğünde bertaraf makbuzunu zincire ekler.",
+        "3. Adım: Yeşil Söküm Sertifikası - Tüm envanter bertaraf edildiğinde akıllı sözleşme 'Yeşil Söküm' onayını yayınlar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($25,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 Hong Kong Konvansiyon Uyumu, Çevre Denetim Hızı 2 Kat Artış",
+        "Yatırım Dönüş Süresi (ROI): 10 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($25,000) olduğunu görüyoruz. Sağlanan %100 hong kong konvansiyon uyumu, çevre denetim hızı 2 kat artış verimlilik artışı sayesinde bu teknoloji kendisini 10 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Geminin Tehlikeli Maddeler Envanteri (IHM) bir SBT NFT'si olarak oluşturulur. Söküm aşamalarında her tehlikeli maddenin bertaraf kaydı zincire girilir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, geminin tehlikeli maddeler envanteri (ihm) bir sbt nft'si olarak oluşturulur. söküm aşamalarında her tehlikeli maddenin bertaraf kaydı zincire girilir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

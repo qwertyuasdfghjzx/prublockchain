@@ -1,0 +1,56 @@
+{
+  "id": "mis-3",
+  "title": "BI (İş Zekası) Veri Kaynağı Doğrulama (Data Provenance)",
+  "department": "Yönetim Bilişim Sistemleri",
+  "slides": [
+    {
+      "title": "1. BI (İş Zekası) Veri Kaynağı Doğrulama (Data Provenance) - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: İş zekası panellerinde (PowerBI, Tableau) analiz edilen verilerin kaynağının doğruluğu şüpheliyse yanlış stratejik kararlar alınır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Yönetim Bilişim Sistemleri bölümümüz için kritik bir çözüm olan BI (İş Zekası) Veri Kaynağı Doğrulama (Data Provenance) konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, i̇ş zekası panellerinde (powerbi, tableau) analiz edilen verilerin kaynağının doğruluğu şüpheliyse yanlış stratejik kararlar alınır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: BI raporlarına beslenen ham verilerin toplandığı kaynak ve zaman damgası zincir üstünde doğrulanarak veri manipülasyonu önlenir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, bi raporlarına beslenen ham verilerin toplandığı kaynak ve zaman damgası zincir üstünde doğrulanarak veri manipülasyonu önlenir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Veri Girişi - Fabrika üretim verisi veri ambarına akar ve anında hash değeri üretilir.",
+        "2. Adım: Provenance Kaydı - Veri hash'i ve kaynak kimliği blokzincirine 'Veri Şeceresi' olarak tescillenir.",
+        "3. Adım: BI Raporlama - PowerBI raporu çalışırken veri hash'ini zincirdekiyle karşılaştırır, veri değiştirilmemişse raporu açar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($28,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %100 Veri Güvenilirliği, Hatalı Analizlerden Kaynaklı Zararlarda %30 Düşüş",
+        "Yatırım Dönüş Süresi (ROI): 10 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($28,000) olduğunu görüyoruz. Sağlanan %100 veri güvenilirliği, hatalı analizlerden kaynaklı zararlarda %30 düşüş verimlilik artışı sayesinde bu teknoloji kendisini 10 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Veri ambarına (Data Warehouse) giren her veri setinin SHA-256 hash'i alınarak giriş anında DLT'ye tescil edilir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, veri ambarına (data warehouse) giren her veri setinin sha-256 hash'i alınarak giriş anında dlt'ye tescil edilir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

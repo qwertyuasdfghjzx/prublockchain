@@ -1,0 +1,56 @@
+{
+  "id": "mt-1",
+  "title": "Akıllı Konşimento (Smart Bill of Lading)",
+  "department": "Deniz Ulaştırma İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Deniz Ticaretinde Evrak Krizi",
+      "bullets": [
+        "Kağıt konşimentoların fiziki transferi ortalama 7-10 gün sürer.",
+        "Evrakların kaybolma, gecikme ve çalınma riskleri yüksektir.",
+        "Sahtecilik ve tahrifat limanlarda milyonlarca dolar kayba yol açar.",
+        "Bürokrasi ve evrak basım maliyetleri karlılığı düşürür."
+      ],
+      "narrative": "Merhaba arkadaşlar, PRU Blockchain Akademi dersimize hoş geldiniz. Bugün Deniz Ulaştırma İşletme Mühendisliği dersimizin en kritik konularından biri olan Akıllı Konşimento teknolojisini inceleyeceğiz. Geleneksel deniz ticaretinde, yükün mülkiyet belgesi sayılan konşimentolar kağıt üzerinde düzenlenir. Bu evrakların fiziki olarak kuryeyle postalanması günlerce sürer ve kaybolma riski çok yüksektir. Şimdi bu krizi blockchain ile nasıl çözeceğimizi görelim."
+    },
+    {
+      "title": "2. Blockchain ve NFT Entegrasyonu",
+      "bullets": [
+        "Her konşimento benzersiz bir ERC-721 tokeni (NFT) olarak basılır.",
+        "Yükün tüm detayları IPFS üzerinde değiştirilemez şekilde saklanır.",
+        "NFT'nin sahibi, yükün yasal mülkiyet sahibidir.",
+        "Mülkiyet transferi saniyeler içinde on-chain olarak gerçekleşir."
+      ],
+      "narrative": "İkinci slaytımızda, çözümün temel yapısını görüyoruz. Akıllı Konşimento sisteminde, her bir taşıma evrakını Ethereum ağında benzersiz bir ERC-721 standartlı token, yani NFT olarak mint ediyoruz. Yükün hacmi, limanlar ve taraflar gibi bilgiler değiştirilemeyen IPFS veri tabanında tutulur ve bu NFT'ye bağlanır. Böylece yükün mülkiyeti, NFT transfer edildiği anda yasal olarak el değiştirir."
+    },
+    {
+      "title": "3. İş Akış Şeması (Workflow)",
+      "bullets": [
+        "Aşama 1: Taşıyıcı yükü teslim aldığında akıllı sözleşme ile NFT basar.",
+        "Aşama 2: NFT konşimento bankalar ve gümrük onayına gönderilir.",
+        "Aşama 3: Alıcı, limanda NFT'yi geri teslim ederek fiziki yükünü alır."
+      ],
+      "narrative": "Dersimizin bu bölümünde iş akış şemasını inceliyoruz. Akış üç adımdan oluşur: İlk olarak, yük gemiye yüklendiğinde kaptan veya acente akıllı sözleşmeyi tetikler ve NFT basılır. İkinci adımda, ticaret finansmanı kapsamında akreditif bankaları ve gümrükler bu NFT'yi onaylar. Son aşamada ise alıcı limana vardığında NFT'yi akıllı sözleşmeye geri göndererek doğrular ve fiziki yükü teslim alır."
+    },
+    {
+      "title": "4. Fayda-Maliyet ve ROI Analizi",
+      "bullets": [
+        "Kurulum Maliyeti: Orta düzey ($20,000 tek seferlik geliştirme).",
+        "İşlem Maliyeti (Gas): Çok düşük (Katman 2 ağlarında sentler mertebesinde).",
+        "Zaman Kazanımı: Evrak onay süresi 10 günden 10 dakikaya iner.",
+        "Yatırım Dönüşü: Ortalama 6 ay içinde sistem kendini amorti eder."
+      ],
+      "narrative": "Gelelim finansal analize. Bir armatörlük veya liman işletmesi olarak bu sistemi kurmak yaklaşık 20 bin dolarlık orta düzey bir Ar-Ge bütçesi gerektirir. Ancak sağladığı zaman tasarrufu inanılmazdır. İşlem sürelerinin 10 günden 10 dakikaya inmesi sayesinde limandaki bekleme cezaları ve kurye masrafları sıfırlanır. Yatırımın geri dönüş süresi ise sadece 6 aydır."
+    },
+    {
+      "title": "5. Nasıl Geliştirilir? (Teknoloji Yığını)",
+      "bullets": [
+        "Akıllı Sözleşmeler: Solidity ve OpenZeppelin ERC-721 kütüphaneleri.",
+        "Oracle Katmanı: Gerçek dünya lojistik verileri için Chainlink API.",
+        "Arayüz: Web3.js veya Ethers.js ile akıllı cüzdan bağlantısı.",
+        "Ağ: Polygon veya Arbitrum gibi düşük maliyetli Katman-2 EVM ağları."
+      ],
+      "narrative": "Son olarak projenin nasıl geliştirileceğini inceleyelim. Geliştirici olarak ilk yapmamız gereken OpenZeppelin kütüphanelerini kullanarak Solidity ile güvenli bir ERC-721 sözleşmesi yazmaktır. Gerçek dünya yük ve konum verilerini çekmek için Chainlink oracle'larını kullanırız. Arayüzde ise MetaMask bağlantısı için Ethers.js kütüphanesinden yararlanarak kullanıcı dostu bir Web3 portalı inşa ederiz. Dinlediğiniz için teşekkürler."
+    }
+  ]
+}

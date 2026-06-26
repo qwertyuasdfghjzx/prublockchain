@@ -1,0 +1,56 @@
+{
+  "id": "mt-5",
+  "title": "Gemi Yakıtı (Bunker) Yaşam Döngüsü Takibi",
+  "department": "Deniz Ulaştırma İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Gemi Yakıtı (Bunker) Yaşam Döngüsü Takibi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Gemi yakıt alımlarında miktar hileleri, kalitesiz yakıt karışımları ve karbon emisyonu beyanlarında usulsüzlükler yaşanmaktadır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Deniz Ulaştırma İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Gemi Yakıtı (Bunker) Yaşam Döngüsü Takibi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, gemi yakıt alımlarında miktar hileleri, kalitesiz yakıt karışımları ve karbon emisyonu beyanlarında usulsüzlükler yaşanmaktadır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Rafineriden gemi tankına kadar olan tüm akış blockchain üzerinde izlenerek yakıtın kalitesi ve kaynağı manipüle edilemez kılınır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, rafineriden gemi tankına kadar olan tüm akış blockchain üzerinde izlenerek yakıtın kalitesi ve kaynağı manipüle edilemez kılınır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Rafineri Çıkışı - Yakıt kalitesi test edilir and batch verileri blockchain'e kaydedilir.",
+        "2. Adım: Barç Transferi - Tedarikçi gemisi yakıtı aldığında sensör verileriyle transfer doğrulanır.",
+        "3. Adım: Gemi Tank Alımı - Gemi baş mühendisi yakıtı aldığında debi ve kalite onchain olarak onaylanır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($45,000)",
+        "İşletim / Gas Ücreti: Orta (Sensör entegrasyonu)",
+        "Verimlilik Artışı: %100 Veri Güvenilirliği, %30 Kalite Uyuşmazlığı Azalması",
+        "Yatırım Dönüş Süresi (ROI): 10 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($45,000) olduğunu görüyoruz. Sağlanan %100 veri güvenilirliği, %30 kalite uyuşmazlığı azalması verimlilik artışı sayesinde bu teknoloji kendisini 10 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Bunker barçlarındaki IoT debimetreleri ve kalite sensörleri API'ler ve oracles aracılığıyla akıllı sözleşmeye veri sağlar. Her yakıt transferi onaylanır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, bunker barçlarındaki iot debimetreleri ve kalite sensörleri api'ler ve oracles aracılığıyla akıllı sözleşmeye veri sağlar. her yakıt transferi onaylanır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "mt-9",
+  "title": "Liman Slot Kiralama ve DAO Port",
+  "department": "Deniz Ulaştırma İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Liman Slot Kiralama ve DAO Port - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Limanlardaki rıhtım ve yanaşma slotlarının verimsiz planlanması gemilerin liman dışında günlerce demirde beklemesine neden olur.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Deniz Ulaştırma İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Liman Slot Kiralama ve DAO Port konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, limanlardaki rıhtım ve yanaşma slotlarının verimsiz planlanması gemilerin liman dışında günlerce demirde beklemesine neden olur. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Liman slotları tokenize edilerek bir pazar yerinde listelenir; gemiler kendi aralarında slot takasını akıllı sözleşmelerle yapar.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, liman slotları tokenize edilerek bir pazar yerinde listelenir; gemiler kendi aralarında slot takasını akıllı sözleşmelerle yapar. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Slot Tokenizasyonu - Liman yönetimi günlük yanaşma saatlerini ERC-1155 tokeni olarak basar.",
+        "2. Adım: Pazar Yeri İşlemleri - Geciken gemi, elindeki slot tokenini zamanında varacak gemiye satar.",
+        "3. Adım: Yanaşma ve Akıllı Mutabakat - Gemi limana vardığında tokeni yakarak yanaşma hakkını kullanır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($50,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %35 Yakıt ve Bekleme Tasarrufu, %20 Liman Kapasite Artışı",
+        "Yatırım Dönüş Süresi (ROI): 15 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($50,000) olduğunu görüyoruz. Sağlanan %35 yakıt ve bekleme tasarrufu, %20 liman kapasite artışı verimlilik artışı sayesinde bu teknoloji kendisini 15 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Her yanaşma slotu ve saat aralığı bir ERC-1155 tokeni olarak tanımlanır. Gemiler ihtiyaç duymadıkları slotu başka gemilere kiralayabilir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, her yanaşma slotu ve saat aralığı bir erc-1155 tokeni olarak tanımlanır. gemiler ihtiyaç duymadıkları slotu başka gemilere kiralayabilir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

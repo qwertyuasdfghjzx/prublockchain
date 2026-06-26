@@ -1,0 +1,56 @@
+{
+  "id": "cs-4",
+  "title": "Dağıtık Dosya Depolama Entegrasyonu (IPFS/Arweave)",
+  "department": "Bilgisayar ve Yazılım Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Dağıtık Dosya Depolama Entegrasyonu (IPFS/Arweave) - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Denizcilikdeki devasa tarama, dizayn ve yük fotoğraflarının SQL veritabanlarında saklanması yüksek sunucu maliyetleri ve veri kaybı riski taşır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Bilgisayar ve Yazılım Mühendisliği bölümümüz için kritik bir çözüm olan Dağıtık Dosya Depolama Entegrasyonu (IPFS/Arweave) konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, denizcilikdeki devasa tarama, dizayn ve yük fotoğraflarının sql veritabanlarında saklanması yüksek sunucu maliyetleri ve veri kaybı riski taşır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Dosyalar merkeziyetsiz olarak IPFS veya Arweave'e yüklenir; hash kodları akıllı sözleşmede tutularak kalıcı ve ucuz arşiv elde edilir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, dosyalar merkeziyetsiz olarak ipfs veya arweave'e yüklenir; hash kodları akıllı sözleşmede tutularak kalıcı ve ucuz arşiv elde edilir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Dosya Yükleme - Gemi enspektörü hasar fotoğraflarını portal üzerinden yükler.",
+        "2. Adım: IPFS CID Üretimi - Dosya IPFS'e atılır ve benzersiz CID (örn: QmXoyp...) adresi alınır.",
+        "3. Adım: Sözleşmeye Kilitlenme - CID adresi hasar tespit akıllı sözleşmesine kaydedilerek sonsuza kadar kilitlenir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($10,000)",
+        "İşletim / Gas Ücreti: Çok Düşük (AWS S3 maliyetlerinden %90 daha ucuz)",
+        "Verimlilik Artışı: %90 Depolama Maliyet Tasarrufu, %100 Veri Kayıp Koruması",
+        "Yatırım Dönüş Süresi (ROI): 3 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($10,000) olduğunu görüyoruz. Sağlanan %90 depolama maliyet tasarrufu, %100 veri kayıp koruması verimlilik artışı sayesinde bu teknoloji kendisini 3 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Web3 uygulaması dosya yükleme anında dosyayı parçalara bölüp IPFS ağına dağıtır ve dönen benzersiz Content ID (CID) değerini zincire yazar.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, web3 uygulaması dosya yükleme anında dosyayı parçalara bölüp ipfs ağına dağıtır ve dönen benzersiz content id (cid) değerini zincire yazar. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "ie-7",
+  "title": "MCDM (Çok Kriterli Karar Verme) DAO Oylaması",
+  "department": "Endüstri Mühendisliği",
+  "slides": [
+    {
+      "title": "1. MCDM (Çok Kriterli Karar Verme) DAO Oylaması - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Mühendislik projelerinde makine veya tersane tedarikçisi seçilirken kararlar sübjektif veya şeffaf olmayan yöntemlerle alınabilir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Endüstri Mühendisliği bölümümüz için kritik bir çözüm olan MCDM (Çok Kriterli Karar Verme) DAO Oylaması konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, mühendislik projelerinde makine veya tersane tedarikçisi seçilirken kararlar sübjektif veya şeffaf olmayan yöntemlerle alınabilir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Çok kriterli karar verme (AHP, TOPSIS) ağırlıkları DAO oylamasına dökülür; tüm mühendislerin oylarıyla en rasyonel karar seçilisin.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, çok kriterli karar verme (ahp, topsis) ağırlıkları dao oylamasına dökülür; tüm mühendislerin oylarıyla en rasyonel karar seçilisin. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Kriter Girişi - Karar için Fiyat (%40), Kalite (%30), Garanti (%30) kriterleri sisteme yüklenir.",
+        "2. Adım: Onchain Puanlama - Uzman mühendisler teklif veren 3 tersaneyi bu kriterlere göre zincirde puanlar.",
+        "3. Adım: En İyi Tedarikçi - Akıllı sözleşme TOPSIS formülünü çalıştırır ve kazanan tedarikçiyi ilan eder."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($15,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %100 Şeffaf Tedarikçi Seçimi, Karar Verme Sürelerinde %60 Ksalma",
+        "Yatırım Dönüş Süresi (ROI): 5 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($15,000) olduğunu görüyoruz. Sağlanan %100 şeffaf tedarikçi seçimi, karar verme sürelerinde %60 ksalma verimlilik artışı sayesinde bu teknoloji kendisini 5 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: TOPSIS karar matrisi akıllı sözleşme içine kodlanır. Mühendisler kriter ağırlıklarını on-chain oylarla belirler.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, topsis karar matrisi akıllı sözleşme içine kodlanır. mühendisler kriter ağırlıklarını on-chain oylarla belirler. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

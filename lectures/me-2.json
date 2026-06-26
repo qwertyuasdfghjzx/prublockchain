@@ -1,0 +1,56 @@
+{
+  "id": "me-2",
+  "title": "Yedek Parça Orijinallik Kanıtı",
+  "department": "Gemi Makineleri İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Yedek Parça Orijinallik Kanıtı - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Makine dairesinde kullanılan sahte veya kalitesiz yedek parçalar kritik motor arızalarına ve can kayıplarına neden olabilir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Gemi Makineleri İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Yedek Parça Orijinallik Kanıtı konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, makine dairesinde kullanılan sahte veya kalitesiz yedek parçalar kritik motor arızalarına ve can kayıplarına neden olabilir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Her kritik parça (örn. piston kafası, yataklar) fabrikadan çıkışında NFT olarak tokenize edilerek zincir üzerinde takip edilir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, her kritik parça (örn. piston kafası, yataklar) fabrikadan çıkışında nft olarak tokenize edilerek zincir üzerinde takip edilir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Üretim ve Kayıt - Üretici parça üzerine benzersiz çip yerleştirir ve NFT'sini zincire basar.",
+        "2. Adım: Tedarik Transferi - Distribütör ve gümrük üzerinden geçen parçanın mülkiyeti zincirde el değiştirir.",
+        "3. Adım: Gemi Kurulumu - Baş Mühendis parçayı takmadan önce NFC'yi okutarak orijinal olduğunu doğrular."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($40,000)",
+        "İşletim / Gas Ücreti: Düşük (Etiket maliyeti)",
+        "Verimlilik Artışı: %100 Orijinallik Garantisi, %30 Ekipman Ömrü Uzaması",
+        "Yatırım Dönüş Süresi (ROI): 12 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($40,000) olduğunu görüyoruz. Sağlanan %100 orijinallik garantisi, %30 ekipman ömrü uzaması verimlilik artışı sayesinde bu teknoloji kendisini 12 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Fabrikada parçalara kazınan kriptografik QR/NFC etiketleri, ERC-1155 token kimliğiyle eşleştirilir. Gemiye teslimatta doğrulama yapılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, fabrikada parçalara kazınan kriptografik qr/nfc etiketleri, erc-1155 token kimliğiyle eşleştirilir. gemiye teslimatta doğrulama yapılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "mb-9",
+  "title": "Deniz Ticaret Hukuku Arabuluculuk Arşivi",
+  "department": "Denizcilik İşletmeleri Yönetimi",
+  "slides": [
+    {
+      "title": "1. Deniz Ticaret Hukuku Arabuluculuk Arşivi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Denizcilik uyuşmazlıklarının mahkemelerce çözülmesi yıllarca sürebilir ve dava dosyalarının tarafsız saklanması kritiktir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Denizcilik İşletmeleri Yönetimi bölümümüz için kritik bir çözüm olan Deniz Ticaret Hukuku Arabuluculuk Arşivi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, denizcilik uyuşmazlıklarının mahkemelerce çözülmesi yıllarca sürebilir ve dava dosyalarının tarafsız saklanması kritiktir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Uyuşmazlık delilleri ve tahkim kararları blockchain üzerinde şifreli saklanarak değiştirilemez bir hukuki içtihat arşivi oluşturulur.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, uyuşmazlık delilleri ve tahkim kararları blockchain üzerinde şifreli saklanarak değiştirilemez bir hukuki içtihat arşivi oluşturulur. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Delil Tescili - Armatör ve kiracı uyuşmazlık delil evraklarını hash'leyerek zincire yükler.",
+        "2. Adım: Hakem Değerlendirmesi - Atanan 3 bağımsız deniz hukukçusu delilleri inceleyip zincirde oylarını kullanır.",
+        "3. Adım: Karar Yayını - Akıllı sözleşme çoğunluk oyuna göre arabuluculuk kararını taraflara onaylatır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($18,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %70 Uyuşmazlık Çözüm Süresi Ksalması, Hukuki Arşiv Güvenliği",
+        "Yatırım Dönüş Süresi (ROI): 7 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($18,000) olduğunu görüyoruz. Sağlanan %70 uyuşmazlık çözüm süresi ksalması, hukuki arşiv güvenliği verimlilik artışı sayesinde bu teknoloji kendisini 7 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Arabuluculuk belgeleri hash'lenerek DLT'ye tescil edilir. Hakem heyetinin oylamaları akıllı sözleşmelerle yönetilir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, arabuluculuk belgeleri hash'lenerek dlt'ye tescil edilir. hakem heyetinin oylamaları akıllı sözleşmelerle yönetilir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

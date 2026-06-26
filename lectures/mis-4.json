@@ -1,0 +1,56 @@
+{
+  "id": "mis-4",
+  "title": "SBT Tabanlı Personel Performans ve KPI Karnesi",
+  "department": "Yönetim Bilişim Sistemleri",
+  "slides": [
+    {
+      "title": "1. SBT Tabanlı Personel Performans ve KPI Karnesi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Kurumsal sistemlerdeki personel performans değerlendirmeleri (KPI) yöneticilerin kişisel görüşleriyle yönlendirilebilir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Yönetim Bilişim Sistemleri bölümümüz için kritik bir çözüm olan SBT Tabanlı Personel Performans ve KPI Karnesi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, kurumsal sistemlerdeki personel performans değerlendirmeleri (kpi) yöneticilerin kişisel görüşleriyle yönlendirilebilir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Personelin hedefleri ve gerçekleştirdiği başarılar devredilemez Soulbound Token'lar (SBT) ile cüzdanına işlenerek adil kariyer geçmişi sunar.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, personelin hedefleri ve gerçekleştirdiği başarılar devredilemez soulbound token'lar (sbt) ile cüzdanına işlenerek adil kariyer geçmişi sunar. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: KPI Hedefleri - Yazılımcının yıllık hedefi '3 projede sıfır hata ile kod teslimi' olarak zincire yazılır.",
+        "2. Adım: Hedef Gerçekleşmesi - Yazılımcı hedefleri tamamladığında QA ekibi onay imzalarını zincire gönderir.",
+        "3. Adım: SBT Rozet Güncellemesi - Çalışanın cüzdanındaki performans kartına otomatik olarak 'Başarı Rozeti' işlenir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($14,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %100 Doğru Kariyer Geçmişi, İK Terfi Değerlendirme Sürelerinde %50 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 5 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($14,000) olduğunu görüyoruz. Sağlanan %100 doğru kariyer geçmişi, i̇k terfi değerlendirme sürelerinde %50 azalma verimlilik artışı sayesinde bu teknoloji kendisini 5 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: ERC-5192 standardıyla çalışana özel performans SBT kartı basılır. Yıl sonu KPI onayları yöneticilerce onchain imzalanır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, erc-5192 standardıyla çalışana özel performans sbt kartı basılır. yıl sonu kpi onayları yöneticilerce onchain imzalanır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

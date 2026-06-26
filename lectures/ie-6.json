@@ -1,0 +1,56 @@
+{
+  "id": "ie-6",
+  "title": "Ergonomi ve İş Güvenliği İhlal Günlüğü",
+  "department": "Endüstri Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Ergonomi ve İş Güvenliği İhlal Günlüğü - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Tersane gibi tehlikeli iş yerlerinde iş güvenliği (İSG) kurallarına uyulmaması can kayıplarına ve ağır hukuki davalara yol açar.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Endüstri Mühendisliği bölümümüz için kritik bir çözüm olan Ergonomi ve İş Güvenliği İhlal Günlüğü konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, tersane gibi tehlikeli iş yerlerinde iş güvenliği (i̇sg) kurallarına uyulmaması can kayıplarına ve ağır hukuki davalara yol açar. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Baret, emniyet kemeri sensörlerinin ürettiği İSG ihlal verileri blockchain'e yazılarak işverenin ve çalışanın sorumluluğu tarafsızca belgelenir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, baret, emniyet kemeri sensörlerinin ürettiği i̇sg ihlal verileri blockchain'e yazılarak işverenin ve çalışanın sorumluluğu tarafsızca belgelenir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Baret Çıkarma Olayı - İşçi iskele üzerinde baretini çıkardığında baret basınç sensörü uyarılır.",
+        "2. Adım: İhlal Tescili - Sensör ihlal olayını ve işçinin cüzdan imzasını doğrudan zincire loglar.",
+        "3. Adım: Uyarı ve Eğitim - Akıllı sözleşme İSG uzmanına uyarı yollar, işçinin onchain eğitim rozeti sorgulanır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($28,000)",
+        "İşletim / Gas Ücreti: Orta",
+        "Verimlilik Artışı: %40 İş Kazası Azalması, %100 Hukuki İltica Kanıt Gücü",
+        "Yatırım Dönüş Süresi (ROI): 10 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($28,000) olduğunu görüyoruz. Sağlanan %40 i̇ş kazası azalması, %100 hukuki i̇ltica kanıt gücü verimlilik artışı sayesinde bu teknoloji kendisini 10 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Akıllı baret ve kemerlerdeki Bluetooth/sensör donanımları, İSG yazılımı üzerinden ihlal anlarını zincire tescil eder.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, akıllı baret ve kemerlerdeki bluetooth/sensör donanımları, i̇sg yazılımı üzerinden ihlal anlarını zincire tescil eder. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "me-3",
+  "title": "Emisyon Raporlama ve Karbon Kredisi Entegrasyonu",
+  "department": "Gemi Makineleri İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Emisyon Raporlama ve Karbon Kredisi Entegrasyonu - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Uluslararası denizcilikte (IMO/EU ETS) gemilerin emisyon raporlarında elle tahrifat yapılması ve yeşil aklama (greenwashing) yaygındır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Gemi Makineleri İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Emisyon Raporlama ve Karbon Kredisi Entegrasyonu konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, uluslararası denizcilikte (imo/eu ets) gemilerin emisyon raporlarında elle tahrifat yapılması ve yeşil aklama (greenwashing) yaygındır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Ana makine baca analizörlerinden doğrudan çekilen CO2, SOx emisyon verileri değiştirilemez biçimde zincire yazılarak otomatik vergilendirilir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, ana makine baca analizörlerinden doğrudan çekilen co2, sox emisyon verileri değiştirilemez biçimde zincire yazılarak otomatik vergilendirilir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Emisyon Ölçümü - Baca sensörü sürekli emisyon verilerini toplar ve hash değerini zincire gönderir.",
+        "2. Adım: Karbon Vergisi Hesaplama - Akıllı sözleşme gidilen mil başına üretilen emisyonu hesaplar.",
+        "3. Adım: Karbon Kredisi Mahsubu - Armatörün cüzdanından otomatik olarak ceza tutarında Karbon Tokeni (CO2) düşülür."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($48,000)",
+        "İşletim / Gas Ücreti: Orta (Sensör kalibrasyon)",
+        "Verimlilik Artışı: %100 Doğru Beyan, %90 Raporlama Zaman Tasarrufu",
+        "Yatırım Dönüş Süresi (ROI): 14 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($48,000) olduğunu görüyoruz. Sağlanan %100 doğru beyan, %90 raporlama zaman tasarrufu verimlilik artışı sayesinde bu teknoloji kendisini 14 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Baca sensörleri verileri doğrudan toplayıp Chainlink oracles ile akıllı sözleşmeye iletir. Sözleşme emisyonu hesaplayıp karbon tokeni yakar.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, baca sensörleri verileri doğrudan toplayıp chainlink oracles ile akıllı sözleşmeye iletir. sözleşme emisyonu hesaplayıp karbon tokeni yakar. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "ie-8",
+  "title": "Tahmini Bakım SLA Sözleşmeleri",
+  "department": "Endüstri Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Tahmini Bakım SLA Sözleşmeleri - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Kritik makinelerin arızalanmadan önce yapılması gereken tahmini bakımları (predictive maintenance) zamanında yapılmazsa üretim durur.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Endüstri Mühendisliği bölümümüz için kritik bir çözüm olan Tahmini Bakım SLA Sözleşmeleri konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, kritik makinelerin arızalanmadan önce yapılması gereken tahmini bakımları (predictive maintenance) zamanında yapılmazsa üretim durur. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Makine titreşim sensör verileri DLT'ye yazılır; arıza olasılığı eşiği aşıldığında akıllı sözleşme bakım ekibini otomatik çağırır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, makine titreşim sensör verileri dlt'ye yazılır; arıza olasılığı eşiği aşıldığında akıllı sözleşme bakım ekibini otomatik çağırır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Sensör İzleme - Rulman yatağındaki sıcaklık ve titreşim değerleri sürekli izlenir.",
+        "2. Adım: Anomali Algılama - Sensör limit aşımı algıladığında titreşim imzasını zincire raporlar.",
+        "3. Adım: Otomatik İş Emri - Akıllı sözleşme en yakın servis firmasına iş emri ve ödeme teminatını yollar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($48,000)",
+        "İşletim / Gas Ücreti: Orta",
+        "Verimlilik Artışı: %30 Plansız Duruş Süresi Azalması, %20 Bakım Gider Tasarrufu",
+        "Yatırım Dönüş Süresi (ROI): 12 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($48,000) olduğunu görüyoruz. Sağlanan %30 plansız duruş süresi azalması, %20 bakım gider tasarrufu verimlilik artışı sayesinde bu teknoloji kendisini 12 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: CNC tezgahı titreşim verileri edge node ile izlenir. Anomali tespiti durumunda bakım iş emri akıllı sözleşmesi tetiklenir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, cnc tezgahı titreşim verileri edge node ile izlenir. anomali tespiti durumunda bakım iş emri akıllı sözleşmesi tetiklenir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

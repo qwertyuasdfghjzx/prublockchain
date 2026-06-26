@@ -1,0 +1,56 @@
+{
+  "id": "na-10",
+  "title": "Tersane Malzeme Kabul ve Tedarik Zinciri Ledger",
+  "department": "Gemi İnşaatı ve Gemi Makineleri Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Tersane Malzeme Kabul ve Tedarik Zinciri Ledger - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Gemi inşasında tersaneye giren binlerce valf, boru ve ekipmanın tedarik gecikmeleri ve sertifika eksiklikleri inşaat duruşlarına sebep olur.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Gemi İnşaatı ve Gemi Makineleri Mühendisliği bölümümüz için kritik bir çözüm olan Tersane Malzeme Kabul ve Tedarik Zinciri Ledger konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, gemi inşasında tersaneye giren binlerce valf, boru ve ekipmanın tedarik gecikmeleri ve sertifika eksiklikleri inşaat duruşlarına sebep olur. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Malzemelerin tedarikçi çıkışı, gümrük geçişi ve tersane depo kabulü ortak bir akıllı sözleşme defteriyle senkronize izlenir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, malzemelerin tedarikçi çıkışı, gümrük geçişi ve tersane depo kabulü ortak bir akıllı sözleşme defteriyle senkronize izlenir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Satın Alma Onayı - Tersane satın alma birimi siparişi onaylar ve tedarik sözleşmesini zincirde açar.",
+        "2. Adım: Tedarikçi Sevkiyatı - Tedarikçi parçayı kargolayıp sertifika dosyasını zincire ekler.",
+        "3. Adım: Depo Kabul - Tersane barkod okuyucu depo personeli ürünü onaylar, tersane bakiyesi otomatik güncellenir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Çok Yüksek ($65,000)",
+        "İşletim / Gas Ücreti: Orta (ERP entegrasyonu)",
+        "Verimlilik Artışı: %40 Depolama Maliyet Düşüşü, Tedarik Gecikmelerinde %30 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 14 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun çok yüksek ($65,000) olduğunu görüyoruz. Sağlanan %40 depolama maliyet düşüşü, tedarik gecikmelerinde %30 azalma verimlilik artışı sayesinde bu teknoloji kendisini 14 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: ERP sistemleri ile entegre, izinli blokzincir ağı üzerinde çalışan tedarik siparişi takip akıllı sözleşmesi yazılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, erp sistemleri ile entegre, izinli blokzincir ağı üzerinde çalışan tedarik siparişi takip akıllı sözleşmesi yazılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

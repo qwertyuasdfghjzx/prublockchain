@@ -1,0 +1,56 @@
+{
+  "id": "mis-7",
+  "title": "Bilgi Yönetim Sistemi Fikri Mülkiyet Havuzu",
+  "department": "Yönetim Bilişim Sistemleri",
+  "slides": [
+    {
+      "title": "1. Bilgi Yönetim Sistemi Fikri Mülkiyet Havuzu - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Şirket içi yenilikçi fikirlerin, patentlerin ve teknik makalelerin ilk kimin tarafından üretildiği organizasyon içinde belirsizleşebilir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Yönetim Bilişim Sistemleri bölümümüz için kritik bir çözüm olan Bilgi Yönetim Sistemi Fikri Mülkiyet Havuzu konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, şirket içi yenilikçi fikirlerin, patentlerin ve teknik makalelerin ilk kimin tarafından üretildiği organizasyon içinde belirsizleşebilir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Fikirlerin ve makalelerin yazarları, içerik özet hash'ini zincire kaydederek ilk buluş sahibi olduğunu değiştirilemez kılabilir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, fikirlerin ve makalelerin yazarları, içerik özet hash'ini zincire kaydederek ilk buluş sahibi olduğunu değiştirilemez kılabilir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Fikir Girişi - Mühendis yeni bir üretim metodolojisi makalesini sisteme yazar.",
+        "2. Adım: Kriptografik İmza - Mühendis cüzdanı ile makale hash'ini onaylar ve onchain tescil eder.",
+        "3. Adım: Patent Öncelik Hakkı - Gelecekteki patent davalarında zincirdeki tarih damgası ilk sahiplik kanıtı sayılır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($12,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %100 Fikir Sahipliği Tescili, İç İnovasyon Teşviklerinde %40 Artış",
+        "Yatırım Dönüş Süresi (ROI): 5 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($12,000) olduğunu görüyoruz. Sağlanan %100 fikir sahipliği tescili, i̇ç i̇novasyon teşviklerinde %40 artış verimlilik artışı sayesinde bu teknoloji kendisini 5 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Kurumsal wiki/bilgi bankası (Knowledge Base), her yeni makale eklenmesinde yazarın cüzdan imzasıyla on-chain damga basar.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, kurumsal wiki/bilgi bankası (knowledge base), her yeni makale eklenmesinde yazarın cüzdan imzasıyla on-chain damga basar. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

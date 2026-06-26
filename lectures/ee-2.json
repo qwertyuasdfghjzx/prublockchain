@@ -1,0 +1,56 @@
+{
+  "id": "ee-2",
+  "title": "Akıllı Şebeke (Smart Grid) P2P Enerji Ticareti",
+  "department": "Elektrik-Elektronik Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Akıllı Şebeke (Smart Grid) P2P Enerji Ticareti - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Kampüslerde veya gemilerdeki mikro-jeneratörlerin (güneş, rüzgar) ürettiği fazla enerjinin diğer binalara satışı merkezi aracı kurumlara tabidir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Elektrik-Elektronik Mühendisliği bölümümüz için kritik bir çözüm olan Akıllı Şebeke (Smart Grid) P2P Enerji Ticareti konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, kampüslerde veya gemilerdeki mikro-jeneratörlerin (güneş, rüzgar) ürettiği fazla enerjinin diğer binalara satışı merkezi aracı kurumlara tabidir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Akıllı sayaçlar akıllı sözleşmeler üzerinden birbirleriyle doğrudan P2P enerji takası yapar ve ödemeler tokenle anında tamamlanır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, akıllı sayaçlar akıllı sözleşmeler üzerinden birbirleriyle doğrudan p2p enerji takası yapar ve ödemeler tokenle anında tamamlanır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Fazla Enerji İlanı - A Blok çatısındaki rüzgar gülü fazla 50 kWh enerjiyi akıllı sözleşmede listeler.",
+        "2. Adım: Satın Alma Eşleşmesi - B Blok enerji ihtiyacı için teklifi kabul eder ve stabilcoin'i bloke eder.",
+        "3. Adım: Fiziki Akım and Transfer - Akıllı şebeke elektriği yönlendirir, sayaç doğrulamasıyla token depo sahibine ödenir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($50,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %30 Elektrik Fatura Düşüşü, %40 Enerji Verimliliği Artışı",
+        "Yatırım Dönüş Süresi (ROI): 15 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($50,000) olduğunu görüyoruz. Sağlanan %30 elektrik fatura düşüşü, %40 enerji verimliliği artışı verimlilik artışı sayesinde bu teknoloji kendisini 15 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Enerji üretimi ve tüketimini ölçen akıllı sayaçlar EVM ağına bağlanır. Fiyatlandırma arz-talebe göre akıllı sözleşmeyle belirlenir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, enerji üretimi ve tüketimini ölçen akıllı sayaçlar evm ağına bağlanır. fiyatlandırma arz-talebe göre akıllı sözleşmeyle belirlenir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -115,6 +115,9 @@
           <button class="tab-btn" data-view="departments">
             ⚓ Bölüm Çözümleri
           </button>
+          <button class="tab-btn" data-view="academy">
+            🎓 Sanal Derslik
+          </button>
           <button class="tab-btn" data-view="missions">
             🎯 Akademi & Görevler
           </button>
@@ -616,6 +619,117 @@
 
               </div>
             </div>
+          </div>
+        </section>
+
+        <!-- VIEW 1.5: ACADEMY (SANAL DERSLİK) -->
+        <section id="view-academy" class="view-content">
+          <div class="view-header">
+            <h2>🎓 PRU WEB3 SANAL DERSLİĞİ</h2>
+            <p>100 kilit blockchain konusunu animasyonlu slaytlar ve yapay zeka profesörün sesli ders anlatımı ile öğrenin.</p>
+          </div>
+
+          <div class="academy-layout">
+            <!-- Left Main Area: Projection Screen & Professor -->
+            <div class="academy-main-screen">
+              
+              <!-- Futuristic Projection Screen / Blackboard -->
+              <div class="academy-blackboard section-card">
+                <div class="blackboard-header">
+                  <span class="slide-indicator" id="academy-slide-indicator">Slayt: 0 / 0</span>
+                  <span class="lecture-topic" id="academy-lecture-topic">Ders Seçilmedi</span>
+                </div>
+                
+                <!-- Active Slide Content Area -->
+                <div class="blackboard-body" id="academy-slide-body">
+                  <div style="text-align: center; padding: 40px 20px;">
+                    <div style="font-size: 3.5rem; margin-bottom: 15px; animation: pulse 2s infinite;">🎓</div>
+                    <h3 style="color: var(--accent-cyan); font-family: var(--font-display);">Sanal Derslik Yükleniyor</h3>
+                    <p style="color: var(--text-muted); max-width: 400px; margin: 10px auto;">Sağ taraftaki ders listesinden bir konu seçip dersi dinlemeye başlayın.</p>
+                  </div>
+                </div>
+              </div>
+
+              <!-- AI Hologram Professor Panel -->
+              <div class="academy-professor-panel section-card">
+                <!-- Glowing Holographic Professor Avatar -->
+                <div class="professor-avatar-wrapper">
+                  <div class="professor-hologram-glow"></div>
+                  <!-- SVG representation of talking AI Professor -->
+                  <svg class="professor-svg" id="professor-svg" viewBox="0 0 100 100" fill="none">
+                    <circle cx="50" cy="35" r="18" stroke="var(--accent-cyan)" stroke-width="2" fill="rgba(6,182,212,0.15)" />
+                    <!-- Eyes -->
+                    <circle cx="43" cy="32" r="2.5" fill="var(--accent-cyan)" />
+                    <circle cx="57" cy="32" r="2.5" fill="var(--accent-cyan)" />
+                    <!-- Glasses bridge -->
+                    <line x1="43" y1="32" x2="57" y2="32" stroke="var(--accent-cyan)" stroke-width="1.5" />
+                    <!-- Headset microphone -->
+                    <path d="M32 35 C 32 45, 42 48, 46 45" stroke="var(--accent-purple)" stroke-width="2" stroke-linecap="round" />
+                    <circle cx="47" cy="44" r="2" fill="var(--accent-purple)" />
+                    <!-- Mouth (dynamic talking curve) -->
+                    <path id="professor-mouth" d="M 45 42 Q 50 42 55 42" stroke="var(--accent-cyan)" stroke-width="2" stroke-linecap="round" />
+                    <!-- Hologram Body -->
+                    <path d="M22 82 C 22 62, 32 58, 50 58 C 68 58, 78 62, 78 82" stroke="var(--accent-cyan)" stroke-width="2" fill="rgba(6,182,212,0.1)" />
+                    <!-- Professor Tie/Badge -->
+                    <polygon points="50,58 46,72 50,78 54,72" fill="var(--accent-purple)" opacity="0.8" />
+                  </svg>
+                  
+                  <!-- Speech Signal Wave -->
+                  <div class="speech-wave" id="speech-wave">
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                    <div class="wave-bar"></div>
+                  </div>
+                </div>
+                
+                <div class="professor-details">
+                  <h5 style="color: #fff; margin-bottom: 2px;">Prof. Dr. Demir Reis</h5>
+                  <span style="font-family: var(--font-mono); font-size: 0.72rem; color: var(--accent-cyan);">YAPAY ZEKA LECTURER</span>
+                  <div class="lecture-status-pill" id="lecture-status-pill">Beklemede</div>
+                </div>
+              </div>
+
+              <!-- Interactive Controls and Sync Subtitles -->
+              <div class="academy-bottom-controls section-card">
+                <!-- Subtitle Scrolling Track -->
+                <div class="subtitle-track">
+                  <p id="academy-subtitle-text">Hoca konuşurken alt yazılar burada görüntülenecektir...</p>
+                </div>
+                
+                <div class="controls-row">
+                  <div class="btn-group">
+                    <button class="mission-btn" id="btn-academy-prev" disabled>◀ Geri</button>
+                    <button class="submit-btn-cyber" id="btn-academy-play" style="margin-top: 0; padding: 8px 24px; min-width: 120px;">Dersi Başlat</button>
+                    <button class="mission-btn" id="btn-academy-next" disabled>İleri ▶</button>
+                  </div>
+                  
+                  <div class="audio-control">
+                    <button id="btn-academy-mute" class="sound-toggle-btn" style="margin-left: 0;" title="Sesi Kapat">🔊</button>
+                    <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--text-muted);" id="academy-speech-status">SES AKTİF</span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Right Sidebar: Solutions Catalog for Academy -->
+            <aside class="academy-sidebar section-card">
+              <h3 class="section-title" style="margin-bottom: 10px; font-size: 1.1rem; display: flex; justify-content: space-between; align-items: center;">
+                <span>📚 Ders Müfredatı</span>
+                <span style="font-size: 0.75rem; color: var(--accent-purple); font-weight: normal;" id="academy-catalog-count">0 / 100</span>
+              </h3>
+              
+              <!-- Search Bar -->
+              <div class="form-group" style="margin-bottom: 15px;">
+                <input type="text" class="form-input" id="input-academy-search" placeholder="Konu veya kelime ara..." style="padding: 8px 12px; font-size: 0.8rem;">
+              </div>
+
+              <div class="academy-catalog-list" id="academy-catalog-list">
+                <!-- Dynamically populated -->
+              </div>
+            </aside>
           </div>
         </section>
 

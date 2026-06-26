@@ -1,0 +1,56 @@
+{
+  "id": "lt-9",
+  "title": "Sınır Geçiş Otorizasyonu ve Dijital Geçiş Belgeleri",
+  "department": "Uluslararası Lojistik ve Taşımacılık",
+  "slides": [
+    {
+      "title": "1. Sınır Geçiş Otorizasyonu ve Dijital Geçiş Belgeleri - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Tırların sınır kapılarındaki geçiş belgelerinin (Dozvola) fiziki basılması ve dağıtımı karayolu taşımacılığında uzun kuyruklara yol açar.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası Lojistik ve Taşımacılık bölümümüz için kritik bir çözüm olan Sınır Geçiş Otorizasyonu ve Dijital Geçiş Belgeleri konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, tırların sınır kapılarındaki geçiş belgelerinin (dozvola) fiziki basılması ve dağıtımı karayolu taşımacılığında uzun kuyruklara yol açar. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Geçiş belgeleri her tır plakasına özel tokenler olarak basılır; sınır kapısında saniyeler içinde onchain sorgulanır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, geçiş belgeleri her tır plakasına özel tokenler olarak basılır; sınır kapısında saniyeler içinde onchain sorgulanır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Quota Dağıtımı - Devlet otoritesi lojistik firmasının cüzdanına yıllık sınır geçiş hakkı tokeni gönderir.",
+        "2. Adım: Plaka Eşleştirme - Firma geçiş yapacak tırın plakasını token metadata alanına kaydeder.",
+        "3. Adım: Gümrük Geçiş Kanıtı - Sınır gümrüğü tırı algıladığında plakaya kayıtlı tokeni yakarak geçiş verir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Çok Yüksek ($60,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %80 Sınır Geçiş Hızlanması, Dozvola Kağıt Bürokrasi Tasarrufu",
+        "Yatırım Dönüş Süresi (ROI): 15 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun çok yüksek ($60,000) olduğunu görüyoruz. Sağlanan %80 sınır geçiş hızlanması, dozvola kağıt bürokrasi tasarrufu verimlilik artışı sayesinde bu teknoloji kendisini 15 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Ulaştırma Bakanlıkları ortak bir DLT düğümü kurarak geçiş kotalarını ERC-1155 tokeni olarak dağıtır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, ulaştırma bakanlıkları ortak bir dlt düğümü kurarak geçiş kotalarını erc-1155 tokeni olarak dağıtır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

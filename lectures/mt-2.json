@@ -1,0 +1,56 @@
+{
+  "id": "mt-2",
+  "title": "Parametrik Deniz Sigortası (Marine Insurance)",
+  "department": "Deniz Ulaştırma İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Parametrik Deniz Sigortası (Marine Insurance) - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Deniz kazaları veya kötü hava koşulları sonrasındaki hasar tespit ve tazminat ödeme süreçleri aylarca sürmektedir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Deniz Ulaştırma İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Parametrik Deniz Sigortası (Marine Insurance) konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, deniz kazaları veya kötü hava koşulları sonrasındaki hasar tespit ve tazminat ödeme süreçleri aylarca sürmektedir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Akıllı sözleşmeler ve hava durumu oracle'ları (Chainlink) sayesinde koşullar gerçekleştiğinde ödemeler anında ve otomatik yapılır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, akıllı sözleşmeler ve hava durumu oracle'ları (chainlink) sayesinde koşullar gerçekleştiğinde ödemeler anında ve otomatik yapılır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Poliçe Akıllı Sözleşmesi - Sigortalı prim öder ve akıllı sözleşmeye kaza/hava eşik şartları yazılır.",
+        "2. Adım: Oracle Veri Akışı - Hava durumu veya kaza telemetrisi Chainlink oracle ile zincire aktarılır.",
+        "3. Adım: Otomatik Hasar Ödemesi - Şartlar ihlal edildiğinde akıllı sözleşme tazminatı anında alıcıya öder."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($35,000)",
+        "İşletim / Gas Ücreti: Düşük (Oracle abonelik)",
+        "Verimlilik Artışı: %95 Zaman Tasarrufu, %40 Uyuşmazlık Azalması",
+        "Yatırım Dönüş Süresi (ROI): 12 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($35,000) olduğunu görüyoruz. Sağlanan %95 zaman tasarrufu, %40 uyuşmazlık azalması verimlilik artışı sayesinde bu teknoloji kendisini 12 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Chainlink oracles entegrasyonu ile gemi GPS ve deniz meteoroloji verileri çekilir. Hasar eşik değerleri (örn. dalga boyu > 8m) aşıldığında ödeme tetiklenecek şekilde akıllı sözleşme kodlanır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, chainlink oracles entegrasyonu ile gemi gps ve deniz meteoroloji verileri çekilir. hasar eşik değerleri (örn. dalga boyu > 8m) aşıldığında ödeme tetiklenecek şekilde akıllı sözleşme kodlanır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

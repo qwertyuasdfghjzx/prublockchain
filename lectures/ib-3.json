@@ -1,0 +1,56 @@
+{
+  "id": "ib-3",
+  "title": "Emtia Finansmanı ve DeFi Borç Havuzları",
+  "department": "Uluslararası İşletmecilik ve Ticaret",
+  "slides": [
+    {
+      "title": "1. Emtia Finansmanı ve DeFi Borç Havuzları - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: İhracatçıların hammadde alımı için ihtiyaç duyduğu ticaret finansmanı kredilerine ulaşması uzun sürer ve yüksek teminatlar gerektirir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası İşletmecilik ve Ticaret bölümümüz için kritik bir çözüm olan Emtia Finansmanı ve DeFi Borç Havuzları konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, i̇hracatçıların hammadde alımı için ihtiyaç duyduğu ticaret finansmanı kredilerine ulaşması uzun sürer ve yüksek teminatlar gerektirir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: İhracata konu emtialar (örn: demir cevheri, tahıl) tokenize edilerek DeFi havuzlarında teminat gösterilip kredi çekilir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, i̇hracata konu emtialar (örn: demir cevheri, tahıl) tokenize edilerek defi havuzlarında teminat gösterilip kredi çekilir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Yük Tokenizasyonu - İhracatçı yoldaki demir cevheri yükünü temsil eden NFT'yi çıkarır.",
+        "2. Adım: Kredi Çekme - NFT DeFi kredi havuzuna kilitlenir and stabilcoin borç alınır.",
+        "3. Adım: Kapatma - İthalatçı malı teslim alıp ödemeyi yaptığında kredi kapatılır, NFT serbest kalır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($55,000)",
+        "İşletim / Gas Ücreti: Orta (Kredi faizleri)",
+        "Verimlilik Artışı: %80 Daha Hızlı Kredi Onayı, Teminat Maliyetlerinde %40 Düşüş",
+        "Yatırım Dönüş Süresi (ROI): 12 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($55,000) olduğunu görüyoruz. Sağlanan %80 daha hızlı kredi onayı, teminat maliyetlerinde %40 düşüş verimlilik artışı sayesinde bu teknoloji kendisini 12 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Yoldaki malları temsil eden akıllı konşimento NFT'leri, borç verme platformlarına teminat olarak kilitlenir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, yoldaki malları temsil eden akıllı konşimento nft'leri, borç verme platformlarına teminat olarak kilitlenir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

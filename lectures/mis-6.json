@@ -1,0 +1,56 @@
+{
+  "id": "mis-6",
+  "title": "Tedarikçi SLA Performans Skorlama Defteri",
+  "department": "Yönetim Bilişim Sistemleri",
+  "slides": [
+    {
+      "title": "1. Tedarikçi SLA Performans Skorlama Defteri - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Kurumların çalıştığı onlarca tedarikçinin teslimat süreleri ve ürün kaliteleri satın alma departmanlarınca şeffaf izlenememektedir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Yönetim Bilişim Sistemleri bölümümüz için kritik bir çözüm olan Tedarikçi SLA Performans Skorlama Defteri konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, kurumların çalıştığı onlarca tedarikçinin teslimat süreleri ve ürün kaliteleri satın alma departmanlarınca şeffaf izlenememektedir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Tedarikçilerin her teslimat gecikmesi ve kusurlu ürün oranı zincire işlenerek değiştirilemez bir tedarikçi karne skoru üretilir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, tedarikçilerin her teslimat gecikmesi ve kusurlu ürün oranı zincire işlenerek değiştirilemez bir tedarikçi karne skoru üretilir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Teslimat Gecikmesi - Tedarikçi malzemeyi planlanan tarihten 3 gün geç teslim eder.",
+        "2. Adım: Onchain Skor Güncelleme - Depo kabul sistemi gecikmeyi onaylar, akıllı sözleşme tedarikçi skorunu düşürür.",
+        "3. Adım: İhale Seçimi - Yeni satın alımlarda sistem ihaledeki en yüksek onchain skora sahip tedarikçiyi önerir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($26,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %20 Tedarikçi Teslimat Performans Artışı, Kalite Uyuşmazlıklarında %35 Düşüş",
+        "Yatırım Dönüş Süresi (ROI): 9 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($26,000) olduğunu görüyoruz. Sağlanan %20 tedarikçi teslimat performans artışı, kalite uyuşmazlıklarında %35 düşüş verimlilik artışı sayesinde bu teknoloji kendisini 9 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Depo mal kabul sistemindeki gecikme ve fire oranları akıllı sözleşme formüllerine beslenerek on-chain tedarikçi puanı güncellenir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, depo mal kabul sistemindeki gecikme ve fire oranları akıllı sözleşme formüllerine beslenerek on-chain tedarikçi puanı güncellenir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

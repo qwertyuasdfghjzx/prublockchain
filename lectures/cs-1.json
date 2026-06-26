@@ -1,0 +1,56 @@
+{
+  "id": "cs-1",
+  "title": "Merkeziyetsiz Kimlik (DID) Altyapısı",
+  "department": "Bilgisayar ve Yazılım Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Merkeziyetsiz Kimlik (DID) Altyapısı - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Lojistik ve denizcilik paydaşlarının yüzlerce farklı portalda ayrı şifreler kullanması kimlik hırsızlığına ve veri sızıntılarına yol açar.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Bilgisayar ve Yazılım Mühendisliği bölümümüz için kritik bir çözüm olan Merkeziyetsiz Kimlik (DID) Altyapısı konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, lojistik ve denizcilik paydaşlarının yüzlerce farklı portalda ayrı şifreler kullanması kimlik hırsızlığına ve veri sızıntılarına yol açar. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Kullanıcılar tek bir W3C uyumlu Merkeziyetsiz Kimlik (DID) ile tüm küresel liman ve lojistik uygulamalarına şifresiz giriş yapar.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, kullanıcılar tek bir w3c uyumlu merkeziyetsiz kimlik (did) ile tüm küresel liman ve lojistik uygulamalarına şifresiz giriş yapar. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: DID Oluşturma - Liman çalışanı cüzdanı üzerinden kendine özel W3C uyumlu DID tescil eder.",
+        "2. Adım: Yetki Tanımlama - Liman yönetimi, çalışanın DID adresine 'Gantry Crane Yetkilisi' SBT rozeti basar.",
+        "3. Adım: Şifresiz Giriş - Çalışan vinç kontrol ekranındaki QR kodu cüzdanıyla imzalayarak oturum açar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($25,000)",
+        "İşletim / Gas Ücreti: Çok Düşük (Sıfır lisans ücreti)",
+        "Verimlilik Artışı: %100 Şifresiz Güvenlik, Kimlik Yönetim Maliyetlerinde %80 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 9 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($25,000) olduğunu görüyoruz. Sağlanan %100 şifresiz güvenlik, kimlik yönetim maliyetlerinde %80 azalma verimlilik artışı sayesinde bu teknoloji kendisini 9 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: W3C DID standardı kullanılarak EVM tabanlı bir kimlik doğrulama akıllı sözleşmesi yazılır. Kullanıcılar private key'leriyle imza atarak giriş yapar.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, w3c did standardı kullanılarak evm tabanlı bir kimlik doğrulama akıllı sözleşmesi yazılır. kullanıcılar private key'leriyle imza atarak giriş yapar. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

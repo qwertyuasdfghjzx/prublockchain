@@ -1,0 +1,56 @@
+{
+  "id": "mb-7",
+  "title": "Mürettebat Maaş ve SGK Ödemeleri Sözleşmesi",
+  "department": "Denizcilik İşletmeleri Yönetimi",
+  "slides": [
+    {
+      "title": "1. Mürettebat Maaş ve SGK Ödemeleri Sözleşmesi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Uluslararası sularda çalışan denizcilerin farklı para birimlerinde maaş alması, sınır ötesi transfer kesintileri ve gecikmeler yaratır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Denizcilik İşletmeleri Yönetimi bölümümüz için kritik bir çözüm olan Mürettebat Maaş ve SGK Ödemeleri Sözleşmesi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, uluslararası sularda çalışan denizcilerin farklı para birimlerinde maaş alması, sınır ötesi transfer kesintileri ve gecikmeler yaratır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Maaşlar stabilcoin (USDC/USDT) ile akıllı sözleşmeler üzerinden ödenir. SGK primleri de eşzamanlı olarak devlet kurumuna aktarılır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, maaşlar stabilcoin (usdc/usdt) ile akıllı sözleşmeler üzerinden ödenir. sgk primleri de eşzamanlı olarak devlet kurumuna aktarılır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Denizci Cüzdan Tanımlama - Denizci, işe başlarken SBT kimliğiyle stabilcoin cüzdan adresini kaydeder.",
+        "2. Adım: Maaş Blokajı - Armatör aylık maaş fonlarını akıllı sözleşmeye bloke eder.",
+        "3. Adım: Otomatik Dağıtım - Ayın 1'i geldiğinde sözleşme maaşı denizciye, primleri kuruma gönderir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($25,000)",
+        "İşletim / Gas Ücreti: Çok Düşük (Sınır ötesi banka komisyonları ödenmez)",
+        "Verimlilik Artışı: %98 Daha Ucuz Transfer, Maaş Gecikmelerinin Sıfırlanması",
+        "Yatırım Dönüş Süresi (ROI): 5 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($25,000) olduğunu görüyoruz. Sağlanan %98 daha ucuz transfer, maaş gecikmelerinin sıfırlanması verimlilik artışı sayesinde bu teknoloji kendisini 5 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Gemi insanı iş sözleşmeleri akıllı sözleşmeye dökülür. Her ay sonu otomatik maaş ve vergi ödemeleri L2 ağlarında tetiklenir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, gemi insanı iş sözleşmeleri akıllı sözleşmeye dökülür. her ay sonu otomatik maaş ve vergi ödemeleri l2 ağlarında tetiklenir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

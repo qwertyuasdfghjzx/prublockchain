@@ -1,0 +1,56 @@
+{
+  "id": "cs-6",
+  "title": "Kriptografik İmza ile OTA Gemi Yazılım Güncellemesi",
+  "department": "Bilgisayar ve Yazılım Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Kriptografik İmza ile OTA Gemi Yazılım Güncellemesi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Gemi navigasyon ve makine otomasyon sistemlerine uzaktan yapılan yazılım güncellemeleri siber korsanlarca sabote edilebilir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Bilgisayar ve Yazılım Mühendisliği bölümümüz için kritik bir çözüm olan Kriptografik İmza ile OTA Gemi Yazılım Güncellemesi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, gemi navigasyon ve makine otomasyon sistemlerine uzaktan yapılan yazılım güncellemeleri siber korsanlarca sabote edilebilir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Güncelleme paketlerinin kriptografik imzaları blokzincire yazılır; gemideki bilgisayar imzayı doğrulamadan güncellemeyi açmaz.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, güncelleme paketlerinin kriptografik imzaları blokzincire yazılır; gemideki bilgisayar imzayı doğrulamadan güncellemeyi açmaz. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Güncelleme Yayını - Geliştirici yazılımı tamamlar, dosya hash'ini ve üretici dijital imzasını zincire yazar.",
+        "2. Adım: Paket İndirme - Gemi bilgisayarı uydu üzerinden güncelleme paketini indirir.",
+        "3. Adım: On-Chain İmza Doğrulama - Gemi yazılımı zincirdeki hash ile paket hash'ini karşılaştırır, eşleşirse yükleme başlar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($38,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 Sabotaj Engelleme, Siber Güvenlik İhlallerinde %95 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 12 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($38,000) olduğunu görüyoruz. Sağlanan %100 sabotaj engelleme, siber güvenlik i̇hlallerinde %95 azalma verimlilik artışı sayesinde bu teknoloji kendisini 12 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Yazılım üreticisi (örn. Wärtsilä) güncelleme binary hash değerini ECDSA özel anahtarıyla zincire imzalar. Gemi onchain imza kontrolü yapar.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, yazılım üreticisi (örn. wärtsilä) güncelleme binary hash değerini ecdsa özel anahtarıyla zincire imzalar. gemi onchain imza kontrolü yapar. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

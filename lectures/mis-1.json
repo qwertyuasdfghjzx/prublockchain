@@ -1,0 +1,56 @@
+{
+  "id": "mis-1",
+  "title": "Kurumsal Bilgi Güvenliği Denetim Günlükleri",
+  "department": "Yönetim Bilişim Sistemleri",
+  "slides": [
+    {
+      "title": "1. Kurumsal Bilgi Güvenliği Denetim Günlükleri - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Şirket içi hassas dosyalara yapılan yetkisiz erişimlerin loglarının sistem yöneticileri tarafından silinmesi iç tehditleri gizler.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Yönetim Bilişim Sistemleri bölümümüz için kritik bir çözüm olan Kurumsal Bilgi Güvenliği Denetim Günlükleri konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, şirket içi hassas dosyalara yapılan yetkisiz erişimlerin loglarının sistem yöneticileri tarafından silinmesi iç tehditleri gizler. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Erişim günlükleri (read/write logs) anlık olarak blokzincire yazılır; veri tabanı yöneticileri dahi bu logları silemez.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, erişim günlükleri (read/write logs) anlık olarak blokzincire yazılır; veri tabanı yöneticileri dahi bu logları silemez. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Dosya Erişimi - Kullanıcı insan kaynakları maaş tablosu dosyasını açar.",
+        "2. Adım: Log Hash'leme - Sistem 'Kullanıcı X, Dosya Y'ye erişti' logunu üretir ve anında hash'ler.",
+        "3. Adım: Zincire Kilitlenme - Hash değeri blokzincirine bloklanır, böylece log geçmişi manipüle edilemez kılınır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($24,000)",
+        "İşletim / Gas Ücreti: Çok Düşük (L2 gas ücretleri)",
+        "Verimlilik Artışı: %100 Log Güvenliği, İç Tehdit Tespit Oranlarında %50 Artış",
+        "Yatırım Dönüş Süresi (ROI): 7 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($24,000) olduğunu görüyoruz. Sağlanan %100 log güvenliği, i̇ç tehdit tespit oranlarında %50 artış verimlilik artışı sayesinde bu teknoloji kendisini 7 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: OS/Database denetim yazılımı (Audit Log Daemon), her erişim olayını toplayıp hash'lerini L2 EVM ağına gönderir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, os/database denetim yazılımı (audit log daemon), her erişim olayını toplayıp hash'lerini l2 evm ağına gönderir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "cs-5",
+  "title": "Düğüm (Node) Operatörlüğü Teşvik Sistemi",
+  "department": "Bilgisayar ve Yazılım Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Düğüm (Node) Operatörlüğü Teşvik Sistemi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Denizcilik izinli DLT ağlarında paydaşların (acente, liman, donatan) sunucu (node) çalıştırma motivasyonu düşüktür.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Bilgisayar ve Yazılım Mühendisliği bölümümüz için kritik bir çözüm olan Düğüm (Node) Operatörlüğü Teşvik Sistemi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, denizcilik izinli dlt ağlarında paydaşların (acente, liman, donatan) sunucu (node) çalıştırma motivasyonu düşüktür. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Blok üreten ve işlemleri doğrulayan paydaşlar, ağın işlem ücretlerinden (gas fees) veya kulüp tokenlerinden pay kazanır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, blok üreten ve işlemleri doğrulayan paydaşlar, ağın işlem ücretlerinden (gas fees) veya kulüp tokenlerinden pay kazanır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Node Kurulumu - Tersane kendi bilgi işlem odasında izinli ağ için doğrulayıcı node kurar.",
+        "2. Adım: Blok Doğrulama - Node ağda dönen akıllı konşimento işlemlerini doğrular ve bloka ekler.",
+        "3. Adım: Ödül Dağıtımı - Sistem her başarılı blok için tersanenin validatör cüzdanına PRU token yansıtır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($20,000)",
+        "İşletim / Gas Ücreti: Orta (Sunucu giderleri)",
+        "Verimlilik Artışı: %100 Kesintisiz Ağ Güvenliği, Düğüm Yönetim Giderlerinin Amortisi",
+        "Yatırım Dönüş Süresi (ROI): 9 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($20,000) olduğunu görüyoruz. Sağlanan %100 kesintisiz ağ güvenliği, düğüm yönetim giderlerinin amortisi verimlilik artışı sayesinde bu teknoloji kendisini 9 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Ağ konsensüs kuralları içine validatör ödüllendirme mekanizmaları kodlanır. Her blok onayında cüzdanlara otomatik token aktarılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, ağ konsensüs kuralları içine validatör ödüllendirme mekanizmaları kodlanır. her blok onayında cüzdanlara otomatik token aktarılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

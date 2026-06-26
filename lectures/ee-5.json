@@ -1,0 +1,56 @@
+{
+  "id": "ee-5",
+  "title": "Elektrikli Gemiler için Batarya Sağlık Durumu (SoH) Kaydı",
+  "department": "Elektrik-Elektronik Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Elektrikli Gemiler için Batarya Sağlık Durumu (SoH) Kaydı - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Elektrikli yolcu motorlarının veya hibrit gemilerin bataryalarının gerçek sağlık (SoH) durumlarının gizlenmesi, ikinci el satışta alıcıları aldatır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Elektrik-Elektronik Mühendisliği bölümümüz için kritik bir çözüm olan Elektrikli Gemiler için Batarya Sağlık Durumu (SoH) Kaydı konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, elektrikli yolcu motorlarının veya hibrit gemilerin bataryalarının gerçek sağlık (soh) durumlarının gizlenmesi, ikinci el satışta alıcıları aldatır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Batarya Yönetim Sistemi (BMS) şarj döngüsü ve SoH verilerini düzenli olarak blockchain'e yazarak şeffaf pil karnesi sunar.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, batarya yönetim sistemi (bms) şarj döngüsü ve soh verilerini düzenli olarak blockchain'e yazarak şeffaf pil karnesi sunar. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: BMS Veri Çıkışı - BMS bataryanın kapasite kaybını (%94 SoH) hesaplar.",
+        "2. Adım: Zaman Damgalı Kayıt - Sağlık verisi şarj döngüsü sayısıyla birlikte DLT'ye yazılır.",
+        "3. Adım: Alıcı Sorgusu - Gemi alıcısı batarya NFT'sini taratarak geçmiş şarj alışkanlıklarını görür."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($30,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 Şeffaf Pil Sağlığı, İkinci El Satış Güveninde %40 Artış",
+        "Yatırım Dönüş Süresi (ROI): 8 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($30,000) olduğunu görüyoruz. Sağlanan %100 şeffaf pil sağlığı, i̇kinci el satış güveninde %40 artış verimlilik artışı sayesinde bu teknoloji kendisini 8 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: BMS kartı mikrodenetleyicisi, CAN-bus üzerinden aldığı hücre voltajı ve sıcaklık loglarını şifreli olarak DLT'ye gönderir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, bms kartı mikrodenetleyicisi, can-bus üzerinden aldığı hücre voltajı ve sıcaklık loglarını şifreli olarak dlt'ye gönderir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

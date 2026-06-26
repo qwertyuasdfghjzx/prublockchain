@@ -2638,5 +2638,328 @@ footer a:hover {
   }
 }
 
+/* ==================== VIRTUAL ACADEMY CLASSROOM (SANAL DERSLİK) ==================== */
+.academy-layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: 30px;
+  align-items: start;
+}
+
+.academy-main-screen {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Projection Blackboard Screen */
+.academy-blackboard {
+  border-color: rgba(6, 182, 212, 0.3);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.05);
+  background: radial-gradient(circle at center, rgba(16, 24, 39, 0.95), rgba(10, 15, 30, 0.98)) !important;
+  min-height: 280px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blackboard-header {
+  display: flex;
+  justify-content: space-between;
+  border-bottom: 1px dashed rgba(6, 182, 212, 0.15);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+}
+
+.slide-indicator {
+  color: var(--accent-purple);
+  font-weight: bold;
+}
+
+.lecture-topic {
+  color: var(--accent-cyan);
+  font-weight: bold;
+}
+
+.blackboard-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Talking AI Professor Panel */
+.academy-professor-panel {
+  display: flex;
+  align-items: center;
+  gap: 25px;
+  border-color: rgba(139, 92, 246, 0.25);
+  background: linear-gradient(135deg, rgba(139, 92, 246, 0.03), rgba(6, 182, 212, 0.03)) !important;
+}
+
+.professor-avatar-wrapper {
+  position: relative;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  border: 2px solid var(--accent-cyan);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--bg-main);
+  overflow: visible;
+}
+
+.professor-hologram-glow {
+  position: absolute;
+  top: -4px;
+  left: -4px;
+  right: -4px;
+  bottom: -4px;
+  border-radius: 50%;
+  border: 1px solid var(--accent-cyan);
+  opacity: 0.4;
+  animation: hologram-pulse 2s infinite ease-in-out;
+}
+
+.professor-svg {
+  width: 55px;
+  height: 55px;
+}
+
+/* Mouth talking animation */
+.speaking #professor-mouth {
+  animation: talk 0.22s infinite alternate ease-in-out;
+  transform-origin: 50px 42px;
+}
+
+@keyframes talk {
+  0% { transform: scaleY(0.4); }
+  100% { transform: scaleY(2.6); }
+}
+
+@keyframes hologram-pulse {
+  0%, 100% { transform: scale(1); opacity: 0.2; }
+  50% { transform: scale(1.08); opacity: 0.5; }
+}
+
+.professor-details {
+  flex: 1;
+}
+
+.lecture-status-pill {
+  display: inline-block;
+  margin-top: 6px;
+  font-family: var(--font-mono);
+  font-size: 0.65rem;
+  font-weight: bold;
+  padding: 2px 8px;
+  border-radius: 10px;
+  border: 1px solid var(--text-muted);
+  color: var(--text-muted);
+  text-transform: uppercase;
+}
+
+/* Speech soundwave */
+.speech-wave {
+  position: absolute;
+  bottom: -12px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: none;
+  gap: 3px;
+  height: 12px;
+  align-items: flex-end;
+}
+
+.wave-bar {
+  width: 2px;
+  height: 4px;
+  background: var(--accent-cyan);
+  border-radius: 1px;
+}
+
+.speaking + .speech-wave {
+  display: flex;
+}
+
+.speaking + .speech-wave .wave-bar:nth-child(1) { animation: wave 0.6s infinite alternate 0.1s; }
+.speaking + .speech-wave .wave-bar:nth-child(2) { animation: wave 0.8s infinite alternate 0.3s; }
+.speaking + .speech-wave .wave-bar:nth-child(3) { animation: wave 0.5s infinite alternate 0s; }
+.speaking + .speech-wave .wave-bar:nth-child(4) { animation: wave 0.7s infinite alternate 0.4s; }
+.speaking + .speech-wave .wave-bar:nth-child(5) { animation: wave 0.6s infinite alternate 0.2s; }
+
+@keyframes wave {
+  0% { height: 3px; }
+  100% { height: 12px; }
+}
+
+/* Subtitle and controls */
+.academy-bottom-controls {
+  padding: 20px;
+}
+
+.subtitle-track {
+  background: rgba(10, 15, 30, 0.5);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  border-radius: 6px;
+  padding: 12px 18px;
+  min-height: 54px;
+  display: flex;
+  align-items: center;
+  margin-bottom: 15px;
+}
+
+.subtitle-track p {
+  margin: 0;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--text-main);
+  font-weight: 500;
+  font-family: var(--font-display);
+}
+
+.controls-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.audio-control {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+/* Sidebar Catalog List */
+.academy-sidebar {
+  max-height: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.academy-catalog-list {
+  flex: 1;
+  overflow-y: auto;
+  padding-right: 5px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.academy-dep-header {
+  font-family: var(--font-display);
+  font-size: 0.78rem;
+  font-weight: bold;
+  color: var(--accent-cyan);
+  text-transform: uppercase;
+  margin-top: 15px;
+  margin-bottom: 5px;
+  padding-bottom: 4px;
+  border-bottom: 1px solid rgba(6, 182, 212, 0.1);
+}
+
+.academy-dep-header:first-child {
+  margin-top: 0;
+}
+
+.academy-catalog-item {
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid rgba(255, 255, 255, 0.03);
+  padding: 12px 14px;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.academy-catalog-item:hover {
+  background: rgba(255, 255, 255, 0.04);
+  border-color: rgba(6, 182, 212, 0.2);
+}
+
+.academy-catalog-item.active {
+  background: rgba(6, 182, 212, 0.05);
+  border-color: var(--accent-cyan);
+  box-shadow: 0 0 10px rgba(6, 182, 212, 0.05);
+}
+
+.academy-catalog-item .item-title {
+  font-size: 0.82rem;
+  font-weight: bold;
+  color: #fff;
+  line-height: 1.4;
+}
+
+.academy-catalog-item .item-meta {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  align-items: center;
+}
+
+/* Badges styling */
+.source-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  padding: 1px 6px;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.source-badge.spec {
+  background: rgba(139, 92, 246, 0.1);
+  color: var(--accent-purple);
+  border: 1px solid rgba(139, 92, 246, 0.2);
+}
+
+.source-badge.local {
+  background: rgba(6, 182, 212, 0.1);
+  color: var(--accent-cyan);
+  border: 1px solid rgba(6, 182, 212, 0.2);
+}
+
+.complete-badge {
+  font-family: var(--font-mono);
+  font-size: 0.6rem;
+  color: var(--accent-green);
+  font-weight: bold;
+}
+
+/* Responsive query for Academy */
+@media (max-width: 1024px) {
+  .academy-layout {
+    grid-template-columns: 1fr;
+    gap: 25px;
+  }
+  .academy-sidebar {
+    max-height: 350px;
+  }
+}
+
+@media (max-width: 768px) {
+  .academy-professor-panel {
+    flex-direction: column;
+    text-align: center;
+    padding: 20px;
+    gap: 15px;
+  }
+  .controls-row {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .controls-row .btn-group {
+    display: flex;
+    justify-content: space-between;
+  }
+  .controls-row .audio-control {
+    justify-content: center;
+  }
+}
+
+
 
 

@@ -1,0 +1,56 @@
+{
+  "id": "mt-8",
+  "title": "Soğutmalı Konteyner (Reefer) Takibi",
+  "department": "Deniz Ulaştırma İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Soğutmalı Konteyner (Reefer) Takibi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Soğuk zincir gerektiren gıda ve ilaç yüklerinde yolculuk sırasında sıcaklık dalgalanmaları yaşanmakta ve sorumluluk tespit edilememektedir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Deniz Ulaştırma İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Soğutmalı Konteyner (Reefer) Takibi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, soğuk zincir gerektiren gıda ve ilaç yüklerinde yolculuk sırasında sıcaklık dalgalanmaları yaşanmakta ve sorumluluk tespit edilememektedir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: IoT sıcaklık sensörleri sürekli veri gönderir; belirlenen sıcaklık aşılırsa akıllı sözleşme cezaları ve sorumluyu otomatik belirler.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, iot sıcaklık sensörleri sürekli veri gönderir; belirlenen sıcaklık aşılırsa akıllı sözleşme cezaları ve sorumluyu otomatik belirler. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Sıcaklık Sınırları - Akıllı sözleşmede taşınacak ürün için sıcaklık aralığı (örn: -18C ila -22C) tanımlanır.",
+        "2. Adım: Düzenli Log Gönderimi - IoT cihazı 30 dakikada bir sıcaklığı hash'leyerek zincire gönderir.",
+        "3. Adım: İhlal ve Hasar Bildirimi - Sıcaklık bozulduğunda akıllı sözleşme navlun bedelinden hasar kesintisi yapar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($38,000)",
+        "İşletim / Gas Ücreti: Orta (Her IoT cihazı için veri ücreti)",
+        "Verimlilik Artışı: %100 Sorumluluk Netliği, %50 Bozulmuş Ürün Kaybı Azalması",
+        "Yatırım Dönüş Süresi (ROI): 11 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($38,000) olduğunu görüyoruz. Sağlanan %100 sorumluluk netliği, %50 bozulmuş ürün kaybı azalması verimlilik artışı sayesinde bu teknoloji kendisini 11 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Reefer konteynerlere yerleştirilen hücresel/uydu IoT sensörleri Chainlink oracles kullanarak akıllı sözleşmeye saatlik sıcaklık logları aktarır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, reefer konteynerlere yerleştirilen hücresel/uydu iot sensörleri chainlink oracles kullanarak akıllı sözleşmeye saatlik sıcaklık logları aktarır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "lt-10",
+  "title": "Hasarlı Kargo İhtilaf ve Tahkim Escrow Sistemi",
+  "department": "Uluslararası Lojistik ve Taşımacılık",
+  "slides": [
+    {
+      "title": "1. Hasarlı Kargo İhtilaf ve Tahkim Escrow Sistemi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Taşıma sırasında kargonun hasar görmesi halinde sigorta ve lojistik firmaları hasarın hangi taşıma ayağında olduğunu tartışır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası Lojistik ve Taşımacılık bölümümüz için kritik bir çözüm olan Hasarlı Kargo İhtilaf ve Tahkim Escrow Sistemi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, taşıma sırasında kargonun hasar görmesi halinde sigorta ve lojistik firmaları hasarın hangi taşıma ayağında olduğunu tartışır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Dağıtık defterdeki IoT sensör ve depo kabul verileri objektif hakemlik sağlar, uyuşmazlıklar akıllı sözleşme tahkimiyle çözülür.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, dağıtık defterdeki iot sensör ve depo kabul verileri objektif hakemlik sağlar, uyuşmazlıklar akıllı sözleşme tahkimiyle çözülür. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Hasar Kaydı - Alıcı malı hasarlı aldığında sensör verilerini ve fotoğrafları zincire yükler.",
+        "2. Adım: Merkeziyetsiz Değerlendirme - Akıllı sözleşme taşıma loglarını tarayarak hasarın oluştuğu sıcaklık/sarsıntı anını bulur.",
+        "3. Adım: Teminat Transferi - Hasarın oluştuğu taşıma aşaması sorumlusunun bloke ettiği teminat alıcıya ödenir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($28,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %90 Mahkeme Dışı Çözüm Hızı, Hukuki Süreç Giderlerinde %70 Düşüş",
+        "Yatırım Dönüş Süresi (ROI): 9 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($28,000) olduğunu görüyoruz. Sağlanan %90 mahkeme dışı çözüm hızı, hukuki süreç giderlerinde %70 düşüş verimlilik artışı sayesinde bu teknoloji kendisini 9 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Sensör ihlal kayıtları DLT'ye yazılır. Hasar kanıtı sunulduğunda akıllı sözleşme tahkim modülü devreye girer.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, sensör ihlal kayıtları dlt'ye yazılır. hasar kanıtı sunulduğunda akıllı sözleşme tahkim modülü devreye girer. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

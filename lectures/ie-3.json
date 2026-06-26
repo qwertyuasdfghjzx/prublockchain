@@ -1,0 +1,56 @@
+{
+  "id": "ie-3",
+  "title": "OEE (Ekipman Etkinlik Derecesi) Takip Defteri",
+  "department": "Endüstri Mühendisliği",
+  "slides": [
+    {
+      "title": "1. OEE (Ekipman Etkinlik Derecesi) Takip Defteri - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Tersanedeki cnc kesim, plazma kaynak gibi makinelerin duruş süreleri ve verimlilik (OEE) oranları manuel raporlarda abartılır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Endüstri Mühendisliği bölümümüz için kritik bir çözüm olan OEE (Ekipman Etkinlik Derecesi) Takip Defteri konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, tersanedeki cnc kesim, plazma kaynak gibi makinelerin duruş süreleri ve verimlilik (oee) oranları manuel raporlarda abartılır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Makinelerin çalışma, durma ve hız verileri doğrudan PLC/sensörden blokzincire akar; OEE denetim raporu şeffaflaşır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, makinelerin çalışma, durma ve hız verileri doğrudan plc/sensörden blokzincire akar; oee denetim raporu şeffaflaşır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Makine İzleme - Plazma kesim tezgahının çalışma ve durma süreleri sensörlerce toplanır.",
+        "2. Adım: OEE Hesaplama - Akıllı sözleşme makinenin OEE oranını (%82) onchain hesaplar.",
+        "3. Adım: Verim Raporu Kilidi - Günlük verimlilik karnesi şirket içi denetçiler için zincirde kilitlenir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($30,000)",
+        "İşletim / Gas Ücreti: Orta",
+        "Verimlilik Artışı: %15 OEE Verimlilik Artışı, %100 Doğru Raporlama Güvencesi",
+        "Yatırım Dönüş Süresi (ROI): 9 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($30,000) olduğunu görüyoruz. Sağlanan %15 oee verimlilik artışı, %100 doğru raporlama güvencesi verimlilik artışı sayesinde bu teknoloji kendisini 9 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Makinelerin IoT çıkışları, OEE formülüne (Kullanılabilirlik x Performans x Kalite) göre akıllı sözleşmeyle hesaplanıp kaydedilir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, makinelerin iot çıkışları, oee formülüne (kullanılabilirlik x performans x kalite) göre akıllı sözleşmeyle hesaplanıp kaydedilir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

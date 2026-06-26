@@ -1,0 +1,56 @@
+{
+  "id": "lt-2",
+  "title": "Soğuk Zincir IoT ve SLA Doğrulama",
+  "department": "Uluslararası Lojistik ve Taşımacılık",
+  "slides": [
+    {
+      "title": "1. Soğuk Zincir IoT ve SLA Doğrulama - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Gıda ve medikal lojistikte soğuk zincirin bozulması durumunda sorumluluğun kimde olduğu tespit edilememekte, ürünler heba olmaktadır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası Lojistik ve Taşımacılık bölümümüz için kritik bir çözüm olan Soğuk Zincir IoT ve SLA Doğrulama konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, gıda ve medikal lojistikte soğuk zincirin bozulması durumunda sorumluluğun kimde olduğu tespit edilememekte, ürünler heba olmaktadır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: IoT ısı sensörü verileri DLT'ye yazılır; Service Level Agreement (SLA) aşılırsa akıllı sözleşme cezaları otomatik tahsil eder.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, iot ısı sensörü verileri dlt'ye yazılır; service level agreement (sla) aşılırsa akıllı sözleşme cezaları otomatik tahsil eder. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: SLA Tanımlama - Taşıma sözleşmesi sıcaklık limitleri (-18C ila -20C) akıllı sözleşmeye girilir.",
+        "2. Adım: IoT Log Akışı - Konteyner içi sensör, verilerini şifreli olarak oracles vasıtasıyla zincire yazar.",
+        "3. Adım: Otomatik Cezalandırma - Sıcaklık -15C'ye çıktığında sözleşme navlun bedelinden hasar tazminatını otomatik keser."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($45,000)",
+        "İşletim / Gas Ücreti: Orta (IoT veri)",
+        "Verimlilik Artışı: %50 Ürün Fire Oranı Azalması, %100 Otomatik SLA Cezaları",
+        "Yatırım Dönüş Süresi (ROI): 10 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($45,000) olduğunu görüyoruz. Sağlanan %50 ürün fire oranı azalması, %100 otomatik sla cezaları verimlilik artışı sayesinde bu teknoloji kendisini 10 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Chainlink oracles entegreli akıllı sözleşme, soğutucu konteynerdeki IoT sıcaklık ölçümlerini saatlik kontrol eder.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, chainlink oracles entegreli akıllı sözleşme, soğutucu konteynerdeki iot sıcaklık ölçümlerini saatlik kontrol eder. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

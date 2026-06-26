@@ -1,0 +1,56 @@
+{
+  "id": "lt-1",
+  "title": "Multimodal Konteyner Takip Ağı",
+  "department": "Uluslararası Lojistik ve Taşımacılık",
+  "slides": [
+    {
+      "title": "1. Multimodal Konteyner Takip Ağı - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Konteynerlerin deniz, demiryolu ve karayolu geçişlerinde mülkiyet ve sorumluluk transferi şeffaf takip edilememektedir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası Lojistik ve Taşımacılık bölümümüz için kritik bir çözüm olan Multimodal Konteyner Takip Ağı konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, konteynerlerin deniz, demiryolu ve karayolu geçişlerinde mülkiyet ve sorumluluk transferi şeffaf takip edilememektedir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Konteynerlerin taşıyıcılar arasındaki her el değiştirmesi blokzincire yazılarak kayıplar ve gecikme sorumluları net olarak belirlenir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, konteynerlerin taşıyıcılar arasındaki her el değiştirmesi blokzincire yazılarak kayıplar ve gecikme sorumluları net olarak belirlenir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Konteyner NFT Çıkışı - Depodan çıkan konteynerin başlangıç durumu ve barkodu zincire kaydedilir.",
+        "2. Adım: Taşıyıcı Değişimi - Konteyner gemiden trene yüklendiğinde tren işletmecisi dijital teslimat imzası atar.",
+        "3. Adım: Son Teslimat - Alıcı konteyneri teslim aldığında zincirdeki NFT durumu 'Teslim Edildi'ye döner."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($55,000)",
+        "İşletim / Gas Ücreti: Orta (Barkod/RFID tarama)",
+        "Verimlilik Artışı: %100 Konteyner Görünürlüğü, Uyuşmazlık Çözüm Süresinde %80 Düşüş",
+        "Yatırım Dönüş Süresi (ROI): 12 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($55,000) olduğunu görüyoruz. Sağlanan %100 konteyner görünürlüğü, uyuşmazlık çözüm süresinde %80 düşüş verimlilik artışı sayesinde bu teknoloji kendisini 12 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Her konteyner bir NFT olarak tanımlanır. Liman RFID okuyucuları ve tren/tır entegrasyon API'leri ile NFT transferleri otomatize edilir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, her konteyner bir nft olarak tanımlanır. liman rfid okuyucuları ve tren/tır entegrasyon api'leri ile nft transferleri otomatize edilir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

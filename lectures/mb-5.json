@@ -1,0 +1,56 @@
+{
+  "id": "mb-5",
+  "title": "Navlun Fiyat Risk Yönetimi ve Hedging (DEX)",
+  "department": "Denizcilik İşletmeleri Yönetimi",
+  "slides": [
+    {
+      "title": "1. Navlun Fiyat Risk Yönetimi ve Hedging (DEX) - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Navlun fiyatlarının (örn: Baltic Dry Index) aşırı dalgalanması, armatörlerin ve kiralayıcıların finansal iflas riskiyle karşılaşmasına neden olur.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Denizcilik İşletmeleri Yönetimi bölümümüz için kritik bir çözüm olan Navlun Fiyat Risk Yönetimi ve Hedging (DEX) konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, navlun fiyatlarının (örn: baltic dry index) aşırı dalgalanması, armatörlerin ve kiralayıcıların finansal iflas riskiyle karşılaşmasına neden olur. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Merkeziyetsiz finans (DeFi) üzerinde oluşturulan navlun türev araçları (FFAs) sayesinde taraflar navlun fiyatlarını hedge eder.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, merkeziyetsiz finans (defi) üzerinde oluşturulan navlun türev araçları (ffas) sayesinde taraflar navlun fiyatlarını hedge eder. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Hedging Havuzu - Armatör navlun fiyatının düşüşüne karşı koruma almak için havuza teminat yatırır.",
+        "2. Adım: Endeks Fiyat Takibi - Chainlink, Baltic Dry Index fiyatını günlük olarak akıllı sözleşmeye günceller.",
+        "3. Adım: Vade Sonu Kâr/Zarar Tahsili - Endeks düştüğünde akıllı sözleşme oluşan zararı karşılamak için havuzdan ödeme yapar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($50,000)",
+        "İşletim / Gas Ücreti: Orta",
+        "Verimlilik Artışı: %100 DeFi Likiditesi, Aracı Yatırım Bankası Komisyonlarında %80 Tasarrufu",
+        "Yatırım Dönüş Süresi (ROI): 14 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($50,000) olduğunu görüyoruz. Sağlanan %100 defi likiditesi, aracı yatırım bankası komisyonlarında %80 tasarrufu verimlilik artışı sayesinde bu teknoloji kendisini 14 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Baltic Dry Index verilerini alan Chainlink oracles ile çalışan, navlun vadeli (futures) ve opsiyon akıllı sözleşmeleri kodlanır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, baltic dry index verilerini alan chainlink oracles ile çalışan, navlun vadeli (futures) ve opsiyon akıllı sözleşmeleri kodlanır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "me-8",
+  "title": "Gemi Jeneratör Verimlilik Teşvik Sistemi",
+  "department": "Gemi Makineleri İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Gemi Jeneratör Verimlilik Teşvik Sistemi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Mürettebatın gemide gereksiz yere birden fazla jeneratör çalıştırması (paralel alma) aşırı yakıt sarfiyatına ve motor aşınmasına neden olur.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Gemi Makineleri İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Gemi Jeneratör Verimlilik Teşvik Sistemi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, mürettebatın gemide gereksiz yere birden fazla jeneratör çalıştırması (paralel alma) aşırı yakıt sarfiyatına ve motor aşınmasına neden olur. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Optimum jeneratör kullanım profili çizen gemi ekipleri, yakıt tasarrufundan elde edilen gelirin bir kısmını token olarak kazanır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, optimum jeneratör kullanım profili çizen gemi ekipleri, yakıt tasarrufundan elde edilen gelirin bir kısmını token olarak kazanır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Yük İzleme - Jeneratörlerin kW yükleri ve yakıt tüketim logları zincire işlenir.",
+        "2. Adım: Optimizasyon Skoru - Akıllı sözleşme ekibin gereksiz çift jeneratör çalıştırma sürelerini analiz eder.",
+        "3. Adım: Token Ödülü - Yüksek verimlilik skoru yakalayan makine ekibine cüzdanları üzerinden prim tokeni ödenir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($24,000)",
+        "İşletim / Gas Ücreti: Orta (Mürettebat ödül bütçesi)",
+        "Verimlilik Artışı: %12 Yakıt Tasarrufu, %100 Personel Motivasyonu",
+        "Yatırım Dönüş Süresi (ROI): 6 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($24,000) olduğunu görüyoruz. Sağlanan %12 yakıt tasarrufu, %100 personel motivasyonu verimlilik artışı sayesinde bu teknoloji kendisini 6 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Jeneratör yük dağılım verileri otomatik toplanır. Akıllı sözleşme optimum kullanım sürelerini hesaplayarak ekibe PRU benzeri ödüller dağıtır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, jeneratör yük dağılım verileri otomatik toplanır. akıllı sözleşme optimum kullanım sürelerini hesaplayarak ekibe pru benzeri ödüller dağıtır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "ee-6",
+  "title": "PLC Güvenlik ve Konfigürasyon Logları",
+  "department": "Elektrik-Elektronik Mühendisliği",
+  "slides": [
+    {
+      "title": "1. PLC Güvenlik ve Konfigürasyon Logları - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Tersanelerdeki veya gemi makinelerindeki Programmable Logic Controller (PLC) ayarlarının siber saldırıyla (Stuxnet vb.) değiştirilmesi felakete yol açar.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Elektrik-Elektronik Mühendisliği bölümümüz için kritik bir çözüm olan PLC Güvenlik ve Konfigürasyon Logları konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, tersanelerdeki veya gemi makinelerindeki programmable logic controller (plc) ayarlarının siber saldırıyla (stuxnet vb.) değiştirilmesi felakete yol açar. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: PLC'lerin firmware ve konfigürasyon hash'leri düzenli taranır; zincirdeki hash ile uyuşmayan PLC'ler otomatik durdurulur.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, plc'lerin firmware ve konfigürasyon hash'leri düzenli taranır; zincirdeki hash ile uyuşmayan plc'ler otomatik durdurulur. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Config Yükleme - Mühendis PLC'ye yeni kontrol kodu yükler ve kod hash'ini zincire kaydeder.",
+        "2. Adım: Periyodik Kontrol - Güvenlik watchdog yazılımı PLC bellek kodunu 10 dakikada bir tarar.",
+        "3. Adım: Acil Duruş - Kod hash'i değiştiğinde (siber müdahale) akıllı sözleşme tetiklenir ve PLC'yi güvenli moda alır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($40,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 Sabotaj Koruması, Kritik Duruş Sürelerinde %50 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 12 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($40,000) olduğunu görüyoruz. Sağlanan %100 sabotaj koruması, kritik duruş sürelerinde %50 azalma verimlilik artışı sayesinde bu teknoloji kendisini 12 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: PLC kontrol yazılımı, her başlatmada mevcut ladder logic kod hash'ini akıllı sözleşmedeki onaylı hash ile karşılaştırır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, plc kontrol yazılımı, her başlatmada mevcut ladder logic kod hash'ini akıllı sözleşmedeki onaylı hash ile karşılaştırır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

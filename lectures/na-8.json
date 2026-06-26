@@ -1,0 +1,56 @@
+{
+  "id": "na-8",
+  "title": "Gemi Yapısal Gerilme (Stress) İzleme Arşivi",
+  "department": "Gemi İnşaatı ve Gemi Makineleri Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Gemi Yapısal Gerilme (Stress) İzleme Arşivi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Büyük yük gemilerinin dalgalı denizlerde maruz kaldığı yapısal gerilme (stress) ve yorulma verileri analiz edilmezse anlık gövde kırılmaları yaşanabilir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Gemi İnşaatı ve Gemi Makineleri Mühendisliği bölümümüz için kritik bir çözüm olan Gemi Yapısal Gerilme (Stress) İzleme Arşivi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, büyük yük gemilerinin dalgalı denizlerde maruz kaldığı yapısal gerilme (stress) ve yorulma verileri analiz edilmezse anlık gövde kırılmaları yaşanabilir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Gövde üzerine yerleştirilen strain-gauge sensörlerinin verileri değiştirilemez bir DLT veri tabanında saklanarak gemi ömrü doğru analiz edilir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, gövde üzerine yerleştirilen strain-gauge sensörlerinin verileri değiştirilemez bir dlt veri tabanında saklanarak gemi ömrü doğru analiz edilir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Gerilme Ölçümü - Gövde sacındaki strain-gauge sensörleri mikro-gerilmeleri kaydeder.",
+        "2. Adım: Veri Sıkıştırma - Kritik tepe gerilme değerleri şifrelenip zaman damgasıyla zincire yollanır.",
+        "3. Adım: Yapısal Risk Analizi - Klas ve Donatan, geminin yorulma geçmişini doğrulanmış veriyle analiz eder."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($50,000)",
+        "İşletim / Gas Ücreti: Orta (Uydu telemetri)",
+        "Verimlilik Artışı: %100 Gerçek Zamanlı Yorulma Arşivi, Kaza Risklerinde %30 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 18 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($50,000) olduğunu görüyoruz. Sağlanan %100 gerçek zamanlı yorulma arşivi, kaza risklerinde %30 azalma verimlilik artışı sayesinde bu teknoloji kendisini 18 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Strain-gauge ve ivmeölçer verileri gemideki edge-computing cihazıyla işlenerek saatlik stres endeksleri halinde zincire yazılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, strain-gauge ve ivmeölçer verileri gemideki edge-computing cihazıyla işlenerek saatlik stres endeksleri halinde zincire yazılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

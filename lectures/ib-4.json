@@ -1,0 +1,56 @@
+{
+  "id": "ib-4",
+  "title": "KOBİ İhracat Destek Mikro-Finansman Havuzları",
+  "department": "Uluslararası İşletmecilik ve Ticaret",
+  "slides": [
+    {
+      "title": "1. KOBİ İhracat Destek Mikro-Finansman Havuzları - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Küçük ve orta ölçekli işletmelerin (KOBİ) ihracat yaparken maruz kaldığı nakit sıkışıklıkları bankalar tarafından finanse edilmemektedir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası İşletmecilik ve Ticaret bölümümüz için kritik bir çözüm olan KOBİ İhracat Destek Mikro-Finansman Havuzları konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, küçük ve orta ölçekli işletmelerin (kobi̇) ihracat yaparken maruz kaldığı nakit sıkışıklıkları bankalar tarafından finanse edilmemektedir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Merkeziyetsiz mikro-finansman havuzları sayesinde dünya genelindeki yatırımcılar doğrudan KOBİ ihracat faturalarını fonlar.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, merkeziyetsiz mikro-finansman havuzları sayesinde dünya genelindeki yatırımcılar doğrudan kobi̇ ihracat faturalarını fonlar. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Fatura Tokenizasyonu - KOBİ, onaylı ihracat faturasını platformda tokenize eder.",
+        "2. Adım: Havuz Fonlaması - Küresel yatırımcılar havuzdan fatura hissesi satın alarak fonlama sağlar.",
+        "3. Adım: Tahsilat ve Dağıtım - Yurtdışı alıcı faturayı ödediğinde anapara ve faiz yatırımcılara dağıtılır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($35,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %30 Daha Düşük Faiz Oranları, KOBİ Finansmana Erişim Hızı 5 Kat Artış",
+        "Yatırım Dönüş Süresi (ROI): 9 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($35,000) olduğunu görüyoruz. Sağlanan %30 daha düşük faiz oranları, kobi̇ finansmana erişim hızı 5 kat artış verimlilik artışı sayesinde bu teknoloji kendisini 9 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: KOBİ ihracat faturaları (invoices) tokenize edilir. Yatırımcılar bu havuzlara likidite sağlayarak faiz geliri elde eder.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, kobi̇ ihracat faturaları (invoices) tokenize edilir. yatırımcılar bu havuzlara likidite sağlayarak faiz geliri elde eder. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "cs-9",
+  "title": "Merkeziyetsiz Git Deposu ve Akıllı Kod Sürüm Kontrolü",
+  "department": "Bilgisayar ve Yazılım Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Merkeziyetsiz Git Deposu ve Akıllı Kod Sürüm Kontrolü - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: GitHub gibi merkezi kod depolarının hack'lenmesi veya hesapların kapatılması durumunda yazılım projeleri riske girer.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Bilgisayar ve Yazılım Mühendisliği bölümümüz için kritik bir çözüm olan Merkeziyetsiz Git Deposu ve Akıllı Kod Sürüm Kontrolü konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, github gibi merkezi kod depolarının hack'lenmesi veya hesapların kapatılması durumunda yazılım projeleri riske girer. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Yazılım kod tabanı Radicle gibi merkeziyetsiz P2P ağlarda ve blokzincir tescilli versiyon geçmişlerinde saklanır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, yazılım kod tabanı radicle gibi merkeziyetsiz p2p ağlarda ve blokzincir tescilli versiyon geçmişlerinde saklanır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Kod Commit - Yazılımcı yeni sürüm kodunu yerel bilgisayarında Radicle P2P ağına yükler.",
+        "2. Adım: Hash Tescili - Kod commit'inin benzersiz hash'i akıllı sözleşmeye gönderilerek mühürlenir.",
+        "3. Adım: Doğrulanmış Deployment - Sunucular güncellemeyi sadece zincirdeki doğrulanmış commit hash'inden çeker."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($12,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %100 Kod Koruma ve Kesintisiz Erişim, Sansür Engelleme",
+        "Yatırım Dönüş Süresi (ROI): 5 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($12,000) olduğunu görüyoruz. Sağlanan %100 kod koruma ve kesintisiz erişim, sansür engelleme verimlilik artışı sayesinde bu teknoloji kendisini 5 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Radicle ağı entegrasyonu yapılır. Geliştiriciler kod commit'lerini Ethereum akıllı sözleşmesiyle tescil eder.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, radicle ağı entegrasyonu yapılır. geliştiriciler kod commit'lerini ethereum akıllı sözleşmesiyle tescil eder. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

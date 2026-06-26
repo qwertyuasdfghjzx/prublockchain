@@ -1,0 +1,56 @@
+{
+  "id": "ib-9",
+  "title": "Çok Uluslu Ortak Girişim Gelir Paylaşımı",
+  "department": "Uluslararası İşletmecilik ve Ticaret",
+  "slides": [
+    {
+      "title": "1. Çok Uluslu Ortak Girişim Gelir Paylaşımı - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Konsorsiyumlar veya ortak girişimlerde (Joint Ventures) elde edilen gelirlerin ortaklar arasında paylaşılması ve muhasebeleştirilmesi aylar sürer.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası İşletmecilik ve Ticaret bölümümüz için kritik bir çözüm olan Çok Uluslu Ortak Girişim Gelir Paylaşımı konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, konsorsiyumlar veya ortak girişimlerde (joint ventures) elde edilen gelirlerin ortaklar arasında paylaşılması ve muhasebeleştirilmesi aylar sürer. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Gelirler ortak hesaba yattığı anda akıllı sözleşme ortaklık payları oranında transferleri otomatik ve anlık yapar.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, gelirler ortak hesaba yattığı anda akıllı sözleşme ortaklık payları oranında transferleri otomatik ve anlık yapar. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Müşteri Ödemesi - Müşteri ortak girişim adına açılan akıllı sözleşmeye ödeme yapar.",
+        "2. Adım: Pay Dağıtım Tetikleyici - Ödeme geldiğinde sözleşme otomatik çalışarak payları böler.",
+        "3. Adım: Transfer - Ortak A, B ve C firmalarının kurumsal cüzdanlarına payları saniyeler içinde aktarılır."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($15,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %100 Şeffaflık, Gelir Dağıtım ve Denetim Giderlerinde %90 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 4 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($15,000) olduğunu görüyoruz. Sağlanan %100 şeffaflık, gelir dağıtım ve denetim giderlerinde %90 azalma verimlilik artışı sayesinde bu teknoloji kendisini 4 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Gelir split sözleşmesi yazılır. Ortakların pay oranları (örn: %40, %30, %30) kontrat adresinde sabitlenir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, gelir split sözleşmesi yazılır. ortakların pay oranları (örn: %40, %30, %30) kontrat adresinde sabitlenir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

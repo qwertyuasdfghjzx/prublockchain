@@ -1,0 +1,56 @@
+{
+  "id": "mt-6",
+  "title": "Defter Üzerinde Gemi Erişim Günlüğü",
+  "department": "Deniz Ulaştırma İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Defter Üzerinde Gemi Erişim Günlüğü - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Uluslararası limanlarda gemiye yasadışı binişler, kaçak yolcular ve mürettebat dışı giriş-çıkışların takibinde zafiyetler vardır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Deniz Ulaştırma İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Defter Üzerinde Gemi Erişim Günlüğü konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, uluslararası limanlarda gemiye yasadışı binişler, kaçak yolcular ve mürettebat dışı giriş-çıkışların takibinde zafiyetler vardır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Gemi giriş-çıkış günlükleri blockchain üzerinde tutularak geriye dönük değiştirilemez bir güvenlik denetim kaydı oluşturulur.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, gemi giriş-çıkış günlükleri blockchain üzerinde tutularak geriye dönük değiştirilemez bir güvenlik denetim kaydı oluşturulur. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Kart Tarama - Gemiye binen kişi RFID kartını veya biyometrik verisini gangway'de taratır.",
+        "2. Adım: Zaman Damgası - Giriş saati ve kişi bilgileri hash'lenerek blokzincirine bloklanır.",
+        "3. Adım: Yetkisiz Erişim Alarmı - Yetkisiz bir kart algılandığında akıllı sözleşme liman güvenliğine alarm iletir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Düşük ($12,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 Kayıt Güvenliği, ISPS Denetimlerinde Sıfır Hata",
+        "Yatırım Dönüş Süresi (ROI): 8 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun düşük ($12,000) olduğunu görüyoruz. Sağlanan %100 kayıt güvenliği, isps denetimlerinde sıfır hata verimlilik artışı sayesinde bu teknoloji kendisini 8 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Gemi iskelesine (gangway) yerleştirilen RFID/Biyometrik okuyucular yerel bir düğüm aracılığıyla işlemleri doğrudan blokzincirine kaydeder.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, gemi iskelesine (gangway) yerleştirilen rfid/biyometrik okuyucular yerel bir düğüm aracılığıyla işlemleri doğrudan blokzincirine kaydeder. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

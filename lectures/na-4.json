@@ -1,0 +1,56 @@
+{
+  "id": "na-4",
+  "title": "Kaynak Kalite Kontrol ve Mühendis İtibar Sistemi",
+  "department": "Gemi İnşaatı ve Gemi Makineleri Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Kaynak Kalite Kontrol ve Mühendis İtibar Sistemi - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Gemi inşasında en kritik yapısal aşamalardan biri olan kaynakların kalitesiz yapılması, gövde çatlamalarına yol açar.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Gemi İnşaatı ve Gemi Makineleri Mühendisliği bölümümüz için kritik bir çözüm olan Kaynak Kalite Kontrol ve Mühendis İtibar Sistemi konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, gemi inşasında en kritik yapısal aşamalardan biri olan kaynakların kalitesiz yapılması, gövde çatlamalarına yol açar. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Her kaynağı yapan personelin sertifikası ve kaynak röntgen testleri (NDT) zincire işlenerek personel kalite karnesi oluşturulur.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, her kaynağı yapan personelin sertifikası ve kaynak röntgen testleri (ndt) zincire işlenerek personel kalite karnesi oluşturulur. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Kaynak İşlemi - Kaynakçı işi tamamlar ve RFID kimliğiyle kaynağı kendi üzerine kaydeder.",
+        "2. Adım: Tahribatsız Muayene (NDT) - NDT teknisyeni ultrason taramasını yapar, raporu zincire ekler.",
+        "3. Adım: Kalite İtibarı - Başarılı kaynaklar sonrası kaynakçının onchain kalite puanı (SBT) artar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($22,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 İzlenebilirlik, Kaynak Hatalarından Kaynaklı Hasarlarda %40 Azalma",
+        "Yatırım Dönüş Süresi (ROI): 10 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($22,000) olduğunu görüyoruz. Sağlanan %100 i̇zlenebilirlik, kaynak hatalarından kaynaklı hasarlarda %40 azalma verimlilik artışı sayesinde bu teknoloji kendisini 10 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Kaynak röntgen test cihazı (Ultrasonic NDT) çıktıları hash'lenerek, kaynakçının cüzdan adresi ve sertifikasıyla DLT üzerinde eşleştirilir.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, kaynak röntgen test cihazı (ultrasonic ndt) çıktıları hash'lenerek, kaynakçının cüzdan adresi ve sertifikasıyla dlt üzerinde eşleştirilir. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

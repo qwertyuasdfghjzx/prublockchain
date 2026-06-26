@@ -1,0 +1,56 @@
+{
+  "id": "ee-3",
+  "title": "HSM Tabanlı Donanımsal Ledger İmzalama",
+  "department": "Elektrik-Elektronik Mühendisliği",
+  "slides": [
+    {
+      "title": "1. HSM Tabanlı Donanımsal Ledger İmzalama - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: IoT cihazlarının ürettiği veriler veri tabanına yüklenirken sunucu katmanında siber saldırganlarca değiştirilebilir.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Elektrik-Elektronik Mühendisliği bölümümüz için kritik bir çözüm olan HSM Tabanlı Donanımsal Ledger İmzalama konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, iot cihazlarının ürettiği veriler veri tabanına yüklenirken sunucu katmanında siber saldırganlarca değiştirilebilir. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Sensörlerin içine entegre edilen Donanımsal Güvenlik Modülleri (HSM) veriyi kaynağında imzalayarak DLT'ye gönderir.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, sensörlerin içine entegre edilen donanımsal güvenlik modülleri (hsm) veriyi kaynağında imzalayarak dlt'ye gönderir. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Veri Ölçümü - Sensör sıcaklık verisini (+24.5 C) okur.",
+        "2. Adım: Çip İçi İmzalama - Entegre HSM çipi veriyi kendi içindeki private key ile imzalar.",
+        "3. Adım: DLT Doğrulama - Veri buluta ulaştığında DLT düğümü imzayı kontrol eder, sahteyse veriyi çöpe atar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($28,000)",
+        "İşletim / Gas Ücreti: Düşük (Sensör birim maliyeti artar)",
+        "Verimlilik Artışı: %100 Donanım Güvenliği, Uçtan Uca %100 Veri Bütünlüğü",
+        "Yatırım Dönüş Süresi (ROI): 10 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($28,000) olduğunu görüyoruz. Sağlanan %100 donanım güvenliği, uçtan uca %100 veri bütünlüğü verimlilik artışı sayesinde bu teknoloji kendisini 10 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Secure Element (örn. ATECC608A) çipleri IoT devre kartına eklenir. Kriptografik özel anahtar çipten asla dışarı çıkarılamaz.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, secure element (örn. atecc608a) çipleri iot devre kartına eklenir. kriptografik özel anahtar çipten asla dışarı çıkarılamaz. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

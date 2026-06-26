@@ -1,0 +1,56 @@
+{
+  "id": "mt-10",
+  "title": "Balast Suyu Uyum ve Defter Kayıtları",
+  "department": "Deniz Ulaştırma İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Balast Suyu Uyum ve Defter Kayıtları - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Gemilerin balast suyu deşarj kayıtları üzerinde oynama yapması istilacı türlerin yayılmasına ve deniz ekolojisinin bozulmasına neden olur.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Deniz Ulaştırma İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Balast Suyu Uyum ve Defter Kayıtları konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, gemilerin balast suyu deşarj kayıtları üzerinde oynama yapması istilacı türlerin yayılmasına ve deniz ekolojisinin bozulmasına neden olur. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Balast operasyonları sensörler aracılığıyla doğrudan blokzincire yazılarak çevre bakanlıklarına değiştirilemez kanıtlar sunulur.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, balast operasyonları sensörler aracılığıyla doğrudan blokzincire yazılarak çevre bakanlıklarına değiştirilemez kanıtlar sunulur. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Balast Alımı - Gemi kalkış limanında balast aldığında lokasyon ve hacim veri tabanına işlenir.",
+        "2. Adım: Arıtma Aktivasyonu - UV sterilizasyon ünitesinin çalışma verileri onchain doğrulanır.",
+        "3. Adım: Uyumlu Deşarj - Varış limanında deşarj izni için sensör kayıtları gümrük onayına sunulur."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($28,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 IMO Regülasyon Uyumu, Ceza Risklerinin Sıfırlanması",
+        "Yatırım Dönüş Süresi (ROI): 12 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($28,000) olduğunu görüyoruz. Sağlanan %100 imo regülasyon uyumu, ceza risklerinin sıfırlanması verimlilik artışı sayesinde bu teknoloji kendisini 12 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Balast pompalarına takılan debimetre ve UV arıtma sensörleri, her balast operasyonunu (lokasyon, hacim, arıtma durumu) zincire kaydeder.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, balast pompalarına takılan debimetre ve uv arıtma sensörleri, her balast operasyonunu (lokasyon, hacim, arıtma durumu) zincire kaydeder. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

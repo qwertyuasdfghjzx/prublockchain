@@ -1,0 +1,56 @@
+{
+  "id": "cs-8",
+  "title": "Lojistik API Entegrasyonları için Oracle Ağ Geçitleri",
+  "department": "Bilgisayar ve Yazılım Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Lojistik API Entegrasyonları için Oracle Ağ Geçitleri - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Akıllı sözleşmeler doğaları gereği blokzincir dışındaki (gümrük, meteoroloji vb.) API sunucularına doğrudan bağlanamazlar.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Bilgisayar ve Yazılım Mühendisliği bölümümüz için kritik bir çözüm olan Lojistik API Entegrasyonları için Oracle Ağ Geçitleri konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, akıllı sözleşmeler doğaları gereği blokzincir dışındaki (gümrük, meteoroloji vb.) api sunucularına doğrudan bağlanamazlar. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Merkeziyetsiz oracle ağ geçitleri (Chainlink) dış dünyadaki verileri doğrulanabilir ve güvenli biçimde akıllı sözleşmelere taşır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, merkeziyetsiz oracle ağ geçitleri (chainlink) dış dünyadaki verileri doğrulanabilir ve güvenli biçimde akıllı sözleşmelere taşır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Veri Talebi - Akıllı sözleşme 'Gemi limana vardı mı?' sorgusunu oracle kontratına gönderir.",
+        "2. Adım: API Sorgusu - Chainlink düğümleri Liman AIS API'sine eşzamanlı sorgu atar.",
+        "3. Adım: Mutabakat ve Yazım - Düğümler gelen cevaplarda mutabık kaldıktan sonra doğrulanmış veriyi kontrata yazar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($22,000)",
+        "İşletim / Gas Ücreti: Orta (Oracle çalıştırma gaz gideri)",
+        "Verimlilik Artışı: %100 Güvenli API Bağlantısı, Veri Manipülasyonlarının Önlenmesi",
+        "Yatırım Dönüş Süresi (ROI): 8 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($22,000) olduğunu görüyoruz. Sağlanan %100 güvenli api bağlantısı, veri manipülasyonlarının önlenmesi verimlilik artışı sayesinde bu teknoloji kendisini 8 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Chainlink Node üzerinde çalışan özel bir API adaptörü (External Adapter) yazılır. API cevapları düğümlerce doğrulanıp zincire yazılır.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, chainlink node üzerinde çalışan özel bir api adaptörü (external adapter) yazılır. api cevapları düğümlerce doğrulanıp zincire yazılır. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

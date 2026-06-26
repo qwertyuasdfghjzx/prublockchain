@@ -1,0 +1,56 @@
+{
+  "id": "mt-4",
+  "title": "Liman Giriş-Çıkış Otomasyonu",
+  "department": "Deniz Ulaştırma İşletme Mühendisliği",
+  "slides": [
+    {
+      "title": "1. Liman Giriş-Çıkış Otomasyonu - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Gemilerin limana girmeden önce doldurmak zorunda olduğu onlarca farklı gümrük ve sağlık formu bürokrasiye boğulmuştur.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Deniz Ulaştırma İşletme Mühendisliği bölümümüz için kritik bir çözüm olan Liman Giriş-Çıkış Otomasyonu konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, gemilerin limana girmeden önce doldurmak zorunda olduğu onlarca farklı gümrük ve sağlık formu bürokrasiye boğulmuştur. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Liman otoriteleri, gümrük ve acenteler ortak bir dağıtık defter (DLT) üzerinden verileri güvenle ve tek noktadan onaylar.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, liman otoriteleri, gümrük ve acenteler ortak bir dağıtık defter (dlt) üzerinden verileri güvenle ve tek noktadan onaylar. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Gemi Bildirimi - Gemi limana 24 saat kala yük ve mürettebat listesini zincire yazar.",
+        "2. Adım: Paydaş Onayları - Gümrük, Sahil Güvenlik ve Liman Başkanlığı eşzamanlı evrakları doğrular.",
+        "3. Adım: Yanaşma İzni - Akıllı sözleşme onaylar tamamlandığında gemiye dijital giriş izni üretir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Çok Yüksek ($80,000)",
+        "İşletim / Gas Ücreti: Orta (Ağ bakım)",
+        "Verimlilik Artışı: %60 Bekleme Süresi Azalması, %50 Personel Tasarrufu",
+        "Yatırım Dönüş Süresi (ROI): 18 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun çok yüksek ($80,000) olduğunu görüyoruz. Sağlanan %60 bekleme süresi azalması, %50 personel tasarrufu verimlilik artışı sayesinde bu teknoloji kendisini 18 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Hyperledger Fabric veya özel izinli bir EVM ağı üzerinde liman paydaşları için ortak konsorsiyum akıllı sözleşmesi oluşturulur.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, hyperledger fabric veya özel izinli bir evm ağı üzerinde liman paydaşları için ortak konsorsiyum akıllı sözleşmesi oluşturulur. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

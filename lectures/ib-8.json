@@ -1,0 +1,56 @@
+{
+  "id": "ib-8",
+  "title": "On-Chain KYC/AML Uyumluluk Sicili",
+  "department": "Uluslararası İşletmecilik ve Ticaret",
+  "slides": [
+    {
+      "title": "1. On-Chain KYC/AML Uyumluluk Sicili - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Şirketlerin her dış ticaret işleminde bankalar ve finans kuruluşları için mükerrer KYC ve AML (Kara Para Aklama) kontrolleri yapması zaman alır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası İşletmecilik ve Ticaret bölümümüz için kritik bir çözüm olan On-Chain KYC/AML Uyumluluk Sicili konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, şirketlerin her dış ticaret işleminde bankalar ve finans kuruluşları için mükerrer kyc ve aml (kara para aklama) kontrolleri yapması zaman alır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Şirketler bir kez on-chain doğrulanmış KYC/AML sertifikası (SBT) alır ve bu kimliği tüm finans kurumlarına anında ibraz eder.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, şirketler bir kez on-chain doğrulanmış kyc/aml sertifikası (sbt) alır ve bu kimliği tüm finans kurumlarına anında ibraz eder. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: KYC Başvurusu - Şirket gerekli yasal evrakları denetçi kuruma sunar.",
+        "2. Adım: SBT Kimlik Basımı - Kurum, şirketin cüzdanına 1 yıl geçerli 'AML Uyumlu' SBT kimliği gönderir.",
+        "3. Adım: Anlık Kredi Girişi - Şirket bankaya kredi başvurusu yaptığında cüzdanındaki SBT'yi göstererek KYC'yi saniyede geçer."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($25,000)",
+        "İşletim / Gas Ücreti: Düşük (Yıllık yenileme)",
+        "Verimlilik Artışı: %90 KYC Süreç Hızlanması, Mükerrer Belge Hazırlama Giderlerinde %70 Tasarrufu",
+        "Yatırım Dönüş Süresi (ROI): 6 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($25,000) olduğunu görüyoruz. Sağlanan %90 kyc süreç hızlanması, mükerrer belge hazırlama giderlerinde %70 tasarrufu verimlilik artışı sayesinde bu teknoloji kendisini 6 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Doğrulanmış KYC denetçileri, şirketin cüzdan adresine devredilemez ve süreli bir KYC/AML SBT'si basar.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, doğrulanmış kyc denetçileri, şirketin cüzdan adresine devredilemez ve süreli bir kyc/aml sbt'si basar. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

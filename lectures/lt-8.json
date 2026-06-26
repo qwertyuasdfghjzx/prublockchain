@@ -1,0 +1,56 @@
+{
+  "id": "lt-8",
+  "title": "Tersine Lojistik ve İade Ürün Doğrulama Ağı",
+  "department": "Uluslararası Lojistik ve Taşımacılık",
+  "slides": [
+    {
+      "title": "1. Tersine Lojistik ve İade Ürün Doğrulama Ağı - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Müşterilerin iade ettiği lüks veya kritik ürünlerin orijinalliği tersine lojistik deposunda tespit edilememekte, dolandırıcılık yapılmaktadır.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası Lojistik ve Taşımacılık bölümümüz için kritik bir çözüm olan Tersine Lojistik ve İade Ürün Doğrulama Ağı konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, müşterilerin iade ettiği lüks veya kritik ürünlerin orijinalliği tersine lojistik deposunda tespit edilememekte, dolandırıcılık yapılmaktadır. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Ürünlerin ilk satın alma anındaki dijital pasaportu (NFT) ile iade edilen ürünün çip verileri zincirde karşılaştırılarak orijinalliği onaylanır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, ürünlerin ilk satın alma anındaki dijital pasaportu (nft) ile iade edilen ürünün çip verileri zincirde karşılaştırılarak orijinalliği onaylanır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: İade Talebi - Müşteri iade talebi oluşturur ve ürünün dijital pasaport NFT'sini geçici olarak kilitler.",
+        "2. Adım: Depo Kontrolü - Depo personeli iade gelen ürünün NFC çipini taratır.",
+        "3. Adım: İade Onayı - Akıllı sözleşme çip ve NFT eşleşmesini onaylayarak müşteriye para iadesi gönderir."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Yüksek ($38,000)",
+        "İşletim / Gas Ücreti: Düşük",
+        "Verimlilik Artışı: %100 İade Sahteciliği Engelleme, %40 İade Süreç Hızlanması",
+        "Yatırım Dönüş Süresi (ROI): 12 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun yüksek ($38,000) olduğunu görüyoruz. Sağlanan %100 i̇ade sahteciliği engelleme, %40 i̇ade süreç hızlanması verimlilik artışı sayesinde bu teknoloji kendisini 12 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Lüks ürünlerdeki NFC mikroçipleri, ERC-721 dijital pasaportuyla eşleştirilir. İade sürecinde NFC imzası doğrulanmadan iade kabul edilmez.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, lüks ürünlerdeki nfc mikroçipleri, erc-721 dijital pasaportuyla eşleştirilir. i̇ade sürecinde nfc imzası doğrulanmadan iade kabul edilmez. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}

@@ -1,0 +1,56 @@
+{
+  "id": "lt-5",
+  "title": "Teslimat Kanıtı (Proof of Delivery / POD) NFT",
+  "department": "Uluslararası Lojistik ve Taşımacılık",
+  "slides": [
+    {
+      "title": "1. Teslimat Kanıtı (Proof of Delivery / POD) NFT - Sektörel Kriz",
+      "bullets": [
+        "Mevcut Sistem Sorunu: Teslimat kanıtı makbuzlarının fiziki imzalanması, faturalandırma süreçlerini geciktirir ve kaybolan evraklar ihtilaflara sebep olur.",
+        "Gecikmeler, manuel kontroller ve idari bürokrasi.",
+        "Veri tahrifatı ve güvenlik açıkları verimliliği düşürür.",
+        "Paydaşlar arasında şeffaflık eksikliği uyuşmazlıklara yol açar."
+      ],
+      "narrative": "Merhaba arkadaşlar. Bugün Uluslararası Lojistik ve Taşımacılık bölümümüz için kritik bir çözüm olan Teslimat Kanıtı (Proof of Delivery / POD) NFT konusunu inceleyeceğiz. Sektörde karşılaştığımız en büyük problem, teslimat kanıtı makbuzlarının fiziki imzalanması, faturalandırma süreçlerini geciktirir ve kaybolan evraklar ihtilaflara sebep olur. Bu sorun süreçleri yavaşlatıyor ve operasyonel maliyetleri ciddi ölçüde artırıyor."
+    },
+    {
+      "title": "2. Neden Blockchain Teknolojisi?",
+      "bullets": [
+        "Blockchain Çözüm Modeli: Alıcının teslimat anında ürettiği kriptografik imza (POD NFT), teslimatın yapıldığının inkar edilemez kanıtıdır.",
+        "Dağıtık defter teknolojisi ile tek gerçeğe dayalı veri havuzu.",
+        "Kriptografik kanıtlar sayesinde geriye dönük veri tahrifatı engellenir.",
+        "Akıllı sözleşmeler ile iş kuralları arabulucusuz yürütülür."
+      ],
+      "narrative": "Peki neden blockchain kullanmalıyız? Temel sebebimiz, alıcının teslimat anında ürettiği kriptografik imza (pod nft), teslimatın yapıldığının inkar edilemez kanıtıdır. Blockchain sayesinde taraflar arasında güvene dayalı merkezi otoriteleri ortadan kaldırarak değiştirilemez ve kriptografik olarak güvence altına alınmış bir veri tabanı oluşturuyoruz."
+    },
+    {
+      "title": "3. Akıllı Sözleşme İş Akışı",
+      "bullets": [
+        "1. Adım: Kurye Teslimatı - Kurye adrese ulaşır ve paketi alıcıya sunar.",
+        "2. Adım: Kriptografik İmza - Alıcı mobil cüzdanı ile teslimatı onaylayarak işlem imzası üretir.",
+        "3. Adım: POD NFT Basımı - Akıllı sözleşme POD NFT'sini basıp göndericiye iletir, fatura süreci başlar."
+      ],
+      "narrative": "İş akışına baktığımızda üç adımdan oluşan bir döngü görüyoruz. İlk adımda veri doğrudan zincire kaydedilir. İkinci adımda akıllı sözleşme kuralları doğrulanır ve son adımda ise işlem otomatik olarak tamamlanarak taraflara bildirilir."
+    },
+    {
+      "title": "4. Fayda-Maliyet & Yatırım Analizi",
+      "bullets": [
+        "Geliştirme / Kurulum: Orta ($20,000)",
+        "İşletim / Gas Ücreti: Çok Düşük",
+        "Verimlilik Artışı: %100 İade Edilemez Teslimat Kanıtı, %60 Faturalandırma Hızlanması",
+        "Yatırım Dönüş Süresi (ROI): 6 Ay"
+      ],
+      "narrative": "Maliyet analizine baktığımızda sistem kurulumunun orta ($20,000) olduğunu görüyoruz. Sağlanan %100 i̇ade edilemez teslimat kanıtı, %60 faturalandırma hızlanması verimlilik artışı sayesinde bu teknoloji kendisini 6 ay içinde amorti etmektedir."
+    },
+    {
+      "title": "5. Geliştirme ve Entegrasyon",
+      "bullets": [
+        "Yazılım Mimarisi: Alıcının mobil uygulaması üzerinden ürettiği özel anahtar imzası, akıllı sözleşmeyle eşsiz bir teslimat NFT'si basımını tetikler.",
+        "API ve Oracles entegrasyonu ile sensör verilerinin zincire taşınması.",
+        "Web3 kütüphaneleri (Ethers.js) ile portala güvenli cüzdan entegrasyonu.",
+        "Liman ve ticaret otoriteleri ile konsorsiyum ağ yapılandırılması."
+      ],
+      "narrative": "Son olarak geliştirmeye değinelim. Yazılım tarafında, alıcının mobil uygulaması üzerinden ürettiği özel anahtar imzası, akıllı sözleşmeyle eşsiz bir teslimat nft'si basımını tetikler. Bu mimariyi kurarken Chainlink oracle'larından, Solidity akıllı sözleşmelerinden ve kullanıcı arayüzü entegrasyonları için Ethers.js kütüphanesinden yararlanıyoruz. Dinlediğiniz için teşekkür ederim."
+    }
+  ]
+}
